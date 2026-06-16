@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductItem from '../components/ProductItem';
-import { Search, Filter, X } from 'lucide-react';
+import { Search, Filter, X, Star } from 'lucide-react';
 import Seo from '../components/Seo';
 import { useSocket } from '../contexts/socketContextBase';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -225,7 +225,7 @@ const Shop = () => {
               <div className="text-slate dark:text-gray-300 text-xs sm:text-sm">{t('artisans_count')}</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-maroon dark:text-maroon-light">4.8★</div>
+              <div className="text-2xl sm:text-3xl font-bold text-maroon dark:text-maroon-light inline-flex items-center gap-1">4.8<Star className="w-5 h-5 fill-yellow-400 text-yellow-400" /></div>
               <div className="text-slate dark:text-gray-300 text-xs sm:text-sm">{t('rating')}</div>
             </div>
           </div>
