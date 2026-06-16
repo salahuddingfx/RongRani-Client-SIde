@@ -611,7 +611,7 @@ const Checkout = () => {
                       : shipping === 0 ? <span className="text-emerald-600 font-black">Free</span> : `৳${shipping}`,
                   accent: shipping === 0 && !deliveryLoading,
                 },
-                ...(giftWrapping ? [{ label: `🎁 ${t('gift_wrapping') || 'Gift Wrapping'}`, value: `৳${giftWrappingFee}`, accent: false }] : []),
+                ...(giftWrapping ? [{ label: `${t('gift_wrapping') || 'Gift Wrapping'}`, value: `৳${giftWrappingFee}`, accent: false }] : []),
                 ...(discount > 0 ? [{ label: t('discount_label') || 'Discount', value: `-৳${discount.toFixed(0)}`, negative: true }] : []),
               ].map(({ label, value, negative }, i) => (
                 <div key={i} className="flex items-center justify-between text-sm">
