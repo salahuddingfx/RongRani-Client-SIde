@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { X, Github, Facebook, Globe, Mail, MapPin, Code2, Database, Layout, Server, MessageCircle, GitBranch, Box, Cloud, Zap, Edit, Cpu, Layers, Terminal, Atom, Wind, HardDrive, Network, Globe2, FileCode, Linkedin } from 'lucide-react';
+import { X, Globe, Mail, MapPin, Code2, Database, Layout, Server, MessageCircle, GitBranch, Box, Cloud, Zap, Edit, Cpu, Layers, Terminal, Atom, Wind, HardDrive, Network, Globe2, FileCode } from 'lucide-react';
+import { FaGithub, FaFacebook, FaLinkedin } from 'react-icons/fa';
 
 const DeveloperProfile = ({ isOpen, onClose }) => {
   useEffect(() => {
@@ -46,9 +47,9 @@ const DeveloperProfile = ({ isOpen, onClose }) => {
   };
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', url: 'https://github.com/salahuddingfx', bg: '#1F2937', iconBg: 'rgba(255,255,255,0.2)' },
+    { icon: FaGithub, label: 'GitHub', url: 'https://github.com/salahuddingfx', bg: '#1F2937', iconBg: 'rgba(255,255,255,0.2)' },
     { icon: MessageCircle, label: 'WhatsApp', url: 'https://wa.me/8801570249299', bg: '#25D366', iconBg: 'rgba(255,255,255,0.2)' },
-    { icon: Facebook, label: 'Facebook', url: 'https://facebook.com/salahuddingfx', bg: '#1877F2', iconBg: 'rgba(255,255,255,0.2)' },
+    { icon: FaFacebook, label: 'Facebook', url: 'https://facebook.com/salahuddingfx', bg: '#1877F2', iconBg: 'rgba(255,255,255,0.2)' },
     { icon: Globe, label: 'Portfolio', url: 'https://salahuddin.codes', bg: '#BE123C', iconBg: 'rgba(255,255,255,0.2)' },
     { icon: Mail, label: 'Personal Email', url: 'mailto:salauddinkaderappy@gmail.com', bg: '#DC2626', iconBg: 'rgba(255,255,255,0.2)' }
   ];
