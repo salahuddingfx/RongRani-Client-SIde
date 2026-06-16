@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Clock, Package, Shield } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Clock, Package, Shield, Heart } from 'lucide-react';
 import DeveloperProfile from './DeveloperProfile';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -63,7 +63,7 @@ const Footer = () => {
                 <div
                   className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-transform hover:rotate-3 duration-500 bg-white p-0 relative group"
                   role="img"
-                  aria-label="RongRani™ Logo"
+                  aria-label="RongRani Logo"
                 >
                   <img src="/RongRani-Circle.png" alt="Logo" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                 </div>
@@ -197,7 +197,7 @@ const Footer = () => {
               <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
                 <div className="space-y-1">
                   <p className="text-slate-300 font-bold">
-                    © {currentYear} RongRani™
+                    © {currentYear} RongRani
                   </p>
                   <p className="text-slate-500 text-xs tracking-wide uppercase font-semibold">
                     {t('all_rights_reserved')}
@@ -208,7 +208,7 @@ const Footer = () => {
 
                 <div className="space-y-1">
                   <p className="text-slate-400 font-medium">
-                    {t('developed_with')} ❤️ {t('by_developer')}{' '}
+                    {t('developed_with')} <Heart className="w-4 h-4 inline-block text-red-500 fill-red-500" /> {t('by_developer')}{' '}
                     <button
                       onClick={() => setShowDevProfile(true)}
                       className="text-pink-400 hover:text-white transition-all font-black underline decoration-pink-400/30 underline-offset-4 cursor-pointer relative z-[10]"
