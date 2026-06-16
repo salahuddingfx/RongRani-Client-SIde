@@ -110,7 +110,7 @@ const Checkout = () => {
     const { name, value } = e.target;
     if (name === 'paymentMethod' && value === 'cod') {
       toast('Please pay delivery charge in advance for order confirmation.', {
-        icon: '⚠️',
+        icon: <AlertTriangle className="w-4 h-4" />,
         style: { borderRadius: '12px', background: '#FFFBEB', color: '#B45309', border: '1px solid #FCD34D' },
         duration: 4000,
       });
@@ -129,7 +129,7 @@ const Checkout = () => {
       setCouponCode(code);
       setCouponInfo(res.data);
       setDiscount(res.data.discount || 0);
-      toast.success(`🎉 Coupon applied! You saved ৳${(res.data.discount || 0).toFixed(0)}`);
+      toast.success(`Coupon applied! You saved ৳${(res.data.discount || 0).toFixed(0)}`);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Invalid coupon code');
       setCouponInfo(null); setDiscount(0);
