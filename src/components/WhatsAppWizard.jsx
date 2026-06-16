@@ -67,20 +67,23 @@ const WhatsAppWizard = () => {
 
             {/* Service Buttons */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4">
-              {services.map((service, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSendWhatsApp(service.query)}
-                  className="flex flex-col items-center justify-center p-2 sm:p-4 bg-cream dark:bg-slate-700 rounded-2xl hover:bg-maroon/10 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 group"
-                >
-                  <span className="text-2xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">
-                    {service.icon ? <service.icon className="w-6 h-6 mx-auto" /> : null}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-center font-medium text-charcoal dark:text-gray-200 line-clamp-2">
-                    {service.text}
-                  </span>
-                </button>
-              ))}
+              {services.map((service, index) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleSendWhatsApp(service.query)}
+                    className="flex flex-col items-center justify-center p-2 sm:p-4 bg-cream dark:bg-slate-700 rounded-2xl hover:bg-maroon/10 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 group"
+                  >
+                    <span className="text-2xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">
+                      {ServiceIcon ? <ServiceIcon className="w-6 h-6 mx-auto" /> : null}
+                    </span>
+                    <span className="text-[10px] sm:text-xs text-center font-medium text-charcoal dark:text-gray-200 line-clamp-2">
+                      {service.text}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Custom Message Input */}

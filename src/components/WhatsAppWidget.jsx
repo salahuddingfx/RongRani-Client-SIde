@@ -159,16 +159,19 @@ const WhatsAppWidget = () => {
           <div className="px-4 py-3 bg-green-50 border-t border-green-200">
             <p className="text-xs font-bold text-green-700 mb-2">Quick Messages:</p>
             <div className="grid grid-cols-2 gap-2">
-              {quickMessages.map((quick, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleQuickMessage(quick.text)}
-                  className="text-left text-xs bg-white border-2 border-green-200 hover:border-green-500 hover:bg-green-50 text-slate rounded-xl px-3 py-2 transition-all hover:scale-105 active:scale-95 font-medium shadow-sm hover:shadow-md"
-                >
-                  <span className="block mb-1">{quick.icon ? <quick.icon className="w-5 h-5 mx-auto text-green-600" /> : null}</span>
-                  {quick.text.length > 30 ? quick.text.substring(0, 30) + '...' : quick.text}
-                </button>
-              ))}
+              {quickMessages.map((quick, index) => {
+                const QuickIcon = quick.icon;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleQuickMessage(quick.text)}
+                    className="text-left text-xs bg-white border-2 border-green-200 hover:border-green-500 hover:bg-green-50 text-slate rounded-xl px-3 py-2 transition-all hover:scale-105 active:scale-95 font-medium shadow-sm hover:shadow-md"
+                  >
+                    <span className="block mb-1">{QuickIcon ? <QuickIcon className="w-5 h-5 mx-auto text-green-600" /> : null}</span>
+                    {quick.text.length > 30 ? quick.text.substring(0, 30) + '...' : quick.text}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
