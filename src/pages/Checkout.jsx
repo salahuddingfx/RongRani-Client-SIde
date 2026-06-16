@@ -204,7 +204,7 @@ const Checkout = () => {
         } catch { toast.error('Payment init failed. Check your orders.'); navigate('/orders'); return; }
       }
 
-      toast.success(formData.paymentMethod === 'cod' ? '✅ Order placed! We will contact you soon.' : `✅ Order placed! We'll confirm your payment shortly.`);
+      toast.success(formData.paymentMethod === 'cod' ? 'Order placed! We will contact you soon.' : `Order placed! We'll confirm your payment shortly.`);
 
       setTimeout(() => {
         if (isAuthenticated) { navigate('/orders'); return; }
@@ -500,10 +500,10 @@ const Checkout = () => {
                   <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-3 animate-fade-in-up">
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold">
                       {formData.paymentMethod === 'cod'
-                        ? `✅ Enter TrxID for ৳${shipping || '?'} delivery charge payment`
+                        ? `Enter TrxID for ৳${shipping || '?'} delivery charge payment`
                         : formData.paymentMethod === 'full_payment'
-                          ? `✅ Enter TrxID for ৳${total.toFixed(0)} full payment`
-                          : '✅ Enter payment verification details'}
+                          ? `Enter TrxID for ৳${total.toFixed(0)} full payment`
+                          : 'Enter payment verification details'}
                     </p>
                     <div className="grid grid-cols-2 gap-3">
                       <Field label={t('transaction_id') || 'Transaction ID'} required>
