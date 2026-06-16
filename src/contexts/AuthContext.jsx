@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import { authService } from '@/services/authService';
 
 const AuthContext = createContext();
 
@@ -20,15 +20,13 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = useCallback(async () => {
     try {
-      const response = await axios.get('/api/users/profile');
-      const userData = response.data;
+      const userData = await authService.getProfile();
       setUser(userData);
       setIsAuthenticated(true);
       setRole(userData.role || 'user');
     } catch (error) {
       console.error('Auth check failed:', error);
       localStorage.removeItem('token');
-      delete axios.defaults.headers.common['Authorization'];
       setUser(null);
       setIsAuthenticated(false);
       setRole('guest');
@@ -41,7 +39,6 @@ export const AuthProvider = ({ children }) => {
     const initializeAuth = async () => {
       const token = localStorage.getItem('token');
       if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         await checkAuthStatus();
       } else {
         setRole('guest');
@@ -53,30 +50,27 @@ export const AuthProvider = ({ children }) => {
   }, [checkAuthStatus]);
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/auth/login', { email, password });
-    const { token, ...userData } = response.data;
+    const userData = await authService.login(email, password);
+    const { token, ...userFields } = userData;
     localStorage.setItem('token', token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    setUser(userData);
+    setUser(userFields);
     setIsAuthenticated(true);
-    setRole(userData.role || 'user');
-    return userData;
+    setRole(userFields.role || 'user');
+    return userFields;
   };
 
-  const register = async (userData) => {
-    const response = await axios.post('/api/auth/register', userData);
-    const { token, ...user } = response.data;
+  const register = async (userDataInput) => {
+    const registerResponse = await authService.register(userDataInput);
+    const { token, ...userFields } = registerResponse;
     localStorage.setItem('token', token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    setUser(user);
+    setUser(userFields);
     setIsAuthenticated(true);
-    setRole(user.role || 'user');
-    return user;
+    setRole(userFields.role || 'user');
+    return userFields;
   };
 
   const logout = () => {
     localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
     setUser(null);
     setIsAuthenticated(false);
     setRole('guest');
