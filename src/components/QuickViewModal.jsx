@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Eye, ArrowRight, ShoppingCart, Star, Package } from 'lucide-react';
+import { X, Eye, ArrowRight, ShoppingCart, Star, Package, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import toast from 'react-hot-toast';
@@ -159,11 +159,11 @@ const QuickViewModal = ({ product, onClose }) => {
               <div className="mb-6">
                 {product.stock > 0 ? (
                   <span className="inline-flex items-center text-green-600 font-semibold">
-                    ✓ In Stock ({product.stock} available)
+                    <Check className="w-4 h-4 mr-1" /> In Stock ({product.stock} available)
                   </span>
                 ) : (
                   <span className="inline-flex items-center text-red-600 font-semibold">
-                    ✗ Out of Stock
+                    <X className="w-4 h-4 mr-1" /> Out of Stock
                   </span>
                 )}
               </div>
