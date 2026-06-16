@@ -242,15 +242,15 @@ const Checkout = () => {
 
   /* ─── payment method label helper ─── */
   const pmLabel = {
-    cod: '💵 Cash on Delivery',
-    full_payment: '💰 Full Pre-payment',
-    bkash_manual: '🟣 bKash (Manual)',
-    nagad_manual: '🟠 Nagad (Manual)',
-    rocket: '🟣 Rocket',
-    upay: '🔵 Upay',
-    bkash: '🟣 bKash (Auto)',
-    nagad: '🟠 Nagad (Auto)',
-    sslcommerz: '🔒 SSLCommerz',
+    cod: 'Cash on Delivery',
+    full_payment: 'Full Pre-payment',
+    bkash_manual: 'bKash (Manual)',
+    nagad_manual: 'Nagad (Manual)',
+    rocket: 'Rocket',
+    upay: 'Upay',
+    bkash: 'bKash (Auto)',
+    nagad: 'Nagad (Auto)',
+    sslcommerz: 'SSLCommerz',
   };
 
   return (
@@ -404,8 +404,8 @@ const Checkout = () => {
                 {/* Primary options */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    { value: 'cod', label: '💵 Cash on Delivery', desc: 'Pay delivery charge in advance', badge: 'Most Popular' },
-                    { value: 'full_payment', label: '💰 Full Pre-payment', desc: 'Pay total now, skip queue', badge: 'Recommended' },
+                    { value: 'cod', label: 'Cash on Delivery', desc: 'Pay delivery charge in advance', badge: 'Most Popular' },
+                    { value: 'full_payment', label: 'Full Pre-payment', desc: 'Pay total now, skip queue', badge: 'Recommended' },
                   ].map(({ value, label, desc, badge }) => (
                     <label key={value}
                       className={`relative flex items-start gap-3 p-4 rounded-2xl border-2 cursor-pointer transition-all ${formData.paymentMethod === value
