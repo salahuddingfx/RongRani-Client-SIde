@@ -1,4 +1,5 @@
 import React from 'react';
+import { Frown } from 'lucide-react';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
