@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Minus, Plus, Trash2, ShoppingBag, ShoppingCart, ArrowRight, Shield, Truck } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ShoppingCart, ArrowRight, Shield, Truck, Star, Heart, Gift } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useDeliveryCalculation } from '../hooks/useDeliveryCalculation';
@@ -65,15 +65,15 @@ const Cart = () => {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center space-x-8 text-sm">
               <div className="flex items-center space-x-2">
-                <span className="text-gold">⭐</span>
+                <Star className="inline-block w-4 h-4 text-gold fill-yellow-400 text-yellow-400" />
                 <span>{t('lifetime_customer')}</span>
               </div>
               <div className="hidden md:flex items-center space-x-2">
-                <span>🚚</span>
+                <Truck className="inline-block w-4 h-4" />
                 <span>{t('free_shipping_calc').replace('{amount}', '2500')}</span>
               </div>
               <div className="hidden md:flex items-center space-x-2">
-                <span>💝</span>
+                <Heart className="inline-block w-4 h-4" />
                 <span>{t('exclusive_discounts')}</span>
               </div>
             </div>
