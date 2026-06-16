@@ -486,7 +486,7 @@ const ProductDetail = () => {
                   <span className="relative z-10">{t('buy_now_zap')}</span>
                 </button>
                 <a
-                  href={`https://wa.me/8801851075537?text=${encodeURIComponent(`Hello RongRani! 💎 I want to order this premium product:\n\n🛍️ *Product:* ${product.name}\n💰 *Price:* ৳${product.price}\n🔗 *Link:* ${window.location.href}`)}`}
+                  href={`https://wa.me/8801851075537?text=${encodeURIComponent(`Hello RongRani! I want to order this premium product:\n\n*Product:* ${product.name}\n*Price:* ৳${product.price}\n*Link:* ${window.location.href}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:shadow-2xl hover:bg-[#128C7E] transition-all transform hover:scale-[1.02] active:scale-95"

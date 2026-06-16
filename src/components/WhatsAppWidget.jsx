@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Phone, Mail, MapPin } from 'lucide-react';
+import { MessageCircle, X, Send, Phone, Mail, MapPin, Check, User, Wallet, Truck, PartyPopper } from 'lucide-react';
 
 const WhatsAppWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +7,7 @@ const WhatsAppWidget = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! 👋 Welcome to RongRani. How can we help you today?",
+      text: "Hello! Welcome to RongRani. How can we help you today?",
       sender: 'support',
       timestamp: new Date().toISOString()
     }
@@ -25,10 +25,10 @@ const WhatsAppWidget = () => {
   }, [messages]);
 
   const quickMessages = [
-    { text: "🎁 I want to know about gift prices", icon: "💰" },
-    { text: "📦 Track my order status", icon: "🚚" },
-    { text: "💝 Need gift suggestions for special occasion", icon: "🎉" },
-    { text: "🚚 What are the delivery charges?", icon: "📍" }
+    { text: "I want to know about gift prices", icon: Wallet },
+    { text: "Track my order status", icon: Truck },
+    { text: "Need gift suggestions for special occasion", icon: PartyPopper },
+    { text: "What are the delivery charges?", icon: MapPin }
   ];
 
   const handleSendMessage = () => {
@@ -52,7 +52,7 @@ const WhatsAppWidget = () => {
     setTimeout(() => {
       const confirmMessage = {
         id: Date.now() + 1,
-        text: "✅ Message sent! We'll reply on WhatsApp shortly. You can also continue chatting here.",
+        text: "Message sent! We'll reply on WhatsApp shortly. You can also continue chatting here.",
         sender: 'support',
         timestamp: new Date().toISOString()
       };
@@ -85,7 +85,7 @@ const WhatsAppWidget = () => {
           <MessageCircle className="h-7 w-7" />
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse border-2 border-white flex items-center justify-center text-[8px] font-bold">1</span>
           <div className="absolute -top-12 left-0 bg-green-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            Chat on WhatsApp 💬
+            Chat on WhatsApp
           </div>
         </button>
       )}
@@ -135,7 +135,7 @@ const WhatsAppWidget = () => {
                   {msg.sender === 'support' && (
                     <div className="flex items-center space-x-2 mb-2">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-sm">👤</span>
+                        <User className="w-4 h-4 text-green-600" />
                       </div>
                       <span className="font-bold text-xs text-green-700">Support Team</span>
                     </div>
@@ -165,7 +165,7 @@ const WhatsAppWidget = () => {
                   onClick={() => handleQuickMessage(quick.text)}
                   className="text-left text-xs bg-white border-2 border-green-200 hover:border-green-500 hover:bg-green-50 text-slate rounded-xl px-3 py-2 transition-all hover:scale-105 active:scale-95 font-medium shadow-sm hover:shadow-md"
                 >
-                  <span className="block mb-1">{quick.icon}</span>
+                  <span className="block mb-1">{quick.icon ? <quick.icon className="w-5 h-5 mx-auto text-green-600" /> : null}</span>
                   {quick.text.length > 30 ? quick.text.substring(0, 30) + '...' : quick.text}
                 </button>
               ))}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, Bot, MessageCircle } from 'lucide-react';
+import { X, Send, Bot, MessageCircle, Gift, Heart, Package, CreditCard, Truck, PartyPopper } from 'lucide-react';
 
 const WhatsAppWizard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +9,12 @@ const WhatsAppWizard = () => {
   const defaultMessage = 'Hello! I need help with RongRani services.';
 
   const services = [
-    { icon: '🎁', text: 'Gift Recommendations', query: 'I need gift recommendations' },
-    { icon: '💝', text: 'Custom Orders', query: 'I want to place a custom order' },
-    { icon: '📦', text: 'Order Status', query: 'Check my order status' },
-    { icon: '💳', text: 'Payment Help', query: 'I need help with payment' },
-    { icon: '🚚', text: 'Delivery Info', query: 'When will my order arrive?' },
-    { icon: '🎉', text: 'Special Occasions', query: 'Help me plan for a special occasion' },
+    { icon: Gift, text: 'Gift Recommendations', query: 'I need gift recommendations' },
+    { icon: Heart, text: 'Custom Orders', query: 'I want to place a custom order' },
+    { icon: Package, text: 'Order Status', query: 'Check my order status' },
+    { icon: CreditCard, text: 'Payment Help', query: 'I need help with payment' },
+    { icon: Truck, text: 'Delivery Info', query: 'When will my order arrive?' },
+    { icon: PartyPopper, text: 'Special Occasions', query: 'Help me plan for a special occasion' },
   ];
 
   const handleSendWhatsApp = (query = message || defaultMessage) => {
@@ -61,9 +61,9 @@ const WhatsAppWizard = () => {
 
           {/* Content */}
           <div className="p-5 max-h-96 overflow-y-auto">
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-              👋 Welcome! How can I help you today? Choose a service or type your message:
-            </p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                Welcome! How can I help you today? Choose a service or type your message:
+              </p>
 
             {/* Service Buttons */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4">
@@ -74,7 +74,7 @@ const WhatsAppWizard = () => {
                   className="flex flex-col items-center justify-center p-2 sm:p-4 bg-cream dark:bg-slate-700 rounded-2xl hover:bg-maroon/10 dark:hover:bg-slate-600 transition-all duration-300 hover:scale-105 group"
                 >
                   <span className="text-2xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">
-                    {service.icon}
+                    {service.icon ? <service.icon className="w-6 h-6 mx-auto" /> : null}
                   </span>
                   <span className="text-[10px] sm:text-xs text-center font-medium text-charcoal dark:text-gray-200 line-clamp-2">
                     {service.text}
@@ -107,7 +107,7 @@ const WhatsAppWizard = () => {
             {/* Info */}
             <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-xl">
               <p className="text-xs text-green-700 dark:text-green-300 text-center">
-                💬 Clicking any button will open WhatsApp chat
+                Clicking any button will open WhatsApp chat
               </p>
             </div>
           </div>

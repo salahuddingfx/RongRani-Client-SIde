@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, X, AlertCircle } from 'lucide-react';
+import { Star, X, AlertCircle, User, Lightbulb } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -68,9 +68,8 @@ const ReviewForm = ({
         config
       );
 
-      toast.success(language === 'bn' ? '✅ রিভিউ সফলভাবে জমা দেওয়া হয়েছে! আপনাকে ধন্যবাদ।' : '✅ Review submitted successfully! Thank you for your feedback.', {
-        duration: 4000,
-        icon: '✨'
+      toast.success(language === 'bn' ? 'রিভিউ সফলভাবে জমা দেওয়া হয়েছে! আপনাকে ধন্যবাদ।' : 'Review submitted successfully! Thank you for your feedback.', {
+        duration: 4000
       });
       onReviewSubmitted();
       onClose();
@@ -95,7 +94,7 @@ const ReviewForm = ({
         {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-maroon to-maroon-light text-white p-6 md:p-8 flex items-center justify-between z-10 shadow-lg">
           <div>
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight">{language === 'bn' ? 'আপনার অভিজ্ঞতা শেয়ার করুন ✨' : 'Share Your Experience ✨'}</h2>
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight">{language === 'bn' ? 'আপনার অভিজ্ঞতা শেয়ার করুন' : 'Share Your Experience'}</h2>
             <p className="text-white/80 text-xs md:text-sm font-bold mt-1 uppercase tracking-widest">{language === 'bn' ? 'রংরানী পরিবারে আপনার মতামত গুরুত্বপূর্ণ' : 'Your voice matters in RongRani family'}</p>
           </div>
           <button
@@ -113,7 +112,7 @@ const ReviewForm = ({
             <div className="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-[2rem] border-2 border-slate-100 dark:border-slate-800 shadow-inner">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 bg-maroon/10 rounded-xl flex items-center justify-center">
-                  <span className="text-lg">👤</span>
+                  <User className="w-5 h-5 text-maroon" />
                 </div>
                 <p className="text-xs md:text-sm text-maroon font-black uppercase tracking-widest">{language === 'bn' ? 'রিভিউর তথ্য' : 'Reviewer Information'}</p>
               </div>
@@ -180,11 +179,11 @@ const ReviewForm = ({
             </div>
             {rating > 0 && (
               <p className="text-sm font-black text-gold animate-bounce-slow mt-2">
-                {rating === 5 && (language === 'bn' ? '❤️ অসাধারণ! আমি এটা খুব পছন্দ করি!' : '❤️ Absolutely love it!')}
-                {rating === 4 && (language === 'bn' ? '😊 আমি সন্তুষ্ট' : '😊 Very satisfied')}
-                {rating === 3 && (language === 'bn' ? '😐 মোটামুটি ঠিক আছে' : "😐 It's okay")}
-                {rating === 2 && (language === 'bn' ? '😕 ভালো লাগেনি' : '😕 Not great')}
-                {rating === 1 && (language === 'bn' ? '😞 খুব খারাপ অভিজ্ঞতা' : '😞 Poor experience')}
+                {rating === 5 && (language === 'bn' ? 'অসাধারণ! আমি এটা খুব পছন্দ করি!' : 'Absolutely love it!')}
+                {rating === 4 && (language === 'bn' ? 'আমি সন্তুষ্ট' : 'Very satisfied')}
+                {rating === 3 && (language === 'bn' ? 'মোটামুটি ঠিক আছে' : "It's okay")}
+                {rating === 2 && (language === 'bn' ? 'ভালো লাগেনি' : 'Not great')}
+                {rating === 1 && (language === 'bn' ? 'খুব খারাপ অভিজ্ঞতা' : 'Poor experience')}
               </p>
             )}
           </div>
@@ -234,7 +233,7 @@ const ReviewForm = ({
           {/* Info Box */}
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-100 dark:border-amber-800/50 p-6 rounded-[2rem]">
             <p className="font-black text-amber-800 dark:text-amber-400 flex items-center gap-2 mb-2">
-              <span className="text-lg">💡</span> {language === 'bn' ? 'রংরানী টিপস' : 'RongRani Tip'}
+              <Lightbulb className="w-5 h-5 text-amber-500" /> {language === 'bn' ? 'রংরানী টিপস' : 'RongRani Tip'}
             </p>
             <ul className="space-y-2 text-xs font-bold text-amber-900/70 dark:text-amber-300/60 leading-relaxed">
               <li className="flex items-center gap-2">• {language === 'bn' ? 'সততা বজায় রেখে রিভিউ লিখুন' : 'Be honest and constructive'}</li>
@@ -263,7 +262,7 @@ const ReviewForm = ({
               ) : (
                 <>
                   <Star className="h-5 w-5 fill-white" />
-                  <span>{language === 'bn' ? 'রিভিউ পাবলিশ করুন' : 'Publish Review ✨'}</span>
+                  <span>{language === 'bn' ? 'রিভিউ পাবলিশ করুন' : 'Publish Review'}</span>
                 </>
               )}
             </button>

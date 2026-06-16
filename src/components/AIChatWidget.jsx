@@ -6,7 +6,7 @@ const AIChatWidget = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! 💝 Welcome to RongRani™! I can help you find the perfect gift. What occasion are you shopping for?",
+      text: "Hello! Welcome to RongRani! I can help you find the perfect gift. What occasion are you shopping for?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -27,7 +27,7 @@ const AIChatWidget = () => {
     const msg = userMessage.toLowerCase();
 
     if (msg.includes('custom') || msg.includes('customize') || msg.includes('personalize')) {
-      return "Perfect! 🎁 We specialize in custom gift orders!\n\nYou can customize:\n✨ Personalized handwritten love letters\n💝 Custom gift combos\n🎀 Special occasion packages\n\nFor custom orders, click the WhatsApp button (green icon) below to chat with our team directly. They'll help you create the perfect custom gift! 💚";
+      return "Perfect! We specialize in custom gift orders!\n\nYou can customize:\nPersonalized handwritten love letters\nCustom gift combos\nSpecial occasion packages\n\nFor custom orders, click the WhatsApp button (green icon) below to chat with our team directly. They'll help you create the perfect custom gift!";
     } else if (msg.includes('love') || msg.includes('romantic')) {
       return "Our Love Combo Special (৳2500) is perfect! It includes a romantic handwritten letter, chocolates, and a teddy. Also check out our Couple Rings Set (৳3500) and Valentine Special Combo (৳6500)!";
     } else if (msg.includes('anniversary')) {
@@ -35,27 +35,27 @@ const AIChatWidget = () => {
     } else if (msg.includes('birthday')) {
       return "Our Birthday Gift Box (৳3500) is super popular! For something special, try the Premium Luxury Gift Box (৳9500) or Proposal Gift Box (৳8500).";
     } else if (msg.includes('chocolate')) {
-      return "We have amazing chocolates! Premium Chocolate Gift Box (৳1500) and Heart Shape Chocolate Box (৳2200) are customer favorites! 🍫";
+      return "We have amazing chocolates! Premium Chocolate Gift Box (৳1500) and Heart Shape Chocolate Box (৳2200) are customer favorites!";
     } else if (msg.includes('jewellery') || msg.includes('jewelry')) {
-      return "Check out our Gold Plated Party Necklace (৳2500), Designer Bangles Set (৳1800), or Jhumka Earrings (৳1200). All beautiful pieces! ✨";
+      return "Check out our Gold Plated Party Necklace (৳2500), Designer Bangles Set (৳1800), or Jhumka Earrings (৳1200). All beautiful pieces!";
     } else if (msg.includes('watch')) {
       return "We have Ladies Elegant Watch (৳4500) and Couple Watch Set (৳7500) - both are premium quality!";
     } else if (msg.includes('price') || msg.includes('cheap') || msg.includes('affordable')) {
       return "Our most affordable items: Handwritten Love Letter (৳500), Artificial Rose Bouquet (৳800), Jhumka Earrings (৳1200). All under ৳1500!";
     } else if (msg.includes('best seller') || msg.includes('popular')) {
-      return "Top sellers: Love Combo Special (৳2500, 5★), Anniversary Surprise Box (৳5500, 5★), and Valentine Special Combo (৳6500, 5★)!";
+      return "Top sellers: Love Combo Special (৳2500), Anniversary Surprise Box (৳5500), and Valentine Special Combo (৳6500)!";
     } else if (msg.includes('delivery') || msg.includes('shipping')) {
       return "We deliver all over Bangladesh! Cox's Bazar: ৳70, other districts: ৳150. FREE delivery on orders above ৳2500.";
     } else if (msg.includes('payment')) {
-      return "We accept: Cash on Delivery (COD), bKash, Nagad, Rocket. For mobile banking, please provide Transaction ID and last 4 digits after payment. 💳";
+      return "We accept: Cash on Delivery (COD), bKash, Nagad, Rocket. For mobile banking, please provide Transaction ID and last 4 digits after payment.";
     } else if (msg.includes('contact') || msg.includes('support')) {
-      return "Call us: +8801851075537 or email: info.rongrani@gmail.com. You can also click the WhatsApp button (green icon below) for instant chat! 💬";
+      return "Call us: +8801851075537 or email: info.rongrani@gmail.com. You can also click the WhatsApp button (green icon below) for instant chat!";
     } else if (msg.includes('thank') || msg.includes('thanks')) {
-      return "You're welcome! Happy to help you find the perfect gift! 💝 Need anything else?";
+      return "You're welcome! Happy to help you find the perfect gift! Need anything else?";
     } else if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
-      return "Hello! 👋 How can I help you find the perfect gift today?";
+      return "Hello! How can I help you find the perfect gift today?";
     } else {
-      return "I can help you find:\n• Love & Anniversary Combos 💕\n• Birthday Gifts 🎂\n• Custom Orders 🎁\n• Jewellery & Watches ✨\n• Chocolates & Teddies 🍫\n\nWhat are you looking for?";
+      return "I can help you find:\n• Love & Anniversary Combos\n• Birthday Gifts\n• Custom Orders\n• Jewellery & Watches\n• Chocolates & Teddies\n\nWhat are you looking for?";
     }
   };
 
@@ -123,7 +123,7 @@ const AIChatWidget = () => {
               </div>
               <div className="min-w-0">
                 <h3 className="font-bold text-sm sm:text-base">Gift Assistant</h3>
-                <p className="text-xs text-white/80 truncate">Always here to help ❤️</p>
+                <p className="text-xs text-white/80 truncate">Always here to help</p>
               </div>
             </div>
             <button

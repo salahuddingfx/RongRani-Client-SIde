@@ -134,7 +134,7 @@ const Reviews = () => {
                             <div className="space-y-2">
                                 {[5, 4, 3, 2, 1].map((rating) => (
                                     <div key={rating} className="flex items-center gap-2 text-sm">
-                                        <span className="text-slate-600 w-8">{rating}★</span>
+                                        <span className="text-slate-600 w-8 flex items-center gap-0.5">{rating}<Star className="w-3 h-3 fill-yellow-400 text-yellow-400" /></span>
                                         <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden">
                                             <div
                                                 className="bg-maroon h-full rounded-full transition-all duration-500"
@@ -169,8 +169,8 @@ const Reviews = () => {
                             <div className="flex flex-wrap gap-2">
                                 {[
                                     { value: 'all', label: language === 'bn' ? 'সব' : 'All', icon: Filter },
-                                    { value: '5star', label: '5★', icon: Star },
-                                    { value: '4star', label: '4★', icon: Star },
+                                    { value: '5star', label: '5', icon: Star },
+                                    { value: '4star', label: '4', icon: Star },
                                     { value: 'recent', label: language === 'bn' ? 'সাম্প্রতিক' : 'Recent', icon: TrendingUp }
                                 ].map(({ value, label, icon: Icon }) => (
                                     <button

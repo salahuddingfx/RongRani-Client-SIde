@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, X, Send, Minimize2, Sparkles } from 'lucide-react';
+import { Bot, X, Send, Minimize2, Sparkles, Package, MessageCircle, Phone, ShoppingBag } from 'lucide-react';
 
 const AIChatFloatingWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! 💝 Welcome to RongRani™! I'm your AI assistant. What can I help you with today?",
+      text: "Hello! Welcome to RongRani! I'm your AI assistant. What can I help you with today?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -35,37 +35,37 @@ const AIChatFloatingWidget = () => {
     const msg = userMessage.toLowerCase();
 
     if (msg.includes('love') || msg.includes('romantic') || msg.includes('প্রেম')) {
-      return "💕 Perfect! Our Love Combo Special (৳2500) includes a handwritten love letter, chocolates, and a teddy bear. We also have Couple Rings Set (৳3500) and Valentine Special Combo (৳6500). Which one interests you?";
+      return "Perfect! Our Love Combo Special (৳2500) includes a handwritten love letter, chocolates, and a teddy bear. We also have Couple Rings Set (৳3500) and Valentine Special Combo (৳6500). Which one interests you?";
     } else if (msg.includes('anniversary') || msg.includes('বার্ষিকী')) {
-      return "🎉 For anniversaries, our Anniversary Surprise Box (৳5500) is the best seller! It includes a necklace, bangles, and a love note. Also check out Couple Watch Set (৳7500) and Premium Gift Sharee (৳6500).";
+      return "For anniversaries, our Anniversary Surprise Box (৳5500) is the best seller! It includes a necklace, bangles, and a love note. Also check out Couple Watch Set (৳7500) and Premium Gift Sharee (৳6500).";
     } else if (msg.includes('birthday') || msg.includes('জন্মদিন')) {
-      return "🎂 Birthday Gift Box (৳3500) is super popular! For something extra special, try Premium Luxury Gift Box (৳9500) or Proposal Gift Box (৳8500). What's your budget?";
+      return "Birthday Gift Box (৳3500) is super popular! For something extra special, try Premium Luxury Gift Box (৳9500) or Proposal Gift Box (৳8500). What's your budget?";
     } else if (msg.includes('chocolate') || msg.includes('চকলেট')) {
-      return "🍫 We have amazing chocolates! Premium Chocolate Gift Box (৳1500) with assorted Dairy Milk, KitKat & Silk, and Heart Shape Chocolate Box (৳2200) for romantic occasions!";
+      return "We have amazing chocolates! Premium Chocolate Gift Box (৳1500) with assorted Dairy Milk, KitKat & Silk, and Heart Shape Chocolate Box (৳2200) for romantic occasions!";
     } else if (msg.includes('price') || msg.includes('cost') || msg.includes('দাম')) {
-      return "💰 Our products range from ৳500 (Handwritten Love Letter) to ৳9500 (Premium Luxury Gift Box). Most popular items are between ৳1500-৳5500. What's your budget?";
+      return "Our products range from ৳500 (Handwritten Love Letter) to ৳9500 (Premium Luxury Gift Box). Most popular items are between ৳1500-৳5500. What's your budget?";
     } else if (msg.includes('delivery') || msg.includes('shipping') || msg.includes('ডেলিভারি')) {
-      return `🚚 Cox's Bazar: ৳${deliverySettings.chittagongFee} | Other districts: ৳${deliverySettings.outsideChittagongFee} | FREE delivery on orders above ৳${deliverySettings.freeShippingThreshold}.`;
+      return `Cox's Bazar: ৳${deliverySettings.chittagongFee} | Other districts: ৳${deliverySettings.outsideChittagongFee} | FREE delivery on orders above ৳${deliverySettings.freeShippingThreshold}.`;
     } else if (msg.includes('payment') || msg.includes('পেমেন্ট')) {
-      return "💳 We accept: Cash on Delivery (COD), bKash, Nagad, Rocket. For mobile banking, please provide Transaction ID and last 4 digits after payment.";
+      return "We accept: Cash on Delivery (COD), bKash, Nagad, Rocket. For mobile banking, please provide Transaction ID and last 4 digits after payment.";
     } else if (msg.includes('track') || msg.includes('order') || msg.includes('অর্ডার')) {
-      return "📦 You can track your order from 'My Orders' page after logging in. We send email updates for every status change. Need help with a specific order?";
+      return "You can track your order from 'My Orders' page after logging in. We send email updates for every status change. Need help with a specific order?";
     } else if (msg.includes('contact') || msg.includes('call') || msg.includes('যোগাযোগ')) {
-      return "📞 Call us: +8801851075537 | Email: info.rongrani@gmail.com | WhatsApp: Click the green button on left! We reply instantly!";
+      return "Call us: +8801851075537 | Email: info.rongrani@gmail.com | WhatsApp: Click the green button on left! We reply instantly!";
     } else if (msg.includes('gift') || msg.includes('suggest') || msg.includes('উপহার')) {
-      return "🎁 What's the occasion? Choose from: 💕 Love/Romance | 🎂 Birthday | 🎉 Anniversary | 💍 Proposal | 💐 Valentine's | 🎓 Graduation. Tell me and I'll suggest perfect gifts!";
+      return "What's the occasion? Choose from: Love/Romance | Birthday | Anniversary | Proposal | Valentine's | Graduation. Tell me and I'll suggest perfect gifts!";
     } else if (msg.includes('thanks') || msg.includes('thank') || msg.includes('ধন্যবাদ')) {
-      return "You're very welcome! 💝 Feel free to ask anything anytime. Happy shopping at RongRani! Need anything else?";
+      return "You're very welcome! Feel free to ask anything anytime. Happy shopping at RongRani! Need anything else?";
     } else if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey') || msg.includes('হাই')) {
-      return "Hello! 👋 Great to see you! I'm here to help you find the perfect gift. Tell me, what occasion are you shopping for today?";
+      return "Hello! Great to see you! I'm here to help you find the perfect gift. Tell me, what occasion are you shopping for today?";
     } else if (msg.includes('help') || msg.includes('সহায়তা') || msg.includes('/')) {
-      return "📍 Important Commands & Links:\n\n" +
-        "📦 Track Order: Navigate to /track\n" +
-        "🛍️ Shop: Browse our collection at /shop\n" +
-        "📞 Contact: Call +8801851075537\n" +
-        "💬 WhatsApp: Direct support at wa.me/8801851075537\n" +
-        "❓ Help Center: Visit /help for FAQs\n\n" +
-        "Simply type what you're looking for (e.g., 'birthday gift') and I'll find it for you! 🎁";
+      return "Important Commands & Links:\n\n" +
+        "Track Order: Navigate to /track\n" +
+        "Shop: Browse our collection at /shop\n" +
+        "Contact: Call +8801851075537\n" +
+        "WhatsApp: Direct support at wa.me/8801851075537\n" +
+        "Help Center: Visit /help for FAQs\n\n" +
+        "Simply type what you're looking for (e.g., 'birthday gift') and I'll find it for you!";
     } else {
       return "I'm here to help! 💝 Type 'help' to see all important links, or ask me about:\n\n" +
         "• 📝 Order Tracking\n" +
