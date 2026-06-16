@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Clock, Package, Shield, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Package, Shield, Heart } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import DeveloperProfile from './DeveloperProfile';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -82,13 +83,13 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex items-center gap-4">
                 <a href="https://facebook.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-maroon border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-maroon/20 hover:scale-110 group" aria-label="Follow us on Facebook">
-                  <Facebook className="h-5 w-5 transition-transform group-hover:rotate-6" />
+                  <FaFacebook className="h-5 w-5 transition-transform group-hover:rotate-6" />
                 </a>
                 <a href="https://instagram.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-gradient-to-tr from-yellow-500 to-purple-600 border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-purple-500/20 hover:scale-110 group" aria-label="Follow us on Instagram">
-                  <Instagram className="h-5 w-5 transition-transform group-hover:rotate-6" />
+                  <FaInstagram className="h-5 w-5 transition-transform group-hover:rotate-6" />
                 </a>
                 <a href="https://twitter.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-blue-500 border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-blue-500/20 hover:scale-110 group" aria-label="Follow us on Twitter">
-                  <Twitter className="h-5 w-5 transition-transform group-hover:rotate-6" />
+                  <FaTwitter className="h-5 w-5 transition-transform group-hover:rotate-6" />
                 </a>
               </div>
             </div>

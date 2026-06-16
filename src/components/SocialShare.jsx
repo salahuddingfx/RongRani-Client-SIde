@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Link as LinkIcon, Twitter, Send } from 'lucide-react';
+import { Link as LinkIcon, Send } from 'lucide-react';
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
@@ -81,7 +82,7 @@ const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
                     className="p-2.5 bg-[#1877F2]/10 text-[#1877F2] rounded-xl hover:bg-[#1877F2] hover:text-white transition-all transform hover:scale-110 active:scale-95 shadow-sm"
                     title="Share on Facebook"
                 >
-                    <Facebook className="w-5 h-5" />
+                    <FaFacebook className="w-5 h-5" />
                 </button>
 
                 <button
@@ -105,7 +106,7 @@ const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
                     className="p-2.5 bg-black/10 text-black dark:bg-white/10 dark:text-white rounded-xl hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all transform hover:scale-110 active:scale-95 shadow-sm"
                     title="Share on X (Twitter)"
                 >
-                    <Twitter className="w-5 h-5" />
+                    <FaTwitter className="w-5 h-5" />
                 </button>
 
                 <button

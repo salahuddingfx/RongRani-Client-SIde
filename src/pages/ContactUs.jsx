@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Facebook, Instagram, Twitter, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Loader2 } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
@@ -232,13 +233,13 @@ const ContactUs = () => {
               </p>
               <div className="flex space-x-4">
                 <a href="https://facebook.com/rongraniofficial" className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
-                  <Facebook className="h-6 w-6" />
+                  <FaFacebook className="h-6 w-6" />
                 </a>
                 <a href="https://instagram.com/rongraniofficial" className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
-                  <Instagram className="h-6 w-6" />
+                  <FaInstagram className="h-6 w-6" />
                 </a>
                 <a href="https://twitter.com/rongraniofficial" className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
-                  <Twitter className="h-6 w-6" />
+                  <FaTwitter className="h-6 w-6" />
                 </a>
               </div>
             </div>
