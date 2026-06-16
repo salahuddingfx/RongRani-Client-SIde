@@ -18,7 +18,7 @@ const Newsletter = () => {
     setLoading(true);
     try {
       await axios.post('/api/newsletter/subscribe', { email });
-      toast.success('🎉 Successfully subscribed! Check your inbox for our welcome gift.');
+      toast.success('Successfully subscribed! Check your inbox for our welcome gift.');
       setEmail('');
     } catch (error) {
       const message = error.response?.data?.message || 'Already subscribed or something went wrong';
@@ -69,7 +69,7 @@ const Newsletter = () => {
           </form>
 
           <p className="text-xs sm:text-sm text-white/70 mt-4 sm:mt-6 px-4">
-            🎁 Get 10% OFF instantly • 📦 Free shipping updates • 🎉 Exclusive early access
+            Get 10% OFF instantly • Free shipping updates • Exclusive early access
           </p>
         </div>
       </div>
