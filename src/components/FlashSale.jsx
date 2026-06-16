@@ -88,7 +88,7 @@ const FlashSale = () => {
     }));
 
     return (
-        <section className="py-12 bg-white dark:bg-slate-900">
+        <section className="py-8 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">

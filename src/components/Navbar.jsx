@@ -390,10 +390,10 @@ const Navbar = () => {
     ...(user?.role === 'admin' ? [{ to: adminUrl, label: 'admin_panel', icon: Crown, external: true }] : []),
   ];
 
-  const topBarClasses = 'bg-maroon/90 backdrop-blur-md backdrop-saturate-150 text-white text-[10px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 block transition-all duration-300 ring-1 ring-white/10 relative z-50 mx-0 md:mx-4 mt-0 md:mt-2 rounded-none md:rounded-xl shadow-lg';
+  const topBarClasses = 'bg-maroon/90 backdrop-blur-md backdrop-saturate-150 text-white text-[10px] md:text-xs py-1 md:py-1.5 px-3 md:px-4 block transition-all duration-300 ring-1 ring-white/10 relative z-50 mx-0 md:mx-4 mt-0 md:mt-2 rounded-none md:rounded-xl shadow-lg';
   const mainNavClasses = isScrolled || isOpen
-    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl backdrop-saturate-150 shadow-xl ring-1 ring-white/10 dark:ring-white/5 py-1.5 sm:py-3 rounded-none md:rounded-2xl mx-0 md:mx-4 mt-0 md:mt-3 transition-all duration-500'
-    : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg backdrop-saturate-150 shadow-lg ring-1 ring-white/10 dark:ring-white/5 py-2 sm:py-4 rounded-none md:rounded-2xl mx-0 md:mx-4 mt-0 md:mt-3 transition-all duration-500';
+    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl backdrop-saturate-150 shadow-xl ring-1 ring-white/10 dark:ring-white/5 py-1 sm:py-2 rounded-none md:rounded-2xl mx-0 md:mx-4 mt-0 md:mt-3 transition-all duration-500'
+    : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg backdrop-saturate-150 shadow-lg ring-1 ring-white/10 dark:ring-white/5 py-1.5 sm:py-3 rounded-none md:rounded-2xl mx-0 md:mx-4 mt-0 md:mt-3 transition-all duration-500';
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] flex flex-col w-full overflow-visible pointer-events-none">

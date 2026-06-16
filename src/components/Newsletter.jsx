@@ -29,7 +29,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-maroon py-12 sm:py-16">
+    <section className="bg-maroon py-8 sm:py-10">
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center mb-4 sm:mb-6">

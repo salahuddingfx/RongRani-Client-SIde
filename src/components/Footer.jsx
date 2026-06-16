@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
 
         {/* Main Footer Content */}
-        <div className="container mx-auto px-4 py-16 md:py-20 relative z-10">
+        <div className="container mx-auto px-4 py-10 md:py-14 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-12 lg:gap-8 xl:gap-16">
 
             {/* Brand Section */}
@@ -95,11 +95,11 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-black text-white mb-8 relative inline-block">
+              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
                 {t('quick_links')}
                 <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {[
                   { to: '/shop', label: t('shop') },
                   { to: '/about', label: t('about') },
@@ -119,11 +119,11 @@ const Footer = () => {
 
             {/* Customer Care */}
             <div>
-              <h4 className="text-lg font-black text-white mb-8 relative inline-block">
+              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
                 {t('customer_care')}
                 <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {[
                   { to: '/my-orders', label: t('my_orders') },
                   { to: '/quick-track', label: t('track_order') },
@@ -142,7 +142,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="col-span-2 lg:col-span-1 space-y-6">
-              <h4 className="text-lg font-black text-white mb-8 relative inline-block">
+              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
                 {t('contact_info_label')}
                 <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
               </h4>
@@ -179,7 +179,7 @@ const Footer = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="mt-20 pt-10 border-t border-white/10">
+          <div className="mt-10 pt-6 border-t border-white/10">
             <div className="flex flex-col xl:flex-row justify-between items-center gap-10">
               {/* BD Local Time Widget */}
               <div className="flex items-center gap-4 bg-white/[0.03] backdrop-blur-md px-6 py-4 rounded-3xl border border-white/5 shadow-2xl">

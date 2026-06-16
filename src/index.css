@@ -272,9 +272,9 @@
   }
 
   .section-spacing {
-    @apply py-20 lg:py-32;
+    @apply py-10 lg:py-16;
     content-visibility: auto;
-    contain-intrinsic-size: 1px 1200px;
+    contain-intrinsic-size: 1px 800px;
   }
 
   .input-field {
