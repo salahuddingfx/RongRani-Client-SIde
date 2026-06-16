@@ -289,7 +289,7 @@ const Cart = () => {
                       </span>
                     </div>
                     <label htmlFor="giftWrapping" className="flex items-center gap-1.5 cursor-pointer select-none text-slate">
-                      <span className="text-amber-500">🎁</span>
+                      <Gift className="inline-block w-4 h-4 text-amber-500" />
                       <span>{t('gift_wrapping')}</span>
                     </label>
                   </div>
