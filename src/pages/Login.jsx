@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Eye, EyeOff, Mail, Lock, ShoppingCart } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ShoppingCart, Gift, Heart, Truck, Star } from 'lucide-react';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -64,20 +64,20 @@ const Login = () => {
       {/* Customer Benefits Banner */}
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-6">
         <div className="bg-maroon text-white rounded-2xl p-4 sm:p-6 shadow-xl">
-          <h3 className="text-lg sm:text-xl font-bold mb-3 text-center">🎁 Lifetime Customer Benefits</h3>
+          <h3 className="text-lg sm:text-xl font-bold mb-3 text-center"><Gift className="inline-block w-5 h-5 mr-1" /> Lifetime Customer Benefits</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm">
             <div className="text-center">
-              <div className="text-2xl mb-1">💝</div>
+              <Heart className="w-7 h-7 mx-auto mb-1" />
               <p className="font-semibold">Exclusive Offers</p>
               <p className="text-cream-light text-xs">Member-only discounts</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl mb-1">🚚</div>
+              <Truck className="w-7 h-7 mx-auto mb-1" />
               <p className="font-semibold">Free Shipping</p>
               <p className="text-cream-light text-xs">On orders above ৳2500</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl mb-1">⭐</div>
+              <Star className="w-7 h-7 mx-auto mb-1 fill-yellow-400 text-yellow-400" />
               <p className="font-semibold">Priority Support</p>
               <p className="text-cream-light text-xs">24/7 customer care</p>
             </div>

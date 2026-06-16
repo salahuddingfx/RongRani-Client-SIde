@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Package, Truck, CheckCircle, MapPin, Calendar, DollarSign, ArrowLeft, Phone, Mail, Download, Search } from 'lucide-react';
+import { Package, Truck, CheckCircle, MapPin, Calendar, DollarSign, ArrowLeft, Phone, Mail, Download, Search, Heart } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -623,7 +623,7 @@ const OrderTracking = () => {
           onClose={() => setReviewingProductId(null)}
           onReviewSubmitted={() => {
             toast.success('Thank you for your review!', {
-              icon: '💖',
+              icon: <Heart className="w-4 h-4" />,
               style: { borderRadius: '10px', background: '#FFF0F5', color: '#BE123C' }
             });
           }}

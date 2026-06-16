@@ -142,7 +142,7 @@ const Home = () => {
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/95 dark:bg-white/90 text-maroon text-[10px] font-black shadow-sm uppercase tracking-wider shrink-0">
-                  ✨ {hotOffer.badgeText || t('hot_offer')}
+                  <Sparkles className="inline-block w-3.5 h-3.5" /> {hotOffer.badgeText || t('hot_offer')}
                 </span>
                 <div className="min-w-0">
                   <p className="text-sm sm:text-base font-black text-maroon truncate">{hotOffer.title}</p>

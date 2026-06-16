@@ -439,12 +439,12 @@ const ProductDetail = () => {
                   <div className={`w-3 h-3 rounded-full animate-pulse shadow-lg ${product.stock > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
                   <span className={`text-sm font-black uppercase tracking-wider ${product.stock > 0 ? 'text-green-600' : 'text-red-600'
                     }`}>
-                    {product.stock > 0 ? `✅ ${t('in_stock_msg')}` : `❌ ${t('out_of_stock_msg')}`}
+                    {product.stock > 0 ? t('in_stock_msg') : t('out_of_stock_msg')}
                   </span>
                 </div>
                 {product.stock > 0 && product.stock < 10 && (
                   <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">
-                    ⚠️ {t('limited_stock_msg')}
+                    {t('limited_stock_msg')}
                   </span>
                 )}
               </div>

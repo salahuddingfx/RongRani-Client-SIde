@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, Search, Menu, X, Heart, Package, LogOut, Crown, LayoutDashboard, Moon, Sun, Phone, Mail, ChevronDown, Home, Globe, TrendingUp, Clock, ArrowLeft } from 'lucide-react';
+import { ShoppingCart, User, Search, Menu, X, Heart, Package, LogOut, Crown, LayoutDashboard, Moon, Sun, Phone, Mail, ChevronDown, Home, Globe, TrendingUp, Clock, ArrowLeft, Gift, Truck, Sparkles } from 'lucide-react';
 import axios from 'axios';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -404,24 +404,24 @@ const Navbar = () => {
               <div className="flex-1 overflow-hidden mr-4">
                 <div className="animate-marquee whitespace-nowrap inline-block">
                   {/* Set 1 */}
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold">🎁 {t('welcome_offer')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold">🚚 {t('free_shipping')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100">✨ {t('handcrafted_love_top')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold"><Gift className="w-4 h-4 mr-1.5 inline-block" /> {t('welcome_offer')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold"><Truck className="w-4 h-4 mr-1.5 inline-block" /> {t('free_shipping')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100"><Sparkles className="w-4 h-4 mr-1.5 inline-block" /> {t('handcrafted_love_top')}</span>
 
                   {/* Set 2 */}
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold">🎁 {t('welcome_offer')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold">🚚 {t('free_shipping')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100">✨ {t('handcrafted_love_top')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold"><Gift className="w-4 h-4 mr-1.5 inline-block" /> {t('welcome_offer')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold"><Truck className="w-4 h-4 mr-1.5 inline-block" /> {t('free_shipping')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100"><Sparkles className="w-4 h-4 mr-1.5 inline-block" /> {t('handcrafted_love_top')}</span>
 
                   {/* Set 3 (Duplicate for wider screens) */}
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold">🎁 {t('welcome_offer')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold">🚚 {t('free_shipping')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100">✨ {t('handcrafted_love_top')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold"><Gift className="w-4 h-4 mr-1.5 inline-block" /> {t('welcome_offer')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold"><Truck className="w-4 h-4 mr-1.5 inline-block" /> {t('free_shipping')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100"><Sparkles className="w-4 h-4 mr-1.5 inline-block" /> {t('handcrafted_love_top')}</span>
 
                   {/* Set 4 (Duplicate for wider screens) */}
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold">🎁 {t('welcome_offer')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold">🚚 {t('free_shipping')}</span>
-                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100">✨ {t('handcrafted_love_top')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold"><Gift className="w-4 h-4 mr-1.5 inline-block" /> {t('welcome_offer')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 text-gold font-bold"><Truck className="w-4 h-4 mr-1.5 inline-block" /> {t('free_shipping')}</span>
+                  <span className="inline-flex items-center mr-8 md:mr-12 font-bold text-pink-100"><Sparkles className="w-4 h-4 mr-1.5 inline-block" /> {t('handcrafted_love_top')}</span>
                 </div>
               </div>
               <div className="flex items-center divide-x divide-white/20 shrink-0">

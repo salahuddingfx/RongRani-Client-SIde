@@ -48,7 +48,7 @@ const ThankYouCard = ({
                 <div className="pt-16 pb-8 px-8 text-center bg-white dark:bg-slate-800 relative z-10">
                     <h2 className="text-3xl font-black text-maroon dark:text-pink-500 mb-1 tracking-tight font-serif">Thank You!</h2>
                     <p className="text-slate-500 dark:text-slate-400 font-medium text-sm mb-6 max-w-[240px] mx-auto">
-                        Dear <span className="text-slate-800 dark:text-white font-bold">{customerName}</span>, for being a part of our journey. Here's a small gift for you! 🎁
+                        Dear <span className="text-slate-800 dark:text-white font-bold">{customerName}</span>, for being a part of our journey. Here's a small gift for you!
                     </p>
 
                     {/* Cutout Coupon Section */}

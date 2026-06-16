@@ -13,18 +13,18 @@ const TopNavBar = () => {
   ];
 
   const countries = [
-    { code: 'BD', name: 'Bangladesh', flag: '🇧🇩' },
-    { code: 'US', name: 'United States', flag: '🇺🇸' },
-    { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
-    { code: 'IN', name: 'India', flag: '🇮🇳' }
+    { code: 'BD', name: 'Bangladesh', flag: 'BD' },
+    { code: 'US', name: 'United States', flag: 'US' },
+    { code: 'GB', name: 'United Kingdom', flag: 'UK' },
+    { code: 'IN', name: 'India', flag: 'IN' }
   ];
 
   const importantMessages = [
-    "🎁 Valentine's Day Special: Up to 50% OFF on selected items!",
-    "🚚 FREE Shipping on orders above ৳2500 - Limited Time!",
-    "💝 New Arrivals: Exclusive Romantic Gift Combos just added!",
-    "⭐ Become a Lifetime Customer: Get exclusive perks on registration!",
-    "🎉 Flash Sale: Today Only - Extra 10% OFF with code FLASH10"
+    "Valentine's Day Special: Up to 50% OFF on selected items!",
+    "FREE Shipping on orders above ৳2500 - Limited Time!",
+    "New Arrivals: Exclusive Romantic Gift Combos just added!",
+    "Become a Lifetime Customer: Get exclusive perks on registration!",
+    "Flash Sale: Today Only - Extra 10% OFF with code FLASH10"
   ];
 
   return (

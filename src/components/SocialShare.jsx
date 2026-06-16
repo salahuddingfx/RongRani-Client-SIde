@@ -25,7 +25,7 @@ const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
                 break;
             case 'whatsapp': {
                 // Enhanced WhatsApp message with price and better formatting
-                const whatsappMsg = `*${shareTitle}*${price ? `\n💰 *Price:* ৳${price}` : ''}\n\n${shareDescription ? `_${shareDescription.substring(0, 100)}..._\n\n` : ''}🛒 *Shop Now:* ${socialPreviewUrl}`;
+                const whatsappMsg = `*${shareTitle}*${price ? `\n*Price:* ৳${price}` : ''}\n\n${shareDescription ? `_${shareDescription.substring(0, 100)}..._\n\n` : ''}*Shop Now:* ${socialPreviewUrl}`;
                 shareLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappMsg)}`;
                 break;
             }
@@ -49,7 +49,6 @@ const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
                 try {
                     navigator.clipboard.writeText(shareUrl).then(() => {
                         toast.success('Link copied to clipboard!', {
-                            icon: '🔗',
                             style: { borderRadius: '10px', background: '#333', color: '#fff' }
                         });
                     });
@@ -74,7 +73,7 @@ const SocialShare = ({ url, previewUrl, title, image, description, price }) => {
 
     return (
         <div className="flex flex-wrap items-center gap-3 mt-6 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50">
-            <span className="text-sm font-black text-slate-500 uppercase tracking-tighter">Share RongRani™:</span>
+            <span className="text-sm font-black text-slate-500 uppercase tracking-tighter">Share RongRani:</span>
 
             <div className="flex items-center gap-2">
                 <button
