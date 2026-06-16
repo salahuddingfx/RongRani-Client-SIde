@@ -67,11 +67,11 @@ const AIChatFloatingWidget = () => {
         "Help Center: Visit /help for FAQs\n\n" +
         "Simply type what you're looking for (e.g., 'birthday gift') and I'll find it for you!";
     } else {
-      return "I'm here to help! 💝 Type 'help' to see all important links, or ask me about:\n\n" +
-        "• 📝 Order Tracking\n" +
-        "• 🎁 Gift Suggestions\n" +
-        "• 🚚 Delivery & Shipping\n" +
-        "• 💳 Payment Methods\n\n" +
+      return "I'm here to help! Type 'help' to see all important links, or ask me about:\n\n" +
+        "• Order Tracking\n" +
+        "• Gift Suggestions\n" +
+        "• Delivery & Shipping\n" +
+        "• Payment Methods\n\n" +
         "What can I do for you today?";
     }
   };
@@ -120,7 +120,7 @@ const AIChatFloatingWidget = () => {
           <Bot className="h-7 w-7 animate-pulse" />
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse border-2 border-white"></span>
           <div className="absolute -top-12 right-0 bg-maroon text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden sm:block">
-            Need Help? Chat with AI! 💬
+            Need Help? Chat with AI!
           </div>
         </button>
       )}
@@ -159,16 +159,16 @@ const AIChatFloatingWidget = () => {
           <div className="bg-white border-b border-maroon/10 p-2 flex overflow-x-auto gap-2 whitespace-nowrap no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
             <a href="/track" className="flex items-center gap-1.5 px-3 py-1.5 bg-maroon/5 hover:bg-maroon/10 text-maroon text-[11px] font-bold rounded-full transition-colors border border-maroon/10">
-              📦 Track Order
+              <Package className="w-3.5 h-3.5" /> Track Order
             </a>
             <a href="https://wa.me/8801851075537" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 hover:bg-green-100 text-green-600 text-[11px] font-bold rounded-full transition-colors border border-green-100">
-              💬 WhatsApp
+              <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
             </a>
             <a href="tel:+8801851075537" className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 text-[11px] font-bold rounded-full transition-colors border border-blue-100">
-              📞 Call Support
+              <Phone className="w-3.5 h-3.5" /> Call Support
             </a>
             <a href="/shop" className="flex items-center gap-1.5 px-3 py-1.5 bg-gold/5 hover:bg-gold/10 text-gold-600 text-[11px] font-bold rounded-full transition-colors border border-gold/10">
-              🛍️ Shop Now
+              <ShoppingBag className="w-3.5 h-3.5" /> Shop Now
             </a>
           </div>
 
@@ -237,7 +237,7 @@ const AIChatFloatingWidget = () => {
               </button>
             </div>
             <p className="text-xs text-center text-slate/60 mt-2 font-medium">
-              Powered by RongRani AI • Always ready to help 💝
+              Powered by RongRani AI • Always ready to help
             </p>
           </div>
         </div>
