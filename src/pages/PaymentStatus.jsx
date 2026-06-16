@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, PartyPopper, Truck } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import confetti from 'canvas-confetti';
 import ThankYouCard from '../components/ThankYouCard';
@@ -52,7 +52,7 @@ const PaymentStatus = () => {
                                 <CheckCircle className="relative mx-auto h-24 w-24 text-green-500 animate-bounce-slow" />
                             </div>
                             <div>
-                                <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-2">Order Confirmed! 🥳</h2>
+                                <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-2">Order Confirmed! <PartyPopper className="inline-block w-6 h-6" /></h2>
                                 <p className="text-slate-500 dark:text-slate-400">
                                     Woohoo! Your payment was successful and your order is being prepared with love.
                                 </p>
@@ -114,7 +114,7 @@ const PaymentStatus = () => {
                                 to="/my-orders"
                                 className="flex-1 bg-maroon text-white font-black py-4 px-6 rounded-2xl hover:bg-maroon-dark shadow-lg shadow-maroon/20 transition-all hover:scale-105"
                             >
-                                Track Your Order 🚚
+                                Track Your Order <Truck className="inline-block w-4 h-4" />
                             </Link>
                         )}
                         {!isSuccess && (
