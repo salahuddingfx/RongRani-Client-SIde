@@ -30,48 +30,43 @@ const BottomNav = () => {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-6 left-4 right-4 z-50">
-      <nav className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-800/80 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] p-2">
-        <ul className="flex items-center justify-around relative">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200/60 dark:border-slate-800/60 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
+      <nav className="max-w-md mx-auto px-4 py-1.5 pb-safe-bottom">
+        <ul className="flex items-center justify-between">
           {navItems.map((item, index) => {
             const active = item.isActive ? item.isActive() : isActive(item.to);
 
             return (
-              <li key={index} className="flex-1 flex justify-center">
+              <li key={index} className="flex-1">
                 <Link
                   to={item.to}
                   className={`
-                    relative flex flex-col items-center justify-center py-2 px-3 rounded-xl
-                    transition-all duration-300 ease-out select-none outline-none
+                    flex flex-col items-center justify-center py-1.5 px-2 rounded-xl
+                    transition-all duration-300 select-none outline-none relative
                     ${active 
-                      ? 'text-maroon dark:text-pink-400 -translate-y-1 scale-105' 
-                      : 'text-slate-400 hover:text-maroon dark:hover:text-pink-300 active:scale-95'
+                      ? 'text-maroon dark:text-pink-400 font-extrabold scale-102' 
+                      : 'text-slate-400 dark:text-slate-500 hover:text-maroon dark:hover:text-pink-300'
                     }
                   `}
                   aria-label={item.label}
                 >
                   {/* Icon wrapper */}
-                  <div className="relative p-1">
+                  <div className="relative p-0.5">
                     {item.label === 'Account' && user?.avatar ? (
-                      <div className={`h-5.5 w-5.5 rounded-full overflow-hidden border ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-300'}`}>
+                      <div className={`h-6 w-6 rounded-full overflow-hidden border-2 transition-all ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-200 dark:border-slate-700'}`}>
                         <img src={user.avatar} alt="Account" className="w-full h-full object-cover" />
                       </div>
                     ) : (
                       <item.icon 
-                        className={`h-5 w-5 transition-transform duration-300 ${active ? 'scale-110 stroke-[2.5px]' : 'stroke-[2px]'}`} 
+                        className={`h-5 w-5 transition-transform duration-300 ${active ? 'scale-108 stroke-[2.5px]' : 'stroke-[2px]'}`} 
                       />
                     )}
                     
                     {/* Badge */}
                     {item.badge > 0 && (
                       <span className={`
-                        absolute -top-1.5 -right-2 font-black flex items-center justify-center 
-                        rounded-full text-[9px] w-4.5 h-4.5 border-2 border-white dark:border-slate-900 
-                        transition-all duration-300 animate-scale-in
-                        ${active 
-                          ? 'bg-yellow-400 text-maroon shadow-md shadow-yellow-400/20' 
-                          : 'bg-maroon text-white dark:bg-pink-500'
-                        }
+                        absolute -top-1 -right-1.5 font-black flex items-center justify-center 
+                        rounded-full text-[8px] min-w-4.5 h-4.5 px-1 border border-white dark:border-slate-950 bg-maroon text-white
                       `}>
                         {item.badge}
                       </span>
@@ -79,16 +74,13 @@ const BottomNav = () => {
                   </div>
 
                   {/* Label */}
-                  <span className={`
-                    text-[10px] font-black tracking-tight mt-0.5 transition-all duration-300
-                    ${active ? 'opacity-100 max-h-4' : 'opacity-0 max-h-0 overflow-hidden'}
-                  `}>
+                  <span className="text-[10px] tracking-tight mt-0.5 leading-none font-black transition-all duration-300">
                     {item.label}
                   </span>
 
-                  {/* Active Indicator Dot */}
+                  {/* Subtle active line indicator */}
                   {active && (
-                    <span className="absolute -bottom-1 w-1 h-1 bg-maroon dark:bg-pink-400 rounded-full animate-pulse-slow shadow-glow" />
+                    <span className="absolute top-0 w-8 h-0.75 bg-maroon dark:bg-pink-400 rounded-full animate-pulse-slow" />
                   )}
                 </Link>
               </li>
