@@ -114,14 +114,14 @@ const AIChatFloatingWidget = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 z-[1001] bg-white/95 dark:bg-slate-900/95 text-maroon dark:text-pink-400 rounded-full p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-maroon/20 hover:scale-110 active:scale-95 transition-all duration-500 group border border-maroon/20 dark:border-pink-500/20 backdrop-blur-md flex items-center justify-center"
+          className="fixed bottom-24 right-6 z-[1001] w-14 h-14 bg-white/95 dark:bg-slate-900/95 text-maroon dark:text-pink-400 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-maroon/20 hover:scale-110 active:scale-95 transition-all duration-500 group border border-maroon/20 dark:border-pink-500/20 backdrop-blur-md flex items-center justify-center"
           aria-label="Open AI Chat"
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-maroon/10 to-pink-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           {/* Pulsing glow ring */}
           <span className="absolute inset-0 rounded-full border border-maroon/30 dark:border-pink-500/30 animate-ping opacity-75 pointer-events-none scale-102"></span>
           
-          <Bot className="h-6.5 w-6.5 relative z-10 transition-transform duration-500 group-hover:rotate-12" />
+          <Bot className="h-6 w-6 relative z-10 transition-transform duration-500 group-hover:rotate-12" />
           <span className="absolute top-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border border-white dark:border-slate-900"></span>
           
           <div className="absolute right-14 top-1/2 -translate-y-1/2 bg-white dark:bg-slate-900 text-maroon dark:text-pink-400 border border-maroon/10 dark:border-pink-500/10 px-4 py-2 rounded-2xl text-xs font-black shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none hidden sm:block backdrop-blur-md">
