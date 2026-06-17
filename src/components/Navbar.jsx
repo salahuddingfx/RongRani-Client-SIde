@@ -7,6 +7,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useWishlist } from '../contexts/WishlistContext';
+import { getImageUrl } from '../utils/productUtils';
+
 
 // Optimized Search Bar Component to prevent whole Navbar re-renders during typing
 const SearchSection = React.memo(({ isScrolled, language, t, isMobile = false, setIsOpen }) => {
@@ -519,7 +521,7 @@ const Navbar = () => {
                             <button onClick={() => setShowUserMenu(!showUserMenu)} className="flex items-center gap-2 group" aria-label="User menu">
                               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-maroon/10 dark:bg-maroon/20 flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm group-hover:border-maroon transition-all overflow-hidden shrink-0">
                                 {user.avatar ? (
-                                  <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                                  <img src={getImageUrl(user.avatar)} alt={user.name} className="w-full h-full object-cover" />
                                 ) : (
                                   <User className="w-4 h-4 md:w-5 md:h-5 text-maroon" />
                                 )}
@@ -605,7 +607,7 @@ const Navbar = () => {
                     <div className="bg-gradient-to-br from-maroon/5 to-pink-500/5 rounded-2xl p-4 border border-maroon/10 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-maroon/10 dark:bg-pink-500/10 flex items-center justify-center border border-maroon/10 overflow-hidden shrink-0">
                         {user.avatar ? (
-                          <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                           <img src={getImageUrl(user.avatar)} alt={user.name} className="w-full h-full object-cover" />
                         ) : (
                           <User className="w-5 h-5 text-maroon dark:text-pink-400" />
                         )}
