@@ -48,6 +48,7 @@ const AboutUs = lazy(() => import('./pages/AboutUs'));
 const Reviews = lazy(() => import('./pages/Reviews'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Developer = lazy(() => import('./pages/Developer'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -146,6 +147,7 @@ function App() {
                               <Route path="about" element={<AboutUs />} />
                               <Route path="terms" element={<TermsConditions />} />
                               <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                              <Route path="developer" element={<Developer />} />
                               <Route path="quick-track" element={<QuickOrderLookup />} />
                               <Route path="track/:orderId" element={<OrderTracking />} />
                               <Route path="track" element={<OrderTracking />} />
