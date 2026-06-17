@@ -32,7 +32,11 @@ const Login = () => {
     setError('');
 
     try {
-      await login(formData.email, formData.password);
+      const response = await login(formData.email, formData.password);
+      if (response && response.requiresVerification) {
+        navigate('/register', { state: { requiresOtp: true, email: response.email, from } });
+        return;
+      }
       navigate(from === '/cart' ? '/checkout' : from);
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');
