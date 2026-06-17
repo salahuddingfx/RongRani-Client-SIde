@@ -52,9 +52,15 @@ const BottomNav = () => {
                 >
                   {/* Icon wrapper */}
                   <div className="relative p-1">
-                    <item.icon 
-                      className={`h-5 w-5 transition-transform duration-300 ${active ? 'scale-110 stroke-[2.5px]' : 'stroke-[2px]'}`} 
-                    />
+                    {item.label === 'Account' && user?.avatar ? (
+                      <div className={`h-5.5 w-5.5 rounded-full overflow-hidden border ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-300'}`}>
+                        <img src={user.avatar} alt="Account" className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
+                      <item.icon 
+                        className={`h-5 w-5 transition-transform duration-300 ${active ? 'scale-110 stroke-[2.5px]' : 'stroke-[2px]'}`} 
+                      />
+                    )}
                     
                     {/* Badge */}
                     {item.badge > 0 && (
