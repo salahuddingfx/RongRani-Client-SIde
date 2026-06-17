@@ -117,6 +117,7 @@ const Dashboard = () => {
       await axios.put('/api/users/profile', {
         name: profileForm.name,
         phone: profileForm.phone,
+        avatar: avatarUrl || user?.avatar,
         address: {
           street: profileForm.street,
           city: profileForm.city,
@@ -129,6 +130,8 @@ const Dashboard = () => {
       });
       
       await checkAuthStatus();
+      setAvatarPreview('');
+      setAvatarUrl('');
       setIsEditingProfile(false);
       toast.success('Profile updated successfully!');
     } catch (error) {
