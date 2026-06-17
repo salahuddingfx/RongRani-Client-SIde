@@ -14,6 +14,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
 import ReviewForm from '../components/ReviewForm';
+import { getImageUrl } from '../utils/productUtils';
+
 
 const Dashboard = () => {
   const { user, logout, checkAuthStatus } = useAuth();
