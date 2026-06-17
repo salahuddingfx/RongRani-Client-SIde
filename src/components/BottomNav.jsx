@@ -4,6 +4,7 @@ import { Home, Heart, User, LayoutGrid, ShoppingCart } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
+import { getImageUrl } from '../utils/productUtils';
 
 const BottomNav = () => {
   const location = useLocation();
@@ -54,7 +55,7 @@ const BottomNav = () => {
                   <div className="relative p-0.5">
                     {item.label === 'Account' && user?.avatar ? (
                       <div className={`h-6 w-6 rounded-full overflow-hidden border-2 transition-all ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-200 dark:border-slate-700'}`}>
-                        <img src={user.avatar} alt="Account" className="w-full h-full object-cover" />
+                        <img src={getImageUrl(user.avatar)} alt="Account" className="w-full h-full object-cover" />
                       </div>
                     ) : (
                       <item.icon 
