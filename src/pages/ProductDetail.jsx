@@ -681,10 +681,29 @@ const ProductDetail = () => {
             <div>
               <h2 className="text-4xl font-black text-slate-900 mb-2">{t('customer_reviews')}</h2>
               <div className="flex items-center space-x-4">
-                <div className="flex text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`h-5 w-5 ${i < Math.floor(product.rating || 5) ? 'fill-current' : ''}`} />
-                  ))}
+                <div className="flex text-amber-500 gap-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => {
+                    const ratingValue = product.rating || 5;
+                    const isFull = ratingValue >= star;
+                    const isHalf = !isFull && ratingValue >= (star - 0.5);
+
+                    return (
+                      <div key={star} className="relative w-5 h-5">
+                        <Star className="h-5 w-5 text-slate-200 dark:text-slate-700" />
+                        {isHalf && (
+                          <Star
+                            className="h-5 w-5 fill-current text-amber-500 absolute top-0 left-0"
+                            style={{ clipPath: 'inset(0 50% 0 0)' }}
+                          />
+                        )}
+                        {isFull && (
+                          <Star
+                            className="h-5 w-5 fill-current text-amber-500 absolute top-0 left-0"
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
                 <span className="text-slate font-bold">{reviews.length} {t('authentic_reviews')}</span>
               </div>
@@ -734,10 +753,28 @@ const ProductDetail = () => {
                           <p className="text-xs text-slate/40 font-bold">{new Date(review.createdAt).toLocaleDateString()}</p>
                         </div>
                       </div>
-                      <div className="flex text-amber-500">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`h-4 w-4 ${i < review.rating ? 'fill-current' : ''}`} />
-                        ))}
+                      <div className="flex text-amber-500 gap-0.5">
+                        {[1, 2, 3, 4, 5].map((star) => {
+                          const isFull = review.rating >= star;
+                          const isHalf = !isFull && review.rating >= (star - 0.5);
+
+                          return (
+                            <div key={star} className="relative w-4 h-4">
+                              <Star className="h-4 w-4 text-slate-200 dark:text-slate-700" />
+                              {isHalf && (
+                                <Star
+                                  className="h-4 w-4 fill-current text-amber-500 absolute top-0 left-0"
+                                  style={{ clipPath: 'inset(0 50% 0 0)' }}
+                                />
+                              )}
+                              {isFull && (
+                                <Star
+                                  className="h-4 w-4 fill-current text-amber-500 absolute top-0 left-0"
+                                />
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                     <p className="text-slate leading-relaxed italic">"{review.comment}"</p>
