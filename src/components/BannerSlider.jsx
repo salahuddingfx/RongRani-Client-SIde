@@ -124,7 +124,7 @@ const BannerSlider = () => {
 
   if (loading) {
     return (
-      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl bg-gray-200 animate-pulse" />
+      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden bg-gray-200 animate-pulse" />
     );
   }
 
@@ -133,7 +133,7 @@ const BannerSlider = () => {
   }
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl group">
+    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden group">
       {/* Slides */}
       <div
         className="flex h-full transition-transform duration-700 ease-in-out"
