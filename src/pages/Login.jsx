@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Eye, EyeOff, Mail, Lock, ShoppingCart, Gift, Heart, Truck, Star } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +40,17 @@ const Login = () => {
       }
       navigate(from === '/cart' ? '/checkout' : from);
     } catch (error) {
+      if (error.response?.data?.requiresVerification) {
+        toast.success(error.response.data.message || 'Verification OTP sent to your email.');
+        navigate('/register', { 
+          state: { 
+            requiresOtp: true, 
+            email: error.response.data.email || formData.email, 
+            from 
+          } 
+        });
+        return;
+      }
       setError(error.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
@@ -46,10 +58,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
 
       {/* Logo at top */}
       <div className="pt-8 pb-4">
@@ -59,7 +71,7 @@ const Login = () => {
               <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl md:text-3xl font-black text-maroon tracking-tight">
-              Rong<span className="text-slate-800">Rani</span>
+              Rong<span className="text-slate-850 dark:text-slate-200">Rani</span>
             </span>
           </Link>
         </div>
@@ -89,9 +101,9 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Centered Glass Card Form */}
+      {/* Centered Flat Luxury Form */}
       <div className="flex items-center justify-center px-3 sm:px-4 py-6 sm:py-8">
-        <div className="glass-card w-full max-w-md p-6 sm:p-8 rounded-3xl">
+        <div className="w-full max-w-md p-6 sm:p-8 rounded-[2rem] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
           <div className="text-center mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-maroon mb-2">Welcome Back</h2>
             <p className="text-slate text-xs sm:text-sm">Sign in to access your lifetime benefits</p>
