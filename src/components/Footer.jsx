@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, Package, Shield, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Package, Shield, Heart, Truck } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import DeveloperProfile from './DeveloperProfile';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -48,59 +48,93 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="footer-gradient bg-slate-900 border-t-4 border-maroon mt-20 relative overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+      <footer className="bg-slate-950 text-slate-300 border-t border-slate-900 mt-20 relative overflow-hidden pt-12">
+        {/* Subtle glow accents */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-maroon/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        {/* Top Trust Badges Panel */}
+        <div className="container mx-auto px-4 pb-10 border-b border-slate-900 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+            <div className="flex flex-col md:flex-row items-center gap-3 bg-slate-900/30 p-4 rounded-2xl border border-slate-900/60">
+              <div className="w-10 h-10 rounded-xl bg-maroon/10 flex items-center justify-center text-maroon shrink-0">
+                <Truck className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-xs uppercase tracking-wider">Free Shipping</h4>
+                <p className="text-[10px] text-slate-500 mt-0.5">On orders above ৳2500</p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-3 bg-slate-900/30 p-4 rounded-2xl border border-slate-900/60">
+              <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 shrink-0">
+                <Shield className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-xs uppercase tracking-wider">Secure Checkout</h4>
+                <p className="text-[10px] text-slate-500 mt-0.5">100% Protected Payments</p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-3 bg-slate-900/30 p-4 rounded-2xl border border-slate-900/60">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 shrink-0">
+                <Package className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-xs uppercase tracking-wider">Easy Returns</h4>
+                <p className="text-[10px] text-slate-500 mt-0.5">7-Day Return Policy</p>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-3 bg-slate-900/30 p-4 rounded-2xl border border-slate-900/60">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-xs uppercase tracking-wider">24/7 Support</h4>
+                <p className="text-[10px] text-slate-500 mt-0.5">Dedicated Customer Helpline</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="container mx-auto px-4 py-10 md:py-14 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-12 lg:gap-8 xl:gap-16">
-
-            {/* Brand Section */}
-            <div className="col-span-2 lg:col-span-1 space-y-6 sm:space-y-8">
+        {/* Main Footer Links */}
+        <div className="container mx-auto px-4 py-12 relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12">
+            {/* Brand details */}
+            <div className="col-span-2 lg:col-span-1 space-y-6">
               <div className="flex items-center gap-3">
-                <div
-                  className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-transform hover:rotate-3 duration-500 bg-white p-0 relative group"
-                  role="img"
-                  aria-label="RongRani Logo"
-                >
-                  <img src="/RongRani-Circle.png" alt="Logo" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl overflow-hidden bg-white p-0.5 shadow-md">
+                  <img src="/RongRani-Logo.png" alt="RongRani Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-black text-white tracking-tighter flex items-center">
-                    Rong<span className="text-pink-400">Rani</span>
-                    <span className="text-[10px] bg-pink-400/20 text-pink-300 px-1.5 py-0.5 rounded-md ml-2 border border-pink-400/30 uppercase tracking-widest font-bold">TM</span>
+                  <h3 className="text-xl font-black text-white tracking-tight">
+                    Rong<span className="text-maroon dark:text-pink-400">Rani</span>
                   </h3>
-                  <p className="text-slate-500 text-[10px] uppercase tracking-[0.2em] font-bold mt-1">Authentic Surprises</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-500 mt-0.5">Authentic Surprises</p>
                 </div>
               </div>
-              <p className="text-slate-400 leading-relaxed text-sm max-w-xs">
+              <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-sm">
                 {t('footer_desc')}
               </p>
-
-              {/* Social Links */}
-              <div className="flex items-center gap-4">
-                <a href="https://facebook.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-maroon border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-maroon/20 hover:scale-110 group" aria-label="Follow us on Facebook">
-                  <FaFacebook className="h-5 w-5 transition-transform group-hover:rotate-6" />
+              {/* Social icons */}
+              <div className="flex items-center gap-3">
+                <a href="https://facebook.com/rongraniofficial" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-slate-900 hover:bg-maroon hover:text-white flex items-center justify-center transition-all shadow-sm border border-slate-900" aria-label="Facebook">
+                  <FaFacebook className="w-4.5 h-4.5" />
                 </a>
-                <a href="https://instagram.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-gradient-to-tr from-yellow-500 to-purple-600 border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-purple-500/20 hover:scale-110 group" aria-label="Follow us on Instagram">
-                  <FaInstagram className="h-5 w-5 transition-transform group-hover:rotate-6" />
+                <a href="https://instagram.com/rongraniofficial" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-slate-900 hover:bg-gradient-to-tr hover:from-yellow-500 hover:to-purple-600 hover:text-white flex items-center justify-center transition-all shadow-sm border border-slate-900" aria-label="Instagram">
+                  <FaInstagram className="w-4.5 h-4.5" />
                 </a>
-                <a href="https://twitter.com/rongraniofficial" className="w-11 h-11 bg-white/5 hover:bg-blue-500 border border-white/10 rounded-xl flex items-center justify-center text-white transition-all shadow-lg hover:shadow-blue-500/20 hover:scale-110 group" aria-label="Follow us on Twitter">
-                  <FaTwitter className="h-5 w-5 transition-transform group-hover:rotate-6" />
+                <a href="https://twitter.com/rongraniofficial" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-lg bg-slate-900 hover:bg-blue-500 hover:text-white flex items-center justify-center transition-all shadow-sm border border-slate-900" aria-label="Twitter">
+                  <FaTwitter className="w-4.5 h-4.5" />
                 </a>
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
+            {/* Quick Links Column */}
+            <div className="col-span-1">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-6 relative">
                 {t('quick_links')}
-                <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
+                <span className="absolute bottom-[-8px] left-0 w-8 h-0.75 bg-maroon dark:bg-pink-400 rounded-full"></span>
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {[
                   { to: '/shop', label: t('shop') },
                   { to: '/about', label: t('about') },
@@ -109,122 +143,110 @@ const Footer = () => {
                   { to: '/reviews', label: t('customer_reviews') }
                 ].map((link, idx) => (
                   <li key={idx}>
-                    <Link to={link.to} className="text-slate-400 hover:text-pink-400 transition-all flex items-center gap-3 group translate-x-0 hover:translate-x-2">
-                      <div className="w-1.5 h-1.5 bg-pink-400/40 rounded-full group-hover:bg-pink-400 group-hover:scale-150 transition-all"></div>
-                      <span className="font-semibold">{link.label}</span>
+                    <Link to={link.to} className="text-slate-400 hover:text-maroon dark:hover:text-pink-400 transition-all flex items-center gap-2 text-xs md:text-sm font-semibold group">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-800 group-hover:bg-maroon dark:group-hover:bg-pink-400 transition-colors"></span>
+                      <span>{link.label}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Customer Care */}
-            <div>
-              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
+            {/* Customer Care Column */}
+            <div className="col-span-1">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-6 relative">
                 {t('customer_care')}
-                <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
+                <span className="absolute bottom-[-8px] left-0 w-8 h-0.75 bg-maroon dark:bg-pink-400 rounded-full"></span>
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {[
-                  { to: '/my-orders', label: t('my_orders') },
+                  { to: '/dashboard', label: t('my_orders') },
                   { to: '/quick-track', label: t('track_order') },
                   { to: '/help', label: t('help_center') },
                   { to: '/privacy-policy', label: t('privacy_policy') }
                 ].map((link, idx) => (
                   <li key={idx}>
-                    <Link to={link.to} className="text-slate-400 hover:text-pink-400 transition-all flex items-center gap-3 group translate-x-0 hover:translate-x-2">
-                      <div className="w-1.5 h-1.5 bg-pink-400/40 rounded-full group-hover:bg-pink-400 group-hover:scale-150 transition-all"></div>
-                      <span className="font-semibold">{link.label}</span>
+                    <Link to={link.to} className="text-slate-400 hover:text-maroon dark:hover:text-pink-400 transition-all flex items-center gap-2 text-xs md:text-sm font-semibold group">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-800 group-hover:bg-maroon dark:group-hover:bg-pink-400 transition-colors"></span>
+                      <span>{link.label}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Contact Info */}
+            {/* Contact details */}
             <div className="col-span-2 lg:col-span-1 space-y-6">
-              <h4 className="text-lg font-black text-white mb-5 relative inline-block">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-6 relative">
                 {t('contact_info_label')}
-                <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-400 rounded-full"></span>
+                <span className="absolute bottom-[-8px] left-0 w-8 h-0.75 bg-maroon dark:bg-pink-400 rounded-full"></span>
               </h4>
-              <div className="space-y-5">
-                <a href="tel:+8801851075537" className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 hover:border-pink-400/30 hover:bg-white/10 transition-all group">
-                  <div className="w-10 h-10 bg-maroon/20 rounded-xl flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                    <Phone className="h-5 w-5" />
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-xs md:text-sm">
+                  <Phone className="w-4 h-4 mt-0.5 text-maroon dark:text-pink-400 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">{t('call_us')}</p>
+                    <a href="tel:+8801851075537" className="text-slate-300 hover:text-white font-bold leading-tight mt-0.5 inline-block">+880 1851-075537</a>
                   </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">{t('call_us')}</p>
-                    <span className="text-sm text-slate-200 font-bold">+880 1851-075537</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs md:text-sm">
+                  <Mail className="w-4 h-4 mt-0.5 text-maroon dark:text-pink-400 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">{t('email_us')}</p>
+                    <a href="mailto:info.rongrani@gmail.com" className="text-slate-300 hover:text-white font-bold leading-tight mt-0.5 inline-block break-all">info.rongrani@gmail.com</a>
                   </div>
-                </a>
-                <a href="mailto:info.rongrani@gmail.com" className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 hover:border-pink-400/30 hover:bg-white/10 transition-all group">
-                  <div className="w-10 h-10 bg-maroon/20 rounded-xl flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                    <Mail className="h-5 w-5" />
+                </li>
+                <li className="flex items-start gap-3 text-xs md:text-sm">
+                  <MapPin className="w-4 h-4 mt-0.5 text-maroon dark:text-pink-400 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">{t('location_label') || 'Location'}</p>
+                    <span className="text-slate-300 font-bold leading-tight mt-0.5 inline-block">Cox's Bazar, Bangladesh-4700</span>
                   </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">{t('email_us')}</p>
-                    <span className="text-sm text-slate-200 font-bold break-all">info.rongrani@gmail.com</span>
-                  </div>
-                </a>
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 group">
-                  <div className="w-10 h-10 bg-maroon/20 rounded-xl flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">{t('location_label') || 'Location'}</p>
-                    <span className="text-sm text-slate-200 font-bold">Cox's Bazar, Bangladesh-4700</span>
-                  </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
 
-          {/* Bottom Section */}
-          <div className="mt-10 pt-6 border-t border-white/10">
-            <div className="flex flex-col xl:flex-row justify-between items-center gap-10">
-              {/* BD Local Time Widget */}
-              <div className="flex items-center gap-4 bg-white/[0.03] backdrop-blur-md px-6 py-4 rounded-3xl border border-white/5 shadow-2xl">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-pink-400/20 blur-xl rounded-full scale-150 animate-pulse"></div>
-                  <Clock className="h-7 w-7 text-pink-400 relative z-10" />
-                </div>
-                <div>
-                  <p className="text-white font-black text-lg tracking-tight">{bdTime}</p>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-widest">{t('bd_local_time') || 'Bangladesh Local Time'} (GMT+6)</p>
-                </div>
+        {/* Bottom Section */}
+        <div className="bg-slate-950 border-t border-slate-900/60 py-8 relative z-10">
+          <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            {/* Bangladesh Time Clock */}
+            <div className="flex items-center gap-3 bg-slate-900/40 px-5 py-3 rounded-2xl border border-slate-900/80">
+              <div className="relative shrink-0">
+                <span className="absolute inset-0 bg-pink-500/25 blur-md rounded-full scale-150 animate-pulse"></span>
+                <Clock className="w-5 h-5 text-maroon dark:text-pink-400 relative z-10" />
               </div>
-
-              {/* Copyright & Info */}
-              <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                <div className="space-y-1">
-                  <p className="text-slate-300 font-bold">
-                    © {currentYear} RongRani
-                  </p>
-                  <p className="text-slate-500 text-xs tracking-wide uppercase font-semibold">
-                    {t('all_rights_reserved')}
-                  </p>
-                </div>
-
-                <div className="h-10 w-[1px] bg-white/10 hidden md:block"></div>
-
-                <div className="space-y-1">
-                  <p className="text-slate-400 font-medium">
-                    {t('developed_with')} <Heart className="w-4 h-4 inline-block text-red-500 fill-red-500" /> {t('by_developer')}{' '}
-                    <button
-                      onClick={() => setShowDevProfile(true)}
-                      className="text-pink-400 hover:text-white transition-all font-black underline decoration-pink-400/30 underline-offset-4 cursor-pointer relative z-[10]"
-                    >
-                      Salah Uddin Kader
-                    </button>
-                  </p>
-                  <div className="flex items-center justify-center md:justify-start gap-3 mt-1">
-                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Full Stack Developer</span>
-                    <span className="w-1 h-1 bg-white/20 rounded-full"></span>
-                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-widest">MERN Specialist</span>
-                  </div>
-                </div>
+              <div className="min-w-0">
+                <p className="text-[9px] uppercase tracking-wider text-slate-500 font-black leading-none">{t('bd_local_time') || 'BD Local Time'}</p>
+                <span className="text-white font-extrabold text-sm tracking-tight mt-1 inline-block leading-none">{bdTime}</span>
               </div>
             </div>
+
+            {/* Copyright and developer details */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+              <div className="leading-tight">
+                <p className="text-xs text-slate-400 font-bold">© {currentYear} RongRani</p>
+                <p className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">{t('all_rights_reserved')}</p>
+              </div>
+
+              <div className="h-6 w-0.25 bg-slate-800 hidden sm:block"></div>
+
+              <div className="leading-tight">
+                <p className="text-xs text-slate-400">
+                  {t('developed_with')} <Heart className="w-3 h-3 text-red-600 fill-red-600 inline-block mx-0.5" /> by{' '}
+                  <button 
+                    onClick={() => setShowDevProfile(true)} 
+                    className="text-maroon dark:text-pink-400 font-black hover:underline cursor-pointer"
+                  >
+                    Salah Uddin Kader
+                  </button>
+                </p>
+                <p className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">MERN Stack Specialist</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </footer>
