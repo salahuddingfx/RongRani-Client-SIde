@@ -36,6 +36,11 @@ const Dashboard = () => {
     country: 'Bangladesh'
   });
   const [profileSubmitting, setProfileSubmitting] = useState(false);
+  
+  // Avatar Upload States
+  const [avatarPreview, setAvatarPreview] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarUploading, setAvatarUploading] = useState(false);
 
   // Change Password States
   const [passwordForm, setPasswordForm] = useState({
@@ -77,6 +82,8 @@ const Dashboard = () => {
         zipCode: user.address?.zipCode || '',
         country: user.address?.country || 'Bangladesh'
       });
+      setAvatarPreview('');
+      setAvatarUrl('');
     }
   }, [user]);
 
