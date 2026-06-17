@@ -6,23 +6,26 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { 
   User, Package, Heart, Settings, LogOut, MapPin, Phone, 
   Mail, Eye, Download, Lock, Shield, ShoppingBag, 
-  CheckCircle, Clock, Truck, XCircle, ArrowRight, ClipboardCheck 
+  CheckCircle, Clock, Truck, XCircle, ArrowRight, ClipboardCheck,
+  Star
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
+import ReviewForm from '../components/ReviewForm';
 
 const Dashboard = () => {
   const { user, logout, checkAuthStatus } = useAuth();
   const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState('overview');
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
+  const [reviewingProductId, setReviewingProductId] = useState(null);
 
   // Edit Profile States
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -872,31 +875,43 @@ const Dashboard = () => {
 
                           {/* Order Items */}
                           <div className="space-y-4 mb-5">
-                            {order.items?.map((item, idx) => (
-                              <div key={idx} className="flex gap-4 items-center">
-                                <img 
-                                  src={item.product?.images?.[0] || item.product?.image || item.image || 'https://via.placeholder.com/100'} 
-                                  alt={item.product?.name || item.name} 
-                                  className="w-12 h-12 object-cover rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex-shrink-0"
-                                  onError={(e) => {
-                                    e.target.src = 'https://via.placeholder.com/100?text=Pottery';
-                                  }}
-                                />
-                                <div className="min-w-0 flex-1">
-                                  <p className="font-bold text-slate-800 dark:text-slate-100 text-sm truncate">
-                                    {item.product?.name || item.name}
-                                  </p>
-                                  <p className="text-xs text-slate-400 mt-0.5">
-                                    ৳{item.price} × {item.quantity}
-                                  </p>
+                            {order.items?.map((item, idx) => {
+                              const isOrderDelivered = (order.status || order.orderStatus) === 'delivered';
+                              return (
+                                <div key={idx} className="flex gap-4 items-center flex-wrap sm:flex-nowrap">
+                                  <img 
+                                    src={item.product?.images?.[0] || item.product?.image || item.image || 'https://via.placeholder.com/100'} 
+                                    alt={item.product?.name || item.name} 
+                                    className="w-12 h-12 object-cover rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex-shrink-0"
+                                    onError={(e) => {
+                                      e.target.src = 'https://via.placeholder.com/100?text=Pottery';
+                                    }}
+                                  />
+                                  <div className="min-w-0 flex-1">
+                                    <p className="font-bold text-slate-800 dark:text-slate-100 text-sm truncate">
+                                      {item.product?.name || item.name}
+                                    </p>
+                                    <p className="text-xs text-slate-400 mt-0.5">
+                                      ৳{item.price} × {item.quantity}
+                                    </p>
+                                  </div>
+                                  <div className="flex items-center gap-3 shrink-0">
+                                    <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">
+                                      ৳{(item.price * item.quantity).toLocaleString()}
+                                    </span>
+                                    {isOrderDelivered && (
+                                      <button 
+                                        onClick={() => setReviewingProductId(item.product?._id || item.product)}
+                                        className="bg-white hover:bg-maroon hover:text-white text-maroon border border-maroon px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1 active:scale-95"
+                                      >
+                                        <Star className="w-3.5 h-3.5 fill-current" />
+                                        <span>{language === 'bn' ? 'রিভিউ' : 'Review'}</span>
+                                      </button>
+                                    )}
+                                  </div>
                                 </div>
-                                <div className="text-right">
-                                  <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">
-                                    ৳{(item.price * item.quantity).toLocaleString()}
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
 
                           {/* Order Footer Actions */}
@@ -1080,6 +1095,22 @@ const Dashboard = () => {
 
         </div>
 
+      {/* Review Modal */}
+      {reviewingProductId && (
+        <ReviewForm
+          productId={reviewingProductId}
+          initialGuestEmail={user?.email || ''}
+          onClose={() => setReviewingProductId(null)}
+          onCancel={() => setReviewingProductId(null)}
+          onSuccess={() => setReviewingProductId(null)}
+          onReviewSubmitted={() => {
+            toast.success(language === 'bn' ? 'রিভিউ প্রদানের জন্য ধন্যবাদ!' : 'Thank you for your review!', {
+              icon: <Heart className="w-4 h-4 fill-maroon text-maroon" />,
+              style: { borderRadius: '10px', background: '#FFF0F5', color: '#BE123C' }
+            });
+          }}
+        />
+      )}
       </div>
     </div>
   );
