@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { authService } from '../services/authService';
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -46,10 +46,7 @@ const ResetPassword = () => {
     }
 
     try {
-      await axios.post('/api/auth/reset-password', {
-        token,
-        newPassword: formData.newPassword
-      });
+      await authService.resetPassword(token, formData.newPassword);
       toast.success('Password reset successfully!');
       navigate('/login');
     } catch (error) {
@@ -62,98 +59,155 @@ const ResetPassword = () => {
 
   if (!validToken) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-cream dark:bg-gray-900 px-4">
-        <div className="bg-white/20 dark:bg-gray-800/20 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-md text-center">
-          <h2 className="text-3xl font-bold text-red-600 mb-4">Invalid Token</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            The reset link is invalid or has expired.
-          </p>
-          <button
-            onClick={() => navigate('/forgot-password')}
-            className="bg-maroon text-white py-3 px-6 rounded-lg hover:bg-maroon/80 transition-colors"
-          >
-            Request New Reset Link
-          </button>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden flex flex-col justify-between">
+        {/* Background Elements */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+
+        {/* Logo at top */}
+        <div className="pt-8 pb-4">
+          <div className="flex justify-center">
+            <Link to="/" className="flex flex-col items-center gap-2 group">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-maroon p-0 overflow-hidden shadow-xl group-hover:scale-110 transition-all duration-300 bg-transparent">
+                <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-2xl md:text-3xl font-black text-maroon tracking-tight">
+                Rong<span className="text-slate-850 dark:text-slate-200">Rani</span>
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="flex-1 flex items-center justify-center px-4 py-8">
+          <div className="w-full max-w-md p-8 rounded-[2rem] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] text-center">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Invalid Token</h2>
+            <p className="text-slate text-sm mb-6">
+              The reset link is invalid or has expired.
+            </p>
+            <button
+              onClick={() => navigate('/forgot-password')}
+              className="w-full btn-primary py-3 rounded-lg font-medium hover:scale-105 transition-all duration-300"
+            >
+              Request New Reset Link
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cream dark:bg-gray-900 px-4">
-      <div className="bg-white/20 dark:bg-gray-800/20 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-md">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-maroon mb-2">Reset Password</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Enter your new password below.
-          </p>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden flex flex-col justify-between">
+      {/* Background Elements */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+
+      {/* Logo at top */}
+      <div className="pt-8 pb-4">
+        <div className="flex justify-center">
+          <Link to="/" className="flex flex-col items-center gap-2 group">
+            <div className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-maroon p-0 overflow-hidden shadow-xl group-hover:scale-110 transition-all duration-300 bg-transparent">
+              <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-2xl md:text-3xl font-black text-maroon tracking-tight">
+              Rong<span className="text-slate-850 dark:text-slate-200">Rani</span>
+            </span>
+          </Link>
         </div>
+      </div>
 
-        {error && (
-          <div className="bg-red-100 dark:bg-red-900/20 border border-red-400 text-red-700 dark:text-red-400 px-4 py-3 rounded mb-6">
-            {error}
+      <div className="flex-1 flex items-center justify-center px-4 py-8">
+        <div className="w-full max-w-md p-8 rounded-[2rem] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-maroon mb-2">Reset Password</h2>
+            <p className="text-slate text-sm">
+              Enter your new password below.
+            </p>
           </div>
-        )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              New Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="newPassword"
-                value={formData.newPassword}
-                onChange={handleChange}
-                required
-                className="w-full pl-10 pr-12 py-3 rounded-lg bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm border border-white/30 dark:border-gray-600/30 focus:outline-none focus:ring-2 focus:ring-maroon"
-                placeholder="Enter new password"
-              />
-              <Lock className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-              </button>
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 text-sm">
+              {error}
             </div>
-          </div>
+          )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Confirm New Password
-            </label>
-            <div className="relative">
-              <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                className="w-full pl-10 pr-12 py-3 rounded-lg bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm border border-white/30 dark:border-gray-600/30 focus:outline-none focus:ring-2 focus:ring-maroon"
-                placeholder="Confirm new password"
-              />
-              <Lock className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600"
-              >
-                {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-              </button>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate mb-2">
+                New Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleChange}
+                  required
+                  className="input-field pl-12 pr-12"
+                  placeholder="Enter new password"
+                />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate" />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate hover:text-maroon transition-colors"
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
             </div>
-          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-maroon text-white py-3 px-6 rounded-lg hover:bg-maroon/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Resetting...' : 'Reset Password'}
-          </button>
-        </form>
+            <div>
+              <label className="block text-sm font-medium text-slate mb-2">
+                Confirm New Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  className="input-field pl-12 pr-12"
+                  placeholder="Confirm new password"
+                />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate" />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate hover:text-maroon transition-colors"
+                >
+                  {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full btn-primary py-3 rounded-lg font-medium hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Resetting...</span>
+                </div>
+              ) : (
+                'Reset Password'
+              )}
+            </button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/login"
+              className="inline-flex items-center text-sm font-semibold text-maroon hover:text-maroon-light transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Login
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
