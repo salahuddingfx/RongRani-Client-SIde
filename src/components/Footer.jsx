@@ -234,23 +234,23 @@ const Footer = () => {
               <div className="h-6 w-0.25 bg-slate-800 hidden sm:block"></div>
 
               <div className="leading-tight">
-                <p className="text-xs text-slate-400">
-                  {t('developed_with')} <Heart className="w-3 h-3 text-red-600 fill-red-600 inline-block mx-0.5" /> by{' '}
-                  <button 
-                    onClick={() => setShowDevProfile(true)} 
-                    className="text-maroon dark:text-pink-400 font-black hover:underline cursor-pointer"
+                <p className="text-xs text-slate-400 font-bold">
+                  {t('developed_with')} <Heart className="w-3.5 h-3.5 text-red-600 fill-red-600 inline-block mx-0.5" /> by{' '}
+                  <Link 
+                    to="/developer" 
+                    className="text-maroon dark:text-pink-400 font-black hover:underline"
                   >
                     Salah Uddin Kader
-                  </button>
+                  </Link>
                 </p>
-                <p className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">MERN Stack Specialist</p>
+                <p className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5 font-bold">Nextora Studio</p>
               </div>
             </div>
 
           </div>
         </div>
       </footer>
-      <DeveloperProfile isOpen={showDevProfile} onClose={() => setShowDevProfile(false)} />
+      {/* DeveloperProfile modal removed in favor of dedicated page */}
     </>
   );
 };
