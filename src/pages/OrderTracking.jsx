@@ -621,6 +621,8 @@ const OrderTracking = () => {
           initialGuestEmail={contactEmail || order.guestInfo?.email}
           initialOrderId={order._id}
           onClose={() => setReviewingProductId(null)}
+          onCancel={() => setReviewingProductId(null)}
+          onSuccess={() => setReviewingProductId(null)}
           onReviewSubmitted={() => {
             toast.success('Thank you for your review!', {
               icon: <Heart className="w-4 h-4" />,
