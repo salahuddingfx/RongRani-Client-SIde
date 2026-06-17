@@ -100,15 +100,26 @@ const Reviews = () => {
                                 {stats.averageRating.toFixed(1)}
                             </div>
                             <div className="flex items-center justify-center gap-1 mb-2">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star
-                                        key={i}
-                                        className={`w-5 h-5 md:w-6 md:h-6 ${i < Math.floor(stats.averageRating)
-                                            ? 'fill-yellow-400 text-yellow-400'
-                                            : 'text-slate-300'
-                                            }`}
-                                    />
-                                ))}
+                                {[1, 2, 3, 4, 5].map((star) => {
+                                    const isFull = stats.averageRating >= star;
+                                    const isHalf = !isFull && stats.averageRating >= (star - 0.5);
+                                    return (
+                                        <div key={star} className="relative w-5 h-5 md:w-6 md:h-6">
+                                            <Star className="w-5 h-5 md:w-6 md:h-6 text-slate-300" />
+                                            {isHalf && (
+                                                <Star
+                                                    className="w-5 h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                    style={{ clipPath: 'inset(0 50% 0 0)' }}
+                                                />
+                                            )}
+                                            {isFull && (
+                                                <Star
+                                                    className="w-5 h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                />
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                             <p className="text-slate-600 text-sm">
                                 {language === 'bn' ? 'গড় রেটিং' : 'Average Rating'}
@@ -240,16 +251,27 @@ const Reviews = () => {
                                                         <span className="text-slate-400 text-xs">{formatDate(review.createdAt)}</span>
                                                     </div>
                                                 </div>
-                                                <div className="flex items-center gap-1">
-                                                    {[...Array(5)].map((_, i) => (
-                                                        <Star
-                                                            key={i}
-                                                            className={`w-4 h-4 md:w-5 md:h-5 ${i < review.rating
-                                                                ? 'fill-yellow-400 text-yellow-400'
-                                                                : 'text-slate-300'
-                                                                }`}
-                                                        />
-                                                    ))}
+                                                <div className="flex items-center gap-0.5">
+                                                    {[1, 2, 3, 4, 5].map((star) => {
+                                                        const isFull = review.rating >= star;
+                                                        const isHalf = !isFull && review.rating >= (star - 0.5);
+                                                        return (
+                                                            <div key={star} className="relative w-4 h-4 md:w-5 md:h-5">
+                                                                <Star className="w-4 h-4 md:w-5 md:h-5 text-slate-300" />
+                                                                {isHalf && (
+                                                                    <Star
+                                                                        className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                                        style={{ clipPath: 'inset(0 50% 0 0)' }}
+                                                                    />
+                                                                )}
+                                                                {isFull && (
+                                                                    <Star
+                                                                        className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                                    />
+                                                                )}
+                                                            </div>
+                                                        );
+                                                    })}
                                                 </div>
                                             </div>
 
