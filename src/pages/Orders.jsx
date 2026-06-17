@@ -8,7 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const Orders = () => {
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -114,85 +114,55 @@ const Orders = () => {
     order.orderNumber?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Guest User View - Order Tracking Form
+  // Guest User View - Order History Sign-in Prompt
   if (!user) {
     return (
-      <div className="min-h-screen bg-cream py-12 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="card rounded-3xl p-8 md:p-12 shadow-2xl">
-            {/* Header */}
-            <div className="text-center mb-8">
-              <Package className="h-16 w-16 text-maroon mx-auto mb-4" />
-              <h1 className="text-3xl md:text-4xl font-black text-maroon mb-2">
-                {t('track_order')}
+      <div className="min-h-screen bg-cream py-12 px-4 flex items-center justify-center">
+        <div className="max-w-md w-full">
+          <div className="card rounded-[2rem] p-8 md:p-12 shadow-2xl text-center space-y-6 bg-white border border-slate-100/80">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-maroon/10 rounded-3xl text-maroon mb-2">
+              <Package className="h-10 w-10 animate-pulse-slow" />
+            </div>
+            
+            <div>
+              <h1 className="text-3xl font-black text-slate-950 tracking-tight mb-2">
+                {language === 'bn' ? 'অর্ডার হিস্টোরি' : 'Order History'}
               </h1>
-              <p className="text-slate-600">
-                {t('track_order_instr')}
+              <p className="text-slate-600 text-sm font-semibold leading-relaxed">
+                {language === 'bn' 
+                  ? 'আপনার অ্যাকাউন্টের অর্ডারের তালিকা দেখতে এবং ইনভয়েস ডাউনলোড করতে অনুগ্রহ করে লগইন করুন।' 
+                  : 'Please sign in to view your complete order history, download invoices, and manage your purchases.'}
               </p>
             </div>
 
-            {/* Guest Tracking Form */}
-            <form onSubmit={trackGuestOrder} className="space-y-6">
-              <div>
-                <label className="block text-sm font-semibold text-charcoal mb-2">
-                  {t('order_number')}
-                </label>
-                <input
-                  type="text"
-                  value={guestOrderNumber}
-                  onChange={(e) => setGuestOrderNumber(e.target.value)}
-                  placeholder={t('enter_order_number')}
-                  className="input-field w-full"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-charcoal mb-2">
-                  {t('email')}
-                </label>
-                <input
-                  type="email"
-                  value={guestEmail}
-                  onChange={(e) => setGuestEmail(e.target.value)}
-                  placeholder={t('enter_email')}
-                  className="input-field w-full"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-primary w-full py-4 text-lg disabled:opacity-50"
-              >
-                {loading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
-                    {t('loading')}
-                  </span>
-                ) : (
-                  <span className="flex items-center justify-center gap-2">
-                    <Search className="h-5 w-5" />
-                    {t('track_order')}
-                  </span>
-                )}
-              </button>
-            </form>
-
-            {/* Login Prompt */}
-            <div className="mt-8 pt-8 border-t border-slate-200">
-              <p className="text-center text-slate-600 mb-4">
-                {t('have_account')}
-              </p>
+            <div className="space-y-4 pt-4">
               <Link
                 to="/login"
-                className="btn-secondary w-full flex items-center justify-center gap-2"
+                className="w-full bg-maroon text-white py-4 rounded-2xl text-base flex items-center justify-center gap-2 shadow-lg shadow-maroon/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all font-black uppercase tracking-wider"
               >
                 <LogIn className="h-5 w-5" />
-                {t('sign_in')}
+                <span>{language === 'bn' ? 'লগইন করুন' : 'Sign In'}</span>
+              </Link>
+
+              <div className="relative py-2 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200"></div></div>
+                <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-3 text-slate-400 font-black tracking-widest">{language === 'bn' ? 'অথবা' : 'OR'}</span></div>
+              </div>
+
+              <Link
+                to="/quick-track"
+                className="w-full py-4 rounded-2xl text-base flex items-center justify-center gap-2 border-3 border-maroon/20 hover:border-maroon text-maroon hover:bg-maroon/5 font-black uppercase tracking-wider hover:scale-105 active:scale-95 transition-all"
+              >
+                <Truck className="h-5 w-5 animate-bounce-slow" />
+                <span>{language === 'bn' ? 'গেস্ট অর্ডার ট্র্যাক করুন' : 'Track Guest Order'}</span>
               </Link>
             </div>
+
+            <p className="text-xs text-slate-400 font-bold tracking-tight">
+              {language === 'bn' 
+                ? 'অ্যাকাউন্ট নেই? এখনই শপিং শুরু করুন।' 
+                : "Don't have an account? Start browsing our luxury collection."}
+            </p>
           </div>
         </div>
       </div>
