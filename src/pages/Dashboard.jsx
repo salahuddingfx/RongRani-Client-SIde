@@ -302,20 +302,29 @@ const Dashboard = () => {
             <User className="w-80 h-80" />
           </div>
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <span className="bg-white/20 text-yellow-300 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10">
-                Customer Portal
-              </span>
-              <h1 className="text-3xl md:text-5xl font-black tracking-tight mt-3 mb-2">
-                Hello, {user?.name || 'Customer'}
-              </h1>
-              <p className="text-pink-100 font-medium">
-                Welcome back to your personalized space. Manage your favorite selections.
-              </p>
+            <div className="flex flex-col sm:flex-row items-center gap-5 w-full md:w-auto">
+              <div className="w-20 h-20 rounded-full border-4 border-white/20 bg-white/10 flex items-center justify-center font-black text-white text-3xl overflow-hidden shrink-0 shadow-lg">
+                {user?.avatar ? (
+                  <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                ) : (
+                  user?.name?.charAt(0).toUpperCase() || 'U'
+                )}
+              </div>
+              <div className="text-center sm:text-left">
+                <span className="bg-white/25 text-yellow-300 text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-white/15">
+                  Customer Portal
+                </span>
+                <h1 className="text-3xl md:text-4xl font-black tracking-tight mt-3 mb-1">
+                  Hello, {user?.name || 'Customer'}
+                </h1>
+                <p className="text-pink-100/90 font-medium text-sm">
+                  Welcome back to your personalized space. Manage your favorite selections.
+                </p>
+              </div>
             </div>
             <button 
               onClick={logout} 
-              className="flex items-center gap-2 bg-white/10 hover:bg-red-600/90 hover:scale-105 active:scale-95 px-5 py-3 rounded-xl border border-white/10 transition-all font-bold text-sm shadow-md"
+              className="flex items-center gap-2 bg-white/10 hover:bg-red-600/90 hover:scale-105 active:scale-95 px-5 py-3 rounded-xl border border-white/10 transition-all font-bold text-sm shadow-md self-center md:self-auto"
             >
               <LogOut className="h-4.5 w-4.5" />
               <span>Logout</span>
