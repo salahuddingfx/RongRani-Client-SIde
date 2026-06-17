@@ -340,8 +340,12 @@ const Dashboard = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:block bg-white dark:bg-slate-800 rounded-[2rem] p-6 border border-slate-100 dark:border-slate-700 shadow-md">
               <div className="flex items-center gap-3 pb-6 mb-6 border-b border-slate-100 dark:border-slate-700">
-                <div className="w-12 h-12 bg-maroon/10 dark:bg-pink-500/10 rounded-2xl flex items-center justify-center font-black text-maroon dark:text-pink-400 text-xl border border-maroon/10">
-                  {user?.name?.charAt(0).toUpperCase() || 'U'}
+                <div className="w-12 h-12 bg-maroon/10 dark:bg-pink-500/10 rounded-2xl flex items-center justify-center font-black text-maroon dark:text-pink-400 text-xl border border-maroon/10 overflow-hidden shrink-0">
+                  {user?.avatar ? (
+                    <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                  ) : (
+                    user?.name?.charAt(0).toUpperCase() || 'U'
+                  )}
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-black text-slate-900 dark:text-white truncate text-base leading-tight">
