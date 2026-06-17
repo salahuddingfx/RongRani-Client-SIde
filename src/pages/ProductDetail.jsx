@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Star, ShoppingCart, Heart, Minus, Plus, Truck, Shield, RotateCcw, ChevronLeft, ChevronRight, Zap, Gift, TrendingUp, Package, MessageCircle, Building2, Mountain, CheckCircle } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Minus, Plus, Truck, Shield, RotateCcw, ChevronLeft, ChevronRight, Zap, Gift, TrendingUp, Package, MessageCircle, MapPin, Globe, Info, CheckCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { addToRecentlyViewed } from '../utils/productUtils';
 import toast from 'react-hot-toast';
@@ -485,15 +485,6 @@ const ProductDetail = () => {
                   <Zap className="h-6 w-6 animate-pulse" />
                   <span className="relative z-10">{t('buy_now_zap')}</span>
                 </button>
-                <a
-                  href={`https://wa.me/8801851075537?text=${encodeURIComponent(`Hello RongRani! I want to order this premium product:\n\n*Product:* ${product.name}\n*Price:* ৳${product.price}\n*Link:* ${window.location.href}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#25D366] text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:shadow-2xl hover:bg-[#128C7E] transition-all transform hover:scale-[1.02] active:scale-95"
-                >
-                  <MessageCircle className="h-6 w-6" />
-                  <span>{t('order_whatsapp')}</span>
-                </a>
                 <button
                   onClick={handleAddToCart}
                   disabled={product.stock === 0}
@@ -539,7 +530,7 @@ const ProductDetail = () => {
             <div className="bg-white dark:bg-slate-800 rounded-[2rem] p-8 border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none">
               <h3 className="text-xl font-black text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-maroon/10 flex items-center justify-center text-maroon">
-                  <Package className="w-5 h-5" />
+                  <Info className="w-5 h-5" />
                 </div>
                 {t('product_details')}
               </h3>
@@ -576,14 +567,14 @@ const ProductDetail = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-5 bg-white dark:bg-slate-900 rounded-2xl border border-green-100 dark:border-emerald-800">
                   <div className="flex items-center gap-3">
-                    <Building2 className="w-5 h-5 text-green-600" />
+                    <MapPin className="w-5 h-5 text-green-600" />
                     <span className="text-slate-700 dark:text-slate-300 font-bold text-sm">Inside Cox's Bazar:</span>
                   </div>
                   <span className="text-green-600 font-black text-lg">৳{deliverySettings.chittagongFee}</span>
                 </div>
                 <div className="flex justify-between items-center p-5 bg-white dark:bg-slate-900 rounded-2xl border border-green-100 dark:border-emerald-800">
                   <div className="flex items-center gap-3">
-                    <Mountain className="w-5 h-5 text-green-600" />
+                    <Globe className="w-5 h-5 text-green-600" />
                     <span className="text-slate-700 dark:text-slate-300 font-bold text-sm">Outside Cox's Bazar:</span>
                   </div>
                   <span className="text-green-600 font-black text-lg">৳{deliverySettings.outsideChittagongFee}</span>
@@ -728,6 +719,7 @@ const ProductDetail = () => {
                   checkCanReview();
                 }}
                 onCancel={() => setShowReviewForm(false)}
+                onClose={() => setShowReviewForm(false)}
               />
             </div>
           )}
