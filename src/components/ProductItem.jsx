@@ -5,6 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import QuickViewModal from './QuickViewModal';
+import { getImageUrl } from '../utils/productUtils';
 
 const ProductItem = ({ product }) => {
     const { addToCart } = useCart();
@@ -30,13 +31,10 @@ const ProductItem = ({ product }) => {
 
     const productName = product.name || t('unnamed_product');
     const productPrice = product.price || 0;
-    const productImages = product.images || [];
-    const firstImage = productImages[0];
-    const directImage =
-        typeof product.image === 'string' ? product.image : product.image?.url;
+    const firstImage = product.images?.[0];
     const productImage =
-        (typeof firstImage === 'string' ? firstImage : firstImage?.url) ||
-        directImage ||
+        getImageUrl(firstImage) ||
+        getImageUrl(product.image) ||
         '/api/placeholder/300/300';
     const productStock = product.stock || 0;
     const productRating = product.rating || 0;
