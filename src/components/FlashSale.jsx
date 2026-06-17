@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock, Zap, ArrowRight, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import api from '@/services/api';
 
 const FlashSale = () => {
     const { language } = useLanguage();
@@ -16,24 +17,16 @@ const FlashSale = () => {
     useEffect(() => {
         const fetchFlashSale = async () => {
             try {
-                // Assuming you have an axios instance setup, or fetch
-                // Using relative path assuming proxy or base URL setup similar to other components
-                const response = await fetch('/api/flash-sales/active');
-
-                // Robust check for JSON response
-                const contentType = response.headers.get("content-type");
-                if (!response.ok || !contentType || !contentType.includes("application/json")) {
-                    // console.warn('Flash sale API not available or returned non-JSON:', response.status);
-                    setFlashSale(null);
-                    return;
-                }
-
-                const data = await response.json();
+                const response = await api.get('/api/flash-sales/active');
+                const data = response.data;
                 if (data.success && data.flashSale) {
                     setFlashSale(data.flashSale);
+                } else {
+                    setFlashSale(null);
                 }
             } catch (error) {
                 console.error('Error fetching flash sale:', error);
+                setFlashSale(null);
             } finally {
                 setLoading(false);
             }
@@ -71,7 +64,7 @@ const FlashSale = () => {
         return time < 10 ? `0${time}` : time;
     };
 
-    if (loading || !flashSale) return null;
+    if (loading || !flashSale || !flashSale.products || flashSale.products.length === 0) return null;
 
     // Use products from API
     const productsToDisplay = flashSale.products.map(p => ({
