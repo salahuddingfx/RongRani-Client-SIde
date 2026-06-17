@@ -114,16 +114,14 @@ const Home = () => {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           [1] HERO SLIDER — Primary hero, full width
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="w-full py-4 sm:py-6">
-        <div className="section-container">
-          <Suspense
-            fallback={
-              <div className="h-[320px] sm:h-[420px] md:h-[520px] animate-pulse bg-slate-100 dark:bg-slate-800 rounded-2xl sm:rounded-3xl" />
-            }
-          >
-            <BannerSlider />
-          </Suspense>
-        </div>
+      <section className="w-full">
+        <Suspense
+          fallback={
+            <div className="h-[400px] sm:h-[500px] md:h-[600px] w-full animate-pulse bg-slate-100 dark:bg-slate-800" />
+          }
+        >
+          <BannerSlider />
+        </Suspense>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
