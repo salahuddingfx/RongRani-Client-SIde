@@ -6,10 +6,12 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const ReviewForm = ({
   productId,
-  onReviewSubmitted = () => { },
-  onClose = () => { },
+  onReviewSubmitted,
+  onClose,
   initialGuestEmail = '',
-  initialOrderId = ''
+  initialOrderId = '',
+  onSuccess,
+  onCancel
 }) => {
   const { language } = useLanguage();
   const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
@@ -25,6 +27,16 @@ const ReviewForm = ({
   const [guestEmail, setGuestEmail] = useState(initialGuestEmail);
   const [orderId, setOrderId] = useState(initialOrderId);
   const [isGuest] = useState(!user);
+
+  const handleClose = () => {
+    if (onClose) onClose();
+    if (onCancel) onCancel();
+  };
+
+  const handleSubmitted = () => {
+    if (onReviewSubmitted) onReviewSubmitted();
+    if (onSuccess) onSuccess();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,8 +83,8 @@ const ReviewForm = ({
       toast.success(language === 'bn' ? 'রিভিউ সফলভাবে জমা দেওয়া হয়েছে! আপনাকে ধন্যবাদ।' : 'Review submitted successfully! Thank you for your feedback.', {
         duration: 4000
       });
-      onReviewSubmitted();
-      onClose();
+      handleSubmitted();
+      handleClose();
 
       setRating(0);
       setTitle('');
@@ -98,7 +110,7 @@ const ReviewForm = ({
             <p className="text-white/80 text-xs md:text-sm font-bold mt-1 uppercase tracking-widest">{language === 'bn' ? 'রংরানী পরিবারে আপনার মতামত গুরুত্বপূর্ণ' : 'Your voice matters in RongRani family'}</p>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="w-12 h-12 bg-white/20 hover:bg-white/40 rounded-2xl flex items-center justify-center transition-all active:scale-90"
             aria-label="Close"
           >
@@ -158,32 +170,60 @@ const ReviewForm = ({
           <div className="space-y-4 text-center md:text-left bg-maroon/5 p-6 rounded-[2rem] border border-maroon/10">
             <label className="block text-lg font-black text-maroon uppercase tracking-tight">{language === 'bn' ? 'আপনার রেটিং বাছাই করুন *' : 'Select Your Rating *'}</label>
             <div className="flex justify-center md:justify-start gap-3">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  key={star}
-                  type="button"
-                  onClick={() => setRating(star)}
-                  onMouseEnter={() => setHoveredRating(star)}
-                  onMouseLeave={() => setHoveredRating(0)}
-                  className="transition-all hover:scale-125 hover:-translate-y-1 active:scale-90"
-                  title={`${star} out of 5 stars`}
-                >
-                  <Star
-                    className={`h-11 w-11 ${star <= (hoveredRating || rating)
-                      ? 'fill-gold text-gold scale-110 drop-shadow-[0_0_8px_rgba(255,191,0,0.4)]'
-                      : 'text-slate-300 dark:text-slate-700'
-                      } transition-all duration-300`}
-                  />
-                </button>
-              ))}
+              {[1, 2, 3, 4, 5].map((star) => {
+                const currentVal = hoveredRating || rating;
+                const isFull = currentVal >= star;
+                const isHalf = !isFull && currentVal >= (star - 0.5);
+
+                return (
+                  <div
+                    key={star}
+                    className="relative w-11 h-11 transition-all hover:scale-125 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center"
+                  >
+                    {/* Visual Star */}
+                    <div className="relative pointer-events-none">
+                      <Star className="h-11 w-11 text-slate-300 dark:text-slate-700" />
+                      {isHalf && (
+                        <Star
+                          className="h-11 w-11 fill-gold text-gold absolute top-0 left-0 drop-shadow-[0_0_8px_rgba(255,191,0,0.4)]"
+                          style={{ clipPath: 'inset(0 50% 0 0)' }}
+                        />
+                      )}
+                      {isFull && (
+                        <Star
+                          className="h-11 w-11 fill-gold text-gold absolute top-0 left-0 scale-110 drop-shadow-[0_0_8px_rgba(255,191,0,0.4)]"
+                        />
+                      )}
+                    </div>
+
+                    {/* Interactive Areas */}
+                    {/* Left half */}
+                    <div
+                      className="absolute left-0 top-0 w-1/2 h-full z-10 cursor-pointer"
+                      onClick={() => setRating(star - 0.5)}
+                      onMouseEnter={() => setHoveredRating(star - 0.5)}
+                      onMouseLeave={() => setHoveredRating(0)}
+                      title={`${star - 0.5} stars`}
+                    />
+                    {/* Right half */}
+                    <div
+                      className="absolute right-0 top-0 w-1/2 h-full z-10 cursor-pointer"
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoveredRating(star)}
+                      onMouseLeave={() => setHoveredRating(0)}
+                      title={`${star} stars`}
+                    />
+                  </div>
+                );
+              })}
             </div>
             {rating > 0 && (
               <p className="text-sm font-black text-gold animate-bounce-slow mt-2">
-                {rating === 5 && (language === 'bn' ? 'অসাধারণ! আমি এটা খুব পছন্দ করি!' : 'Absolutely love it!')}
-                {rating === 4 && (language === 'bn' ? 'আমি সন্তুষ্ট' : 'Very satisfied')}
-                {rating === 3 && (language === 'bn' ? 'মোটামুটি ঠিক আছে' : "It's okay")}
-                {rating === 2 && (language === 'bn' ? 'ভালো লাগেনি' : 'Not great')}
-                {rating === 1 && (language === 'bn' ? 'খুব খারাপ অভিজ্ঞতা' : 'Poor experience')}
+                {rating >= 4.5 && (language === 'bn' ? 'অসাধারণ! আমি এটা খুব পছন্দ করি!' : 'Absolutely love it!')}
+                {rating >= 3.5 && rating < 4.5 && (language === 'bn' ? 'আমি সন্তুষ্ট' : 'Very satisfied')}
+                {rating >= 2.5 && rating < 3.5 && (language === 'bn' ? 'মোটামুটি ঠিক আছে' : "It's okay")}
+                {rating >= 1.5 && rating < 2.5 && (language === 'bn' ? 'ভালো লাগেনি' : 'Not great')}
+                {rating > 0 && rating < 1.5 && (language === 'bn' ? 'খুব খারাপ অভিজ্ঞতা' : 'Poor experience')}
               </p>
             )}
           </div>
@@ -246,7 +286,7 @@ const ReviewForm = ({
           <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t-2 border-slate-100 dark:border-slate-800">
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               className="flex-1 py-4 px-6 border-2 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 rounded-2xl font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95"
               disabled={loading}
             >
