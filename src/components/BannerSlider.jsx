@@ -219,22 +219,23 @@ const BannerSlider = () => {
         ))}
       </div>
 
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm text-maroon p-4 rounded-full shadow-xl hover:bg-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 z-20"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm text-maroon p-4 rounded-full shadow-xl hover:bg-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 z-20"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
+      {/* Navigation Buttons (Bottom Right Deck) */}
+      <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2 bg-black/20 dark:bg-slate-900/40 backdrop-blur-md p-1.5 rounded-2xl border border-white/10">
+        <button
+          onClick={prevSlide}
+          className="p-2.5 bg-white text-maroon hover:bg-cream-light hover:text-maroon active:scale-90 rounded-xl shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="p-2.5 bg-white text-maroon hover:bg-cream-light hover:text-maroon active:scale-90 rounded-xl shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
 
       {/* Dots Indicator */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
