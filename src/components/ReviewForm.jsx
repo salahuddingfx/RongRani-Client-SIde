@@ -101,8 +101,14 @@ const ReviewForm = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fade-in shadow-2xl">
-      <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slide-up border border-white/20">
+    <div 
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fade-in shadow-2xl"
+      onClick={handleClose}
+    >
+      <div 
+        className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slide-up border border-white/20"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-maroon to-maroon-light text-white p-6 md:p-8 flex items-center justify-between z-10 shadow-lg">
           <div>
