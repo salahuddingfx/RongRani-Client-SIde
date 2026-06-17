@@ -142,6 +142,57 @@ const Dashboard = () => {
     }
   };
 
+  const handleAvatarChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error('File size must be less than 2MB');
+      return;
+    }
+
+    // Set preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setAvatarPreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    // Upload immediately
+    try {
+      setAvatarUploading(true);
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await axios.post('/api/users/avatar', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      setAvatarUrl(response.data.url);
+      toast.success('Image uploaded successfully! Click Save Profile to apply.');
+    } catch (err) {
+      console.error('Avatar upload error:', err);
+      toast.error(err.response?.data?.message || 'Failed to upload image');
+      setAvatarPreview('');
+    } finally {
+      setAvatarUploading(false);
+    }
+  };
+
+  const handleCancelAvatarChange = () => {
+    setAvatarPreview('');
+    setAvatarUrl('');
+  };
+
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (!passwordForm.currentPassword || !passwordForm.newPassword) {
