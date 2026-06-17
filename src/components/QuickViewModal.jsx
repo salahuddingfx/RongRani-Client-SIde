@@ -135,16 +135,27 @@ const QuickViewModal = ({ product, onClose }) => {
               {/* Rating */}
               {product.rating && (
                 <div className="flex items-center space-x-2 mb-4">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${i < Math.floor(product.rating)
-                          ? 'text-gold fill-gold'
-                          : 'text-gray-300'
-                          }`}
-                      />
-                    ))}
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((star) => {
+                      const isFull = product.rating >= star;
+                      const isHalf = !isFull && product.rating >= (star - 0.5);
+                      return (
+                        <div key={star} className="relative w-5 h-5">
+                          <Star className="h-5 w-5 text-gray-300" />
+                          {isHalf && (
+                            <Star
+                              className="h-5 w-5 fill-gold text-gold absolute top-0 left-0"
+                              style={{ clipPath: 'inset(0 50% 0 0)' }}
+                            />
+                          )}
+                          {isFull && (
+                            <Star
+                              className="h-5 w-5 fill-gold text-gold absolute top-0 left-0"
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                   <span className="text-sm text-slate">
                     ({product.reviewCount || 0} reviews)
