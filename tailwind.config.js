@@ -31,6 +31,10 @@ export default {
   ],
   theme: {
     extend: {
+      scale: {
+        '105': '1.015',
+        '110': '1.03',
+      },
       colors: {
         'cream': '#FFE4E6',
         'cream-light': '#FFF1F2',
