@@ -310,7 +310,7 @@ const Dashboard = () => {
             <div className="flex flex-col sm:flex-row items-center gap-5 w-full md:w-auto">
               <div className="w-20 h-20 rounded-full border-4 border-white/20 bg-white/10 flex items-center justify-center font-black text-white text-3xl overflow-hidden shrink-0 shadow-lg">
                 {user?.avatar ? (
-                  <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                  <img src={getImageUrl(user.avatar)} alt={user?.name} className="w-full h-full object-cover" />
                 ) : (
                   user?.name?.charAt(0).toUpperCase() || 'U'
                 )}
@@ -347,7 +347,7 @@ const Dashboard = () => {
               <div className="flex items-center gap-3 pb-6 mb-6 border-b border-slate-100 dark:border-slate-700">
                 <div className="w-12 h-12 bg-maroon/10 dark:bg-pink-500/10 rounded-2xl flex items-center justify-center font-black text-maroon dark:text-pink-400 text-xl border border-maroon/10 overflow-hidden shrink-0">
                   {user?.avatar ? (
-                    <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                    <img src={getImageUrl(user.avatar)} alt={user?.name} className="w-full h-full object-cover" />
                   ) : (
                     user?.name?.charAt(0).toUpperCase() || 'U'
                   )}
@@ -597,7 +597,7 @@ const Dashboard = () => {
                       <div className="flex flex-col sm:flex-row items-center gap-4 bg-slate-50 dark:bg-slate-900/20 p-5 rounded-2xl border border-slate-100 dark:border-slate-700/80 mb-6">
                         <div className="w-20 h-20 rounded-full bg-maroon/10 dark:bg-pink-500/10 flex items-center justify-center font-black text-maroon dark:text-pink-400 text-3xl border border-maroon/10 overflow-hidden shrink-0 shadow-sm">
                           {user?.avatar ? (
-                            <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                            <img src={getImageUrl(user.avatar)} alt={user?.name} className="w-full h-full object-cover" />
                           ) : (
                             user?.name?.charAt(0).toUpperCase() || 'U'
                           )}
@@ -664,7 +664,7 @@ const Dashboard = () => {
                           {avatarPreview ? (
                             <img src={avatarPreview} alt="Preview" className="w-full h-full object-cover" />
                           ) : user?.avatar ? (
-                            <img src={user.avatar} alt="Current" className="w-full h-full object-cover" />
+                            <img src={getImageUrl(user.avatar)} alt="Current" className="w-full h-full object-cover" />
                           ) : (
                             user?.name?.charAt(0).toUpperCase() || 'U'
                           )}
