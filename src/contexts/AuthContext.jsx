@@ -51,6 +51,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const userData = await authService.login(email, password);
+    if (userData.requiresVerification) {
+      return userData;
+    }
     const { token, ...userFields } = userData;
     localStorage.setItem('token', token);
     setUser(userFields);
@@ -61,7 +64,20 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userDataInput) => {
     const registerResponse = await authService.register(userDataInput);
+    if (registerResponse.requiresVerification) {
+      return registerResponse;
+    }
     const { token, ...userFields } = registerResponse;
+    localStorage.setItem('token', token);
+    setUser(userFields);
+    setIsAuthenticated(true);
+    setRole(userFields.role || 'user');
+    return userFields;
+  };
+
+  const verifyOtp = async (email, otp) => {
+    const response = await authService.verifyOtp(email, otp);
+    const { token, ...userFields } = response;
     localStorage.setItem('token', token);
     setUser(userFields);
     setIsAuthenticated(true);
@@ -83,6 +99,7 @@ export const AuthProvider = ({ children }) => {
     role,
     login,
     register,
+    verifyOtp,
     logout,
     checkAuthStatus
   };
