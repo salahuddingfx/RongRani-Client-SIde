@@ -517,8 +517,12 @@ const Navbar = () => {
                         {user ? (
                           <div className="relative ml-1 user-menu-container">
                             <button onClick={() => setShowUserMenu(!showUserMenu)} className="flex items-center gap-2 group" aria-label="User menu">
-                              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-maroon/10 dark:bg-maroon/20 flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm group-hover:border-maroon transition-all">
-                                <User className="w-4 h-4 md:w-5 md:h-5 text-maroon" />
+                              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-maroon/10 dark:bg-maroon/20 flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm group-hover:border-maroon transition-all overflow-hidden shrink-0">
+                                {user.avatar ? (
+                                  <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <User className="w-4 h-4 md:w-5 md:h-5 text-maroon" />
+                                )}
                               </div>
                               <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform duration-300 ${showUserMenu ? 'rotate-180' : ''}`} />
                             </button>
@@ -598,9 +602,18 @@ const Navbar = () => {
 
                   {/* Greeting / User Status */}
                   {user && (
-                    <div className="bg-gradient-to-br from-maroon/5 to-pink-500/5 rounded-2xl p-4 border border-maroon/10">
-                      <p className="text-xs font-bold text-slate-500 mb-1">{t('welcome_back')},</p>
-                      <p className="text-xl font-black text-maroon dark:text-white truncate">{user.name || 'User'}</p>
+                    <div className="bg-gradient-to-br from-maroon/5 to-pink-500/5 rounded-2xl p-4 border border-maroon/10 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-maroon/10 dark:bg-pink-500/10 flex items-center justify-center border border-maroon/10 overflow-hidden shrink-0">
+                        {user.avatar ? (
+                          <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <User className="w-5 h-5 text-maroon dark:text-pink-400" />
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-bold text-slate-500 mb-0.5">{t('welcome_back')},</p>
+                        <p className="text-base font-black text-maroon dark:text-white truncate">{user.name || 'User'}</p>
+                      </div>
                     </div>
                   )}
 

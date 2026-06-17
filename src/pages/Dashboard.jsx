@@ -588,6 +588,21 @@ const Dashboard = () => {
 
                   {!isEditingProfile ? (
                     <div className="space-y-6">
+                      {/* Profile Picture Display */}
+                      <div className="flex flex-col sm:flex-row items-center gap-4 bg-slate-50 dark:bg-slate-900/20 p-5 rounded-2xl border border-slate-100 dark:border-slate-700/80 mb-6">
+                        <div className="w-20 h-20 rounded-full bg-maroon/10 dark:bg-pink-500/10 flex items-center justify-center font-black text-maroon dark:text-pink-400 text-3xl border border-maroon/10 overflow-hidden shrink-0 shadow-sm">
+                          {user?.avatar ? (
+                            <img src={user.avatar} alt={user?.name} className="w-full h-full object-cover" />
+                          ) : (
+                            user?.name?.charAt(0).toUpperCase() || 'U'
+                          )}
+                        </div>
+                        <div className="text-center sm:text-left">
+                          <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">Profile Picture</h3>
+                          <p className="text-xs text-slate-400 mt-1">To change your profile picture, click Edit Profile below.</p>
+                        </div>
+                      </div>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="bg-slate-50 dark:bg-slate-900/20 p-5 rounded-2xl border border-slate-100 dark:border-slate-700">
                           <span className="text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest block mb-1">Full Name</span>
@@ -638,6 +653,54 @@ const Dashboard = () => {
                     </div>
                   ) : (
                     <form onSubmit={handleProfileSubmit} className="space-y-6 animate-fade-in-up">
+                      {/* Avatar Upload Section */}
+                      <div className="flex flex-col sm:flex-row items-center gap-4 bg-slate-50 dark:bg-slate-900/20 p-5 rounded-2xl border border-slate-100 dark:border-slate-700/80 mb-6">
+                        <div className="relative w-20 h-20 rounded-full bg-maroon/10 dark:bg-pink-500/10 flex items-center justify-center font-black text-maroon dark:text-pink-400 text-3xl border border-maroon/10 overflow-hidden shrink-0 shadow-sm">
+                          {avatarPreview ? (
+                            <img src={avatarPreview} alt="Preview" className="w-full h-full object-cover" />
+                          ) : user?.avatar ? (
+                            <img src={user.avatar} alt="Current" className="w-full h-full object-cover" />
+                          ) : (
+                            user?.name?.charAt(0).toUpperCase() || 'U'
+                          )}
+                          {avatarUploading && (
+                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                            </div>
+                          )}
+                        </div>
+                        <div className="text-center sm:text-left space-y-2">
+                          <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">Upload Profile Picture</h3>
+                          <div className="flex items-center gap-2 justify-center sm:justify-start">
+                            <input
+                              type="file"
+                              accept="image/*"
+                              id="avatar-upload-input"
+                              className="hidden"
+                              onChange={handleAvatarChange}
+                              disabled={avatarUploading}
+                            />
+                            <label
+                              htmlFor="avatar-upload-input"
+                              className={`bg-maroon hover:bg-maroon-dark text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-block ${avatarUploading ? 'opacity-50 pointer-events-none' : ''}`}
+                            >
+                              Choose Image
+                            </label>
+                            {avatarPreview && (
+                              <button
+                                type="button"
+                                onClick={handleCancelAvatarChange}
+                                className="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
+                                disabled={avatarUploading}
+                              >
+                                Reset
+                              </button>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-slate-400">JPG, PNG or WEBP. Max 2MB.</p>
+                        </div>
+                      </div>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div className="md:col-span-2">
                           <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Full Name</label>
