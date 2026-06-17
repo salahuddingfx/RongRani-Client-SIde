@@ -3,6 +3,7 @@ import { Clock, Zap, ArrowRight, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import api from '@/services/api';
+import { getImageUrl } from '../utils/productUtils';
 
 const FlashSale = () => {
     const { language } = useLanguage();
@@ -75,7 +76,7 @@ const FlashSale = () => {
         // For simplicity using name directly.
         price: p.discountPrice,
         originalPrice: p.product.price,
-        image: p.product.images?.[0]?.url || '/api/placeholder/400/400',
+        image: getImageUrl(p.product.images?.[0]) || '/api/placeholder/400/400',
         sold: p.soldQuantity,
         total: p.totalQuantity
     }));
