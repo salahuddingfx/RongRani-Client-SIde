@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Package, Shield, Heart, Truck } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import DeveloperProfile from './DeveloperProfile';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [showDevProfile, setShowDevProfile] = useState(false);
   const [bdTime, setBdTime] = useState('');
   const { t } = useLanguage();
 
@@ -33,18 +31,6 @@ const Footer = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    if (showDevProfile) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
-    }
-
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
-  }, [showDevProfile]);
 
   return (
     <>
