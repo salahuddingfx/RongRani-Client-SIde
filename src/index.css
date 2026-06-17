@@ -259,12 +259,7 @@
   }
 
   .card {
-    @apply bg-white rounded-3xl shadow-md sm:shadow-lg hover:shadow-2xl transition-all duration-500 border border-maroon/10 overflow-hidden p-4 sm:p-6 lg:p-8;
-    transform: translateY(0);
-  }
-
-  .card:hover {
-    transform: translateY(-3px) scale(1.01);
+    @apply bg-white rounded-3xl shadow-md sm:shadow-lg transition-all duration-500 border border-maroon/10 overflow-hidden p-4 sm:p-6 lg:p-8;
   }
 
   .section-container {
