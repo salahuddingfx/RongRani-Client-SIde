@@ -11,8 +11,6 @@ import CartDrawer from './CartDrawer';
 
 const AppLayout = () => {
   const location = useLocation();
-
-  // Delayed load for heavy components to boost FID/TTI
   const [showChat, setShowChat] = React.useState(false);
 
   React.useEffect(() => {
@@ -33,26 +31,22 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-charcoal dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-white">
       <Seo path={location.pathname} />
       <ScrollRevealManager />
 
-      <div className="fixed top-0 left-0 right-0 z-[100] overflow-visible">
+      <div className="fixed top-0 left-0 right-0 z-[60]">
         <Navbar />
       </div>
 
-      <main className="flex-1 pb-20 lg:pb-0 pt-28 sm:pt-32 md:pt-36 page-content-fade-in transition-all duration-500">
+      <main className="pt-20 sm:pt-24 md:pt-28 pb-20 lg:pb-0 page-content-fade-in">
         <Outlet />
       </main>
 
       <RecentlyViewed />
       <CartDrawer />
-
       <Footer />
-
-      {/* AI Chat Widget - Delayed Load for Performance */}
       {showChat && <AIChatFloatingWidget />}
-
       <BottomNav />
     </div>
   );
