@@ -8,7 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 const QuickOrderLookup = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [searchMethod, setSearchMethod] = useState('phone'); // 'phone', 'email', 'product', 'orderId'
+  const [searchMethod, setSearchMethod] = useState('phone');
   const [contactValue, setContactValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
@@ -84,13 +84,13 @@ const QuickOrderLookup = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'pending': return 'bg-yellow-100 text-yellow-700 border-yellow-300';
-      case 'confirmed': return 'bg-blue-100 text-blue-700 border-blue-300';
-      case 'processing': return 'bg-indigo-100 text-indigo-700 border-indigo-300';
-      case 'shipped': return 'bg-purple-100 text-purple-700 border-purple-300';
-      case 'delivered': return 'bg-green-100 text-green-700 border-green-300';
-      case 'cancelled': return 'bg-red-100 text-red-700 border-red-300';
-      default: return 'bg-gray-100 text-gray-700 border-gray-300';
+      case 'pending': return 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400';
+      case 'confirmed': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+      case 'processing': return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400';
+      case 'shipped': return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400';
+      case 'delivered': return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400';
+      case 'cancelled': return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
+      default: return 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300';
     }
   };
 
@@ -98,10 +98,10 @@ const QuickOrderLookup = () => {
     switch (status) {
       case 'pending':
       case 'confirmed':
-      case 'processing': return <Clock className="h-5 w-5" />;
-      case 'shipped': return <Truck className="h-5 w-5" />;
-      case 'delivered': return <CheckCircle className="h-5 w-5" />;
-      default: return <Package className="h-5 w-5" />;
+      case 'processing': return <Clock className="h-4 w-4" />;
+      case 'shipped': return <Truck className="h-4 w-4" />;
+      case 'delivered': return <CheckCircle className="h-4 w-4" />;
+      default: return <Package className="h-4 w-4" />;
     }
   };
 
@@ -114,102 +114,56 @@ const QuickOrderLookup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-cream to-pink-100 py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <div className="inline-block p-4 bg-maroon/10 rounded-full mb-4">
-            <Search className="h-12 w-12 text-maroon" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-black text-maroon mb-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <Search className="h-10 w-10 text-slate-300 mx-auto mb-3" />
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
             Track Your Orders
           </h1>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
             Find your orders using phone number, email address, product name, or order ID
           </p>
         </div>
 
-        {/* Search Form */}
-        <div className="card mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <form onSubmit={handleSearch} className="space-y-6">
-            {/* Method Selection */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMethod('phone');
-                  setContactValue('');
-                }}
-                className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all text-sm ${
-                  searchMethod === 'phone'
-                    ? 'bg-maroon text-white shadow-md scale-105'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-maroon/30'
-                }`}
-              >
-                <Phone className="h-4 w-4" />
-                <span className="text-xs sm:text-sm">Phone</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMethod('email');
-                  setContactValue('');
-                }}
-                className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all text-sm ${
-                  searchMethod === 'email'
-                    ? 'bg-maroon text-white shadow-md scale-105'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-maroon/30'
-                }`}
-              >
-                <Mail className="h-4 w-4" />
-                <span className="text-xs sm:text-sm">Email</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMethod('product');
-                  setContactValue('');
-                }}
-                className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all text-sm ${
-                  searchMethod === 'product'
-                    ? 'bg-maroon text-white shadow-md scale-105'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-maroon/30'
-                }`}
-              >
-                <Package className="h-4 w-4" />
-                <span className="text-xs sm:text-sm">Product</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMethod('orderId');
-                  setContactValue('');
-                }}
-                className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all text-sm ${
-                  searchMethod === 'orderId'
-                    ? 'bg-maroon text-white shadow-md scale-105'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-maroon/30'
-                }`}
-              >
-                <Search className="h-4 w-4" />
-                <span className="text-xs sm:text-sm">Order ID</span>
-              </button>
+        <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 mb-8">
+          <form onSubmit={handleSearch} className="space-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {[
+                { key: 'phone', icon: Phone, label: 'Phone' },
+                { key: 'email', icon: Mail, label: 'Email' },
+                { key: 'product', icon: Package, label: 'Product' },
+                { key: 'orderId', icon: Search, label: 'Order ID' },
+              ].map(({ key, icon: Icon, label }) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => {
+                    setSearchMethod(key);
+                    setContactValue('');
+                  }}
+                  className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl font-medium transition-colors text-sm ${
+                    searchMethod === key
+                      ? 'bg-maroon text-white'
+                      : 'bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
+              ))}
             </div>
 
-            {/* Input Field */}
-            <div className="relative max-w-md mx-auto">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                 {searchMethod === 'phone' ? (
-                  <Phone className="h-5 w-5 text-slate-400" />
+                  <Phone className="h-4 w-4 text-slate-400" />
                 ) : searchMethod === 'email' ? (
-                  <Mail className="h-5 w-5 text-slate-400" />
+                  <Mail className="h-4 w-4 text-slate-400" />
                 ) : searchMethod === 'product' ? (
-                  <Package className="h-5 w-5 text-slate-400" />
+                  <Package className="h-4 w-4 text-slate-400" />
                 ) : (
-                  <Search className="h-5 w-5 text-slate-400" />
+                  <Search className="h-4 w-4 text-slate-400" />
                 )}
               </div>
               <input
@@ -225,28 +179,27 @@ const QuickOrderLookup = () => {
                     ? 'Enter product name'
                     : 'Enter order ID'
                 }
-                className="input-field w-full pl-12 pr-4 py-4 text-lg border-2 border-slate-200 focus:border-maroon rounded-xl"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-maroon/40"
                 required
                 disabled={loading}
               />
             </div>
 
-            {/* Search Button */}
             <div className="text-center">
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary px-10 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-3 disabled:opacity-60"
+                className="bg-maroon text-white font-semibold px-8 py-3 rounded-xl hover:bg-maroon/90 transition-colors inline-flex items-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Searching...</span>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Searching...
                   </>
                 ) : (
                   <>
-                    <Search className="h-5 w-5" />
-                    <span>Find My Orders</span>
+                    <Search className="h-4 w-4" />
+                    Find My Orders
                   </>
                 )}
               </button>
@@ -254,19 +207,18 @@ const QuickOrderLookup = () => {
           </form>
         </div>
 
-        {/* Results */}
         {searched && !loading && (
-          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className="max-w-2xl mx-auto">
             {orders.length > 0 ? (
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-maroon mb-4">
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
                   Your Orders ({orders.length})
                 </h2>
                 
                 {orders.map((order) => (
                   <div
                     key={order._id}
-                    className="card hover:shadow-xl transition-all cursor-pointer group"
+                    className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-5 hover:shadow-md transition-shadow cursor-pointer"
                     onClick={() => {
                       const params = new URLSearchParams();
                       if (searchMethod === 'phone') params.set('phone', contactValue);
@@ -277,93 +229,88 @@ const QuickOrderLookup = () => {
                           value: contactValue.trim(),
                         }));
                       }
-                      // For product and orderId searches, we don't need additional verification
                       const query = params.toString();
                       navigate(`/track/${order.orderId || order._id}${query ? `?${query}` : ''}`);
                     }}
                   >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      {/* Left: Order Info */}
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Package className="h-6 w-6 text-maroon" />
-                          <h3 className="text-xl font-bold text-maroon">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Package className="h-5 w-5 text-slate-400" />
+                          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                             #{order.orderId || order._id}
                           </h3>
                         </div>
                         
-                        <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="h-3.5 w-3.5" />
                             {formatDate(order.createdAt)}
                           </span>
                           
                           {order.trackingNumber && (
-                            <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-lg font-mono text-xs">
+                            <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg font-mono text-xs">
                               {order.trackingNumber}
                             </span>
                           )}
                         </div>
 
-                        {/* Items Preview */}
-                        <div className="mt-3 flex items-center gap-2">
+                        <div className="mt-2.5 flex items-center gap-1.5">
                           {order.items.slice(0, 3).map((item, idx) => (
                             <img
                               key={idx}
                               src={item.image || item.product?.images?.[0] || 'https://via.placeholder.com/40x40?text=No+Image'}
                               alt={item.name || item.product?.name || 'Product'}
-                              className="w-10 h-10 rounded-lg object-cover border border-slate-200"
+                              className="w-8 h-8 rounded-lg object-cover border border-slate-200 dark:border-slate-600"
                               onError={(e) => {
                                 e.target.src = 'https://via.placeholder.com/40x40?text=No+Image';
                               }}
                             />
                           ))}
                           {order.items.length > 3 && (
-                            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-600 border border-slate-200">
+                            <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-medium text-slate-500">
                               +{order.items.length - 3}
                             </div>
                           )}
                         </div>
                       </div>
 
-                      {/* Right: Status & Amount */}
-                      <div className="flex flex-col items-end gap-3">
-                        <div className={`px-4 py-2 rounded-xl border font-semibold flex items-center gap-2 ${getStatusColor(order.orderStatus)}`}>
+                      <div className="flex flex-row md:flex-col items-center md:items-end gap-3">
+                        <div className={`px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5 text-sm ${getStatusColor(order.orderStatus)}`}>
                           {getStatusIcon(order.orderStatus)}
                           <span className="capitalize">{order.orderStatus}</span>
                         </div>
                         
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-maroon">
+                          <div className="text-lg font-bold text-maroon">
                             ৳{order.total.toLocaleString()}
                           </div>
-                          <div className="text-xs text-slate-500">
+                          <div className="text-xs text-slate-400">
                             {order.items.length} item{order.items.length > 1 ? 's' : ''}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Hover Effect */}
-                    <div className="mt-4 pt-4 border-t border-slate-200 flex items-center justify-between text-sm">
-                      <span className="text-slate-600">
+                    <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm">
+                      <span className="text-slate-500 dark:text-slate-400">
                         Click to view details
                       </span>
-                      <div className="flex items-center gap-1 text-maroon font-semibold group-hover:translate-x-1 transition-transform">
+                      <div className="flex items-center gap-1 text-maroon font-semibold">
                         <span>View Order</span>
-                        <ArrowLeft className="h-4 w-4 rotate-180" />
+                        <ArrowLeft className="h-3.5 w-3.5 rotate-180" />
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="card text-center py-12">
-                <Package className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-slate-700 mb-2">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-10 text-center">
+                <Package className="h-12 w-12 text-slate-300 mx-auto mb-3" />
+                <h3 className="text-lg font-bold text-slate-700 dark:text-white mb-1">
                   No Orders Found
                 </h3>
-                <p className="text-slate-500">
+                <p className="text-slate-500 dark:text-slate-400 text-sm">
                   We couldn't find any orders with this contact information
                 </p>
               </div>
@@ -371,14 +318,13 @@ const QuickOrderLookup = () => {
           </div>
         )}
 
-        {/* Back to Home */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-maroon font-semibold hover:underline transition-all"
+            className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 font-semibold hover:text-maroon transition-colors text-sm"
           >
-            <ArrowLeft className="h-5 w-5" />
-            <span>Back to Home</span>
+            <ArrowLeft className="h-4 w-4" />
+            Back to Home
           </Link>
         </div>
       </div>
