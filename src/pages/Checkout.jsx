@@ -291,18 +291,18 @@ const Checkout = () => {
 
         {/* ── Guest Banner ── */}
         {!isAuthenticated && (
-          <div className="max-w-2xl mx-auto mb-6 bg-gradient-to-r from-maroon to-rose-700 rounded-2xl p-4 shadow-xl text-white">
+          <div className="max-w-2xl mx-auto mb-6 bg-maroon/5 border border-maroon/20 rounded-2xl p-4">
             <div className="flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-yellow-300 shrink-0 mt-0.5" />
+              <Sparkles className="h-5 w-5 text-maroon shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
-                <p className="font-black text-sm">{t('become_member') || 'Log in for exclusive member perks!'}</p>
-                <p className="text-white/75 text-xs mt-0.5">{t('or_continue_guest') || 'Or continue as guest below'}</p>
+                <p className="font-black text-sm text-maroon">{t('become_member') || 'Log in for exclusive member perks!'}</p>
+                <p className="text-maroon/70 text-xs mt-0.5">{t('or_continue_guest') || 'Or continue as guest below'}</p>
               </div>
               <div className="flex gap-2 shrink-0">
-                <Link to="/login" state={{ from: '/checkout' }} className="bg-white text-maroon px-3 py-1.5 rounded-xl font-black text-xs hover:bg-cream-light transition-colors">
+                <Link to="/login" state={{ from: '/checkout' }} className="bg-maroon text-white px-3 py-1.5 rounded-xl font-black text-xs hover:bg-maroon-dark transition-colors">
                   {t('login')}
                 </Link>
-                <Link to="/register" state={{ from: '/checkout' }} className="bg-yellow-400 text-slate-800 px-3 py-1.5 rounded-xl font-black text-xs hover:bg-yellow-300 transition-colors">
+                <Link to="/register" state={{ from: '/checkout' }} className="bg-white border border-maroon/20 text-maroon px-3 py-1.5 rounded-xl font-black text-xs hover:bg-maroon/5 transition-colors">
                   {t('register')}
                 </Link>
               </div>
@@ -461,7 +461,7 @@ const Checkout = () => {
 
                 {/* COD warning */}
                 {formData.paymentMethod === 'cod' && (
-                  <div className="flex gap-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-2xl p-4 animate-fade-in-up">
+                  <div className="flex gap-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-2xl p-4">
                     <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-black text-amber-800 dark:text-amber-300">{t('advance_delivery_charge_title') || 'Advance Delivery Charge Required'}</p>
@@ -479,7 +479,7 @@ const Checkout = () => {
 
                 {/* Full payment info */}
                 {formData.paymentMethod === 'full_payment' && (
-                  <div className="flex gap-3 bg-maroon/5 dark:bg-maroon/10 border border-maroon/20 dark:border-maroon/30 rounded-2xl p-4 animate-fade-in-up">
+                  <div className="flex gap-3 bg-maroon/5 dark:bg-maroon/10 border border-maroon/20 dark:border-maroon/30 rounded-2xl p-4">
                     <BadgeCheck className="h-5 w-5 text-maroon dark:text-pink-400 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-black text-maroon dark:text-pink-400">{t('full_prepayment_title') || 'Full Pre-payment'}</p>
@@ -497,7 +497,7 @@ const Checkout = () => {
 
                 {/* Transaction ID fields */}
                 {manualMethods.includes(formData.paymentMethod) && (
-                  <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-3 animate-fade-in-up">
+                  <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-3">
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold">
                       {formData.paymentMethod === 'cod'
                         ? `Enter TrxID for ৳${shipping || '?'} delivery charge payment`
@@ -526,7 +526,7 @@ const Checkout = () => {
             <div className="lg:hidden">
               <button type="button" onClick={handleSubmit}
                 disabled={loading}
-                className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white font-black rounded-2xl shadow-xl shadow-maroon/20 hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base"
+                className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white font-black rounded-2xl shadow-md shadow-maroon/20 hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base"
               >
                 {loading
                   ? <><Loader className="h-5 w-5 animate-spin" /> Placing Order...</>
@@ -642,7 +642,7 @@ const Checkout = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white font-black rounded-2xl shadow-xl shadow-maroon/20 hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base"
+                className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white font-black rounded-2xl shadow-md shadow-maroon/20 hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base"
               >
                 {loading
                   ? <><Loader className="h-5 w-5 animate-spin" /> Placing Order...</>
