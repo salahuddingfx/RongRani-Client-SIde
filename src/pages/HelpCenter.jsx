@@ -6,27 +6,10 @@ const HelpCenter = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
 
-  const helpColorMap = {
-    'bg-pink-500': '#EC4899',
-    'bg-rose-500': '#F43F5E',
-    'bg-red-500': '#EF4444',
-    'bg-maroon': '#BE123C',
-    'bg-purple-500': '#A855F7',
-    'bg-amber-500': '#F59E0B',
-  };
-
-  const getHelpColorStyle = (color) => {
-    if (color && helpColorMap[color]) {
-      return { backgroundColor: helpColorMap[color] };
-    }
-    return { backgroundColor: '#BE123C' };
-  };
-
   const categories = [
     {
       title: 'Orders & Purchases',
       icon: ShoppingBag,
-      color: 'bg-pink-500',
       faqs: [
         {
           q: 'How do I place an order?',
@@ -49,7 +32,6 @@ const HelpCenter = () => {
     {
       title: 'Shipping & Delivery',
       icon: Truck,
-      color: 'bg-rose-500',
       faqs: [
         {
           q: 'What areas do you deliver to?',
@@ -72,7 +54,6 @@ const HelpCenter = () => {
     {
       title: 'Payment & Pricing',
       icon: CreditCard,
-      color: 'bg-red-500',
       faqs: [
         {
           q: 'Is Cash on Delivery available?',
@@ -91,7 +72,6 @@ const HelpCenter = () => {
     {
       title: 'Gift Customization',
       icon: Gift,
-      color: 'bg-maroon',
       faqs: [
         {
           q: 'Can I add a personalized message?',
@@ -114,7 +94,6 @@ const HelpCenter = () => {
     {
       title: 'Returns & Exchanges',
       icon: RefreshCw,
-      color: 'bg-purple-500',
       faqs: [
         {
           q: 'What is your return policy?',
@@ -137,7 +116,6 @@ const HelpCenter = () => {
     {
       title: 'Product Information',
       icon: Package,
-      color: 'bg-amber-500',
       faqs: [
         {
           q: 'Are your products authentic?',
@@ -173,38 +151,38 @@ const HelpCenter = () => {
   })).filter(category => category.faqs.length > 0);
 
   return (
-    <div className="min-h-screen bg-pink-50 py-16 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
       <Seo
         title="Help Center | RongRani Gift Delivery FAQs"
         description="Find answers about gift orders, delivery, payments, and returns. Browse RongRani help topics and FAQs."
         path="/help"
       />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <HelpCircle className="h-16 w-16 text-maroon mx-auto mb-4" />
-          <h1 className="text-5xl md:text-6xl font-bold text-maroon mb-6">Help Center</h1>
-          <p className="text-xl text-slate max-w-2xl mx-auto">
+        <div className="text-center mb-10">
+          <HelpCircle className="h-14 w-14 text-maroon mx-auto mb-4" />
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">Help Center</h1>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Find answers to all your questions about gifts, delivery, and more
           </p>
         </div>
 
         {/* Search */}
-        <div className="card bg-white/80 backdrop-blur-sm mb-12 max-w-2xl mx-auto">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm mb-10 max-w-2xl mx-auto">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
             <input
               type="text"
               placeholder="Search for help (e.g., delivery, payment, return...)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="input-field pl-14 w-full text-lg"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-900 dark:text-white focus:outline-none"
             />
           </div>
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
           {categories.map((category, index) => {
             const Icon = category.icon;
             const summary = category.faqs[0]?.q || 'Browse support topics';
@@ -212,19 +190,16 @@ const HelpCenter = () => {
               <a
                 key={index}
                 href={`#category-${index}`}
-                className="card bg-white/80 backdrop-blur-sm text-left hover:scale-105 transition-transform p-6"
+                className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-5 text-left"
               >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
-                  style={getHelpColorStyle(category.color)}
-                >
-                  <Icon className="h-7 w-7 text-white" />
+                <div className="w-11 h-11 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center mb-3">
+                  <Icon className="h-5 w-5 text-maroon" />
                 </div>
-                <h3 className="text-sm font-bold text-charcoal text-center">{category.title}</h3>
-                <p className="text-xs text-slate text-center mt-2 line-clamp-2">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">{category.title}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
                   {summary}
                 </p>
-                <p className="text-[11px] text-slate/70 text-center mt-3">
+                <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-2">
                   {category.faqs.length} answers
                 </p>
               </a>
@@ -233,48 +208,45 @@ const HelpCenter = () => {
         </div>
 
         {/* FAQ Categories */}
-        <div className="space-y-8">
+        <div className="space-y-6">
           {(searchTerm ? filteredCategories : categories).map((category, catIndex) => {
             const Icon = category.icon;
             return (
-              <div key={catIndex} id={`category-${catIndex}`} className="card bg-white/80 backdrop-blur-sm">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center"
-                    style={getHelpColorStyle(category.color)}
-                  >
-                    <Icon className="h-7 w-7 text-white" />
+              <div key={catIndex} id={`category-${catIndex}`} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-11 h-11 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
+                    <Icon className="h-5 w-5 text-maroon" />
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-charcoal">{category.title}</h2>
-                    <p className="text-sm text-slate mt-1">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">{category.title}</h2>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {category.faqs.length} common questions
                     </p>
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {category.faqs.map((faq, faqIndex) => {
                     const isOpen = openFaq === `${catIndex}-${faqIndex}`;
                     return (
                       <div
                         key={faqIndex}
-                        className="border border-slate/20 rounded-xl overflow-hidden transition-all"
+                        className="border border-slate-100 dark:border-slate-700 rounded-xl overflow-hidden"
                       >
                         <button
                           onClick={() => toggleFaq(catIndex, faqIndex)}
-                          className="w-full flex items-center justify-between p-5 text-left hover:bg-cream-light transition-colors"
+                          className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                         >
-                          <span className="font-semibold text-charcoal pr-4">{faq.q}</span>
+                          <span className="font-semibold text-slate-900 dark:text-white pr-4 text-sm">{faq.q}</span>
                           {isOpen ? (
-                            <ChevronUp className="h-5 w-5 text-maroon flex-shrink-0" />
+                            <ChevronUp className="h-4 w-4 text-maroon flex-shrink-0" />
                           ) : (
-                            <ChevronDown className="h-5 w-5 text-maroon flex-shrink-0" />
+                            <ChevronDown className="h-4 w-4 text-slate-400 flex-shrink-0" />
                           )}
                         </button>
                         {isOpen && (
-                          <div className="p-5 pt-0 text-slate border-t border-slate/10 bg-cream-light/50">
-                            <p>{faq.a}</p>
+                          <div className="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-700 pt-3">
+                            {faq.a}
                           </div>
                         )}
                       </div>
@@ -287,28 +259,31 @@ const HelpCenter = () => {
         </div>
 
         {searchTerm && filteredCategories.length === 0 && (
-          <div className="card bg-white/80 backdrop-blur-sm text-center py-16">
-            <HelpCircle className="h-16 w-16 text-slate mx-auto mb-4 opacity-50" />
-            <h3 className="text-2xl font-bold text-charcoal mb-2">No results found</h3>
-            <p className="text-slate mb-6">Try different keywords or browse categories above</p>
-            <button onClick={() => setSearchTerm('')} className="btn-primary">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm text-center py-16">
+            <HelpCircle className="h-14 w-14 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">No results found</h3>
+            <p className="text-slate-500 dark:text-slate-400 mb-6">Try different keywords or browse categories above</p>
+            <button
+              onClick={() => setSearchTerm('')}
+              className="bg-maroon hover:bg-maroon/90 text-white px-6 py-2 rounded-xl font-bold transition-colors"
+            >
               Clear Search
             </button>
           </div>
         )}
 
         {/* Still Need Help */}
-        <div className="card bg-maroon text-white text-center mt-12">
-          <Shield className="h-16 w-16 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-3">Still Need Help?</h2>
-          <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+        <div className="bg-maroon rounded-2xl text-center p-8 mt-10">
+          <Shield className="h-12 w-12 text-white/80 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-white mb-3">Still Need Help?</h2>
+          <p className="text-white/80 mb-6 max-w-xl mx-auto text-sm">
             Our dedicated support team is here to assist you with any questions or concerns
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" className="btn-secondary bg-white hover:bg-white/90">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/contact" className="bg-white text-maroon hover:bg-slate-100 px-6 py-3 rounded-xl font-bold transition-colors">
               Contact Support
             </a>
-            <a href="tel:+8801851075537" className="btn-secondary bg-white/20 hover:bg-white/30 text-white border-white">
+            <a href="tel:+8801851075537" className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-xl font-bold border border-white/30 transition-colors">
               Call: +880 18510-75537
             </a>
           </div>
