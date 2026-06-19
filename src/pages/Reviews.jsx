@@ -72,20 +72,20 @@ const Reviews = () => {
                 path="/reviews"
             />
 
-            <div className="min-h-screen bg-cream py-8 md:py-12">
-                <div className="container mx-auto px-4">
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 md:py-12">
+                <div className="max-w-6xl mx-auto px-4">
                     {/* Header */}
-                    <div className="text-center mb-8 md:mb-12">
-                        <div className="inline-flex items-center gap-2 bg-maroon/10 px-4 py-2 rounded-full mb-4">
-                            <Award className="w-5 h-5 text-maroon" />
-                            <span className="text-sm font-bold text-maroon uppercase tracking-wide">
+                    <div className="text-center mb-8 md:mb-10">
+                        <div className="inline-flex items-center gap-2 bg-maroon/10 px-3 py-1.5 rounded-full mb-3">
+                            <Award className="w-4 h-4 text-maroon" />
+                            <span className="text-xs font-bold text-maroon uppercase tracking-wider">
                                 {language === 'bn' ? 'কাস্টমার রিভিউ' : 'Customer Reviews'}
                             </span>
                         </div>
-                        <h1 className="text-3xl md:text-5xl font-black text-slate-800 mb-4">
+                        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
                             {language === 'bn' ? 'আমাদের কাস্টমাররা কী বলছেন' : 'What Our Customers Say'}
                         </h1>
-                        <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
+                        <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm">
                             {language === 'bn'
                                 ? 'সত্যিকারের কাস্টমারদের সত্যিকারের মতামত। আমরা গর্বিত যে আমাদের পণ্য এবং সেবা নিয়ে।'
                                 : 'Real reviews from real customers. We take pride in our products and service.'}
@@ -93,10 +93,10 @@ const Reviews = () => {
                     </div>
 
                     {/* Stats Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 md:mb-10">
                         {/* Average Rating */}
-                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-slate-100 text-center">
-                            <div className="text-5xl md:text-6xl font-black text-maroon mb-2">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+                            <div className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2">
                                 {stats.averageRating.toFixed(1)}
                             </div>
                             <div className="flex items-center justify-center gap-1 mb-2">
@@ -104,55 +104,55 @@ const Reviews = () => {
                                     const isFull = stats.averageRating >= star;
                                     const isHalf = !isFull && stats.averageRating >= (star - 0.5);
                                     return (
-                                        <div key={star} className="relative w-5 h-5 md:w-6 md:h-6">
-                                            <Star className="w-5 h-5 md:w-6 md:h-6 text-slate-300" />
+                                        <div key={star} className="relative w-5 h-5">
+                                            <Star className="w-5 h-5 text-slate-300" />
                                             {isHalf && (
                                                 <Star
-                                                    className="w-5 h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                    className="w-5 h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
                                                     style={{ clipPath: 'inset(0 50% 0 0)' }}
                                                 />
                                             )}
                                             {isFull && (
                                                 <Star
-                                                    className="w-5 h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                    className="w-5 h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
                                                 />
                                             )}
                                         </div>
                                     );
                                 })}
                             </div>
-                            <p className="text-slate-600 text-sm">
+                            <p className="text-slate-500 text-xs font-semibold">
                                 {language === 'bn' ? 'গড় রেটিং' : 'Average Rating'}
                             </p>
                         </div>
 
                         {/* Total Reviews */}
-                        <div className="bg-maroon rounded-2xl p-6 md:p-8 shadow-lg text-center text-white">
-                            <Users className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 opacity-90" />
-                            <div className="text-4xl md:text-5xl font-black mb-2">
+                        <div className="bg-maroon rounded-2xl p-6 text-center text-white shadow-sm">
+                            <Users className="w-8 h-8 mx-auto mb-3 opacity-90" />
+                            <div className="text-3xl md:text-4xl font-bold mb-1">
                                 {stats.totalReviews}+
                             </div>
-                            <p className="text-white/90 text-sm">
+                            <p className="text-white/80 text-xs font-semibold">
                                 {language === 'bn' ? 'মোট রিভিউ' : 'Total Reviews'}
                             </p>
                         </div>
 
                         {/* Rating Distribution */}
-                        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-slate-100">
-                            <h3 className="font-bold text-slate-800 mb-4 text-sm md:text-base">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 text-sm">
                                 {language === 'bn' ? 'রেটিং বিতরণ' : 'Rating Distribution'}
                             </h3>
                             <div className="space-y-2">
                                 {[5, 4, 3, 2, 1].map((rating) => (
                                     <div key={rating} className="flex items-center gap-2 text-sm">
-                                        <span className="text-slate-600 w-8 flex items-center gap-0.5">{rating}<Star className="w-3 h-3 fill-yellow-400 text-yellow-400" /></span>
-                                        <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden">
+                                        <span className="text-slate-500 w-8 flex items-center gap-0.5">{rating}<Star className="w-3 h-3 fill-yellow-400 text-yellow-400" /></span>
+                                        <div className="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
                                             <div
                                                 className="bg-maroon h-full rounded-full transition-all duration-500"
                                                 style={{ width: `${getRatingPercentage(rating)}%` }}
                                             />
                                         </div>
-                                        <span className="text-slate-500 text-xs w-12 text-right">
+                                        <span className="text-slate-400 text-xs w-12 text-right">
                                             {getRatingPercentage(rating)}%
                                         </span>
                                     </div>
@@ -162,17 +162,17 @@ const Reviews = () => {
                     </div>
 
                     {/* Filters */}
-                    <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100 mb-6 md:mb-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm mb-6">
                         <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
                             {/* Search */}
                             <div className="relative flex-1 max-w-md">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                                 <input
                                     type="text"
                                     placeholder={language === 'bn' ? 'রিভিউ খুঁজুন...' : 'Search reviews...'}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 md:py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-maroon/20 focus:border-maroon transition-all text-sm md:text-base"
+                                    className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-maroon/20 focus:border-maroon transition-colors text-sm bg-slate-50 dark:bg-slate-900/50"
                                 />
                             </div>
 
@@ -187,12 +187,12 @@ const Reviews = () => {
                                     <button
                                         key={value}
                                         onClick={() => setFilter(value)}
-                                        className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-xl font-semibold transition-all text-sm md:text-base ${filter === value
-                                            ? 'bg-maroon text-white shadow-lg scale-105'
-                                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-semibold text-sm transition-colors ${filter === value
+                                            ? 'bg-maroon text-white'
+                                            : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
                                             }`}
                                     >
-                                        <Icon className="w-4 h-4" />
+                                        <Icon className="w-3.5 h-3.5" />
                                         <span>{label}</span>
                                     </button>
                                 ))}
@@ -203,16 +203,15 @@ const Reviews = () => {
                     {/* Reviews List */}
                     {loading ? (
                         <div className="text-center py-12">
-                            <div className="inline-block w-12 h-12 border-4 border-maroon/30 border-t-maroon rounded-full animate-spin" />
-                            <p className="mt-4 text-slate-600">{t('loading')}</p>
+                            <div className="inline-block w-10 h-10 border-4 border-maroon/30 border-t-maroon rounded-full animate-spin" />
+                            <p className="mt-4 text-slate-500 text-sm">{t('loading')}</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 gap-4 md:gap-6">
-                            {reviews.map((review, index) => (
+                        <div className="grid grid-cols-1 gap-4">
+                            {reviews.map((review) => (
                                 <div
                                     key={review._id}
-                                    className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 animate-fade-in-up"
-                                    style={{ animationDelay: `${index * 0.1}s` }}
+                                    className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm"
                                 >
                                     <div className="flex flex-col md:flex-row gap-4">
                                         {/* Product Image */}
@@ -223,31 +222,31 @@ const Reviews = () => {
                                             <img
                                                 src={review.product.image}
                                                 alt={review.product.name}
-                                                className="w-full md:w-24 h-48 md:h-24 object-cover rounded-xl hover:scale-105 transition-transform"
+                                                className="w-full md:w-20 h-40 md:h-20 object-cover rounded-xl hover:scale-105 transition-transform"
                                             />
                                         </Link>
 
                                         {/* Review Content */}
                                         <div className="flex-1">
-                                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
+                                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-3">
                                                 <div>
                                                     <Link
                                                         to={`/product/${review.product.slug || review.product._id}`}
-                                                        className="font-bold text-slate-800 hover:text-maroon transition-colors text-sm md:text-base"
+                                                        className="font-bold text-slate-800 dark:text-white hover:text-maroon transition-colors text-sm"
                                                     >
                                                         {review.product.name}
                                                     </Link>
                                                     <div className="flex items-center gap-2 mt-1">
-                                                        <span className="text-slate-600 font-bold text-xs md:text-sm">
+                                                        <span className="text-slate-500 font-semibold text-xs">
                                                             {review.user?.name || review.guestName || 'Valued Guest'}
                                                         </span>
                                                         {review.isVerifiedPurchase && (
-                                                            <span className="flex items-center gap-1 text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                                                            <span className="flex items-center gap-1 text-[10px] bg-green-50 text-green-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
                                                                 <Award className="w-3 h-3" />
                                                                 Verified
                                                             </span>
                                                         )}
-                                                        <span className="text-slate-400 text-xs">•</span>
+                                                        <span className="text-slate-300 text-xs">•</span>
                                                         <span className="text-slate-400 text-xs">{formatDate(review.createdAt)}</span>
                                                     </div>
                                                 </div>
@@ -256,17 +255,17 @@ const Reviews = () => {
                                                         const isFull = review.rating >= star;
                                                         const isHalf = !isFull && review.rating >= (star - 0.5);
                                                         return (
-                                                            <div key={star} className="relative w-4 h-4 md:w-5 md:h-5">
-                                                                <Star className="w-4 h-4 md:w-5 md:h-5 text-slate-300" />
+                                                            <div key={star} className="relative w-4 h-4">
+                                                                <Star className="w-4 h-4 text-slate-300" />
                                                                 {isHalf && (
                                                                     <Star
-                                                                        className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                                        className="w-4 h-4 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
                                                                         style={{ clipPath: 'inset(0 50% 0 0)' }}
                                                                     />
                                                                 )}
                                                                 {isFull && (
                                                                     <Star
-                                                                        className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
+                                                                        className="w-4 h-4 fill-yellow-400 text-yellow-400 absolute top-0 left-0"
                                                                     />
                                                                 )}
                                                             </div>
@@ -275,17 +274,17 @@ const Reviews = () => {
                                                 </div>
                                             </div>
 
-                                            <p className="text-slate-700 mb-4 leading-relaxed text-sm md:text-base">
+                                            <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed">
                                                 {review.comment}
                                             </p>
 
-                                            <div className="flex items-center gap-4 text-xs md:text-sm">
-                                                <button className="flex items-center gap-2 text-slate-500 hover:text-maroon transition-colors">
-                                                    <ThumbsUp className="w-4 h-4" />
+                                            <div className="flex items-center gap-4 text-xs">
+                                                <button className="flex items-center gap-1.5 text-slate-400 hover:text-maroon transition-colors">
+                                                    <ThumbsUp className="w-3.5 h-3.5" />
                                                     <span>{language === 'bn' ? 'সহায়ক' : 'Helpful'} ({review.helpful})</span>
                                                 </button>
-                                                <button className="flex items-center gap-2 text-slate-500 hover:text-maroon transition-colors">
-                                                    <MessageCircle className="w-4 h-4" />
+                                                <button className="flex items-center gap-1.5 text-slate-400 hover:text-maroon transition-colors">
+                                                    <MessageCircle className="w-3.5 h-3.5" />
                                                     <span>{language === 'bn' ? 'উত্তর দিন' : 'Reply'}</span>
                                                 </button>
                                             </div>
@@ -299,7 +298,7 @@ const Reviews = () => {
                     {/* Load More */}
                     {!loading && reviews.length > 0 && (
                         <div className="text-center mt-8">
-                            <button className="btn-secondary px-6 md:px-8 py-2 md:py-3 text-sm md:text-base">
+                            <button className="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
                                 {language === 'bn' ? 'আরো দেখুন' : 'Load More Reviews'}
                             </button>
                         </div>
