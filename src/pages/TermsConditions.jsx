@@ -5,68 +5,59 @@ import Seo from '../components/Seo';
 
 const TermsConditions = () => {
   return (
-    <div className="min-h-screen bg-cream py-16">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
       <Seo
         title="Terms & Conditions | RongRani"
         description="Read the terms and conditions for shopping, delivery, and returns at RongRani."
         path="/terms"
       />
-      <div className="section-container max-w-4xl">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <div className="bg-maroon p-4 rounded-2xl shadow-xl">
-              <FileText className="h-12 w-12 text-white" />
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-5">
+            <div className="w-16 h-16 bg-maroon rounded-2xl flex items-center justify-center">
+              <FileText className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-charcoal mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3">
             Terms & Conditions
           </h1>
-          <p className="text-charcoal-light text-lg">
+          <p className="text-slate-500 dark:text-slate-400 text-lg">
             Last updated: February 7, 2026
           </p>
         </div>
 
         {/* Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <div className="bg-white rounded-2xl p-5 shadow-soft border border-maroon/10">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
-              style={{ backgroundColor: '#BE123C' }}
-            >
+          <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700">
+            <div className="w-10 h-10 bg-maroon rounded-xl flex items-center justify-center mb-3">
               <FileText className="h-5 w-5 text-white" />
             </div>
-            <h3 className="font-bold text-charcoal mb-1">Clear Terms</h3>
-            <p className="text-sm text-charcoal-light">Simple rules to keep your shopping safe.</p>
+            <h3 className="font-bold text-slate-900 dark:text-white mb-1">Clear Terms</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Simple rules to keep your shopping safe.</p>
           </div>
-          <div className="bg-white rounded-2xl p-5 shadow-soft border border-maroon/10">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
-              style={{ backgroundColor: '#BE123C' }}
-            >
+          <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700">
+            <div className="w-10 h-10 bg-maroon rounded-xl flex items-center justify-center mb-3">
               <Phone className="h-5 w-5 text-white" />
             </div>
-            <h3 className="font-bold text-charcoal mb-1">Support Ready</h3>
-            <p className="text-sm text-charcoal-light">Reach us anytime for help with your order.</p>
+            <h3 className="font-bold text-slate-900 dark:text-white mb-1">Support Ready</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Reach us anytime for help with your order.</p>
           </div>
-          <div className="bg-white rounded-2xl p-5 shadow-soft border border-maroon/10">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
-              style={{ backgroundColor: '#BE123C' }}
-            >
+          <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700">
+            <div className="w-10 h-10 bg-maroon rounded-xl flex items-center justify-center mb-3">
               <Home className="h-5 w-5 text-white" />
             </div>
-            <h3 className="font-bold text-charcoal mb-1">Local Focus</h3>
-            <p className="text-sm text-charcoal-light">We deliver across Bangladesh with clear policies.</p>
+            <h3 className="font-bold text-slate-900 dark:text-white mb-1">Local Focus</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">We deliver across Bangladesh with clear policies.</p>
           </div>
         </div>
 
         {/* Content */}
-        <div className="glass-card p-8 md:p-12 space-y-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-8 md:p-10 space-y-8">
           {/* Introduction */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">1. Introduction</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">1. Introduction</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Welcome to RongRani. These Terms and Conditions govern your use of our website and services.
               By accessing or using our website, you agree to be bound by these terms. If you disagree with
               any part of these terms, please do not use our website.
@@ -75,10 +66,10 @@ const TermsConditions = () => {
 
           {/* Use of Website */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">2. Use of Website</h2>
-            <div className="space-y-3 text-charcoal-light">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">2. Use of Website</h2>
+            <div className="space-y-2 text-slate-600 dark:text-slate-400">
               <p className="leading-relaxed">You agree to use our website only for lawful purposes and in a way that does not infringe upon the rights of others. You must not:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
+              <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Use our website in any way that causes damage to the website or impairs its availability</li>
                 <li>Use our website to transmit any harmful or malicious code</li>
                 <li>Attempt to gain unauthorized access to our systems or networks</li>
@@ -89,8 +80,8 @@ const TermsConditions = () => {
 
           {/* Product Information */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">3. Product Information</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">3. Product Information</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               We strive to provide accurate product descriptions and images. However, we do not warrant that product
               descriptions or other content on our website are accurate, complete, reliable, current, or error-free.
               Actual product colors may vary slightly from images due to screen settings and lighting conditions.
@@ -99,10 +90,10 @@ const TermsConditions = () => {
 
           {/* Orders and Payments */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">4. Orders & Payments</h2>
-            <div className="space-y-3 text-charcoal-light">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">4. Orders & Payments</h2>
+            <div className="space-y-2 text-slate-600 dark:text-slate-400">
               <p className="leading-relaxed">When you place an order:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
+              <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>You must provide accurate and complete information</li>
                 <li>We reserve the right to refuse or cancel any order</li>
                 <li>Prices are subject to change without notice</li>
@@ -114,10 +105,10 @@ const TermsConditions = () => {
 
           {/* Shipping and Delivery */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">5. Shipping & Delivery</h2>
-            <div className="space-y-3 text-charcoal-light">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">5. Shipping & Delivery</h2>
+            <div className="space-y-2 text-slate-600 dark:text-slate-400">
               <p className="leading-relaxed">Regarding delivery:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
+              <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Delivery times are estimates and not guaranteed</li>
                 <li>We are not responsible for delays caused by courier services</li>
                 <li>Risk of loss passes to you upon delivery to the carrier</li>
@@ -128,23 +119,23 @@ const TermsConditions = () => {
 
           {/* Returns and Refunds */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">6. Returns & Refunds</h2>
-            <div className="space-y-3 text-charcoal-light">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">6. Returns & Refunds</h2>
+            <div className="space-y-2 text-slate-600 dark:text-slate-400">
               <p className="leading-relaxed">Our return policy:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
+              <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Products can be returned within 7 days of delivery</li>
                 <li>Items must be unused and in original packaging</li>
                 <li>Personalized items cannot be returned unless defective</li>
                 <li>Refunds will be processed within 7-14 business days</li>
-                <li>Return shipping costs are the customer's responsibility unless the item is defective</li>
+                <li>Return shipping costs are the customer&apos;s responsibility unless the item is defective</li>
               </ul>
             </div>
           </section>
 
           {/* Intellectual Property */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">7. Intellectual Property</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">7. Intellectual Property</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               All content on this website, including text, graphics, logos, images, and software, is the property
               of RongRani or its content suppliers and is protected by copyright laws. You may not reproduce,
               distribute, or create derivative works without our express written permission.
@@ -153,8 +144,8 @@ const TermsConditions = () => {
 
           {/* Limitation of Liability */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">8. Limitation of Liability</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">8. Limitation of Liability</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               To the fullest extent permitted by law, RongRani shall not be liable for any indirect, incidental,
               special, or consequential damages arising from your use of our website or products. Our total liability
               shall not exceed the amount you paid for the product.
@@ -163,10 +154,10 @@ const TermsConditions = () => {
 
           {/* Privacy */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">9. Privacy</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">9. Privacy</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Your use of our website is also governed by our Privacy Policy. Please review our{' '}
-              <Link to="/privacy-policy" className="text-maroon hover:text-pink-600 font-semibold underline">
+              <Link to="/privacy-policy" className="text-maroon hover:underline font-semibold">
                 Privacy Policy
               </Link>{' '}
               to understand how we collect, use, and protect your personal information.
@@ -175,8 +166,8 @@ const TermsConditions = () => {
 
           {/* Changes to Terms */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">10. Changes to Terms</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">10. Changes to Terms</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               We reserve the right to modify these terms at any time. Changes will be effective immediately upon
               posting on our website. Your continued use of our website after changes constitutes acceptance of
               the modified terms.
@@ -185,31 +176,31 @@ const TermsConditions = () => {
 
           {/* Governing Law */}
           <section>
-            <h2 className="text-2xl font-bold text-charcoal mb-4">11. Governing Law</h2>
-            <p className="text-charcoal-light leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">11. Governing Law</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               These Terms and Conditions are governed by and construed in accordance with the laws of Bangladesh.
               Any disputes shall be subject to the exclusive jurisdiction of the courts in Dhaka, Bangladesh.
             </p>
           </section>
 
           {/* Contact Information */}
-          <section className="bg-cream-light p-6 rounded-xl">
-            <h2 className="text-2xl font-bold text-charcoal mb-4">Contact Us</h2>
-            <p className="text-charcoal-light leading-relaxed mb-4">
+          <section className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Contact Us</h2>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
               If you have any questions about these Terms and Conditions, please contact us:
             </p>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-charcoal-light">
-                <Mail className="h-5 w-5 text-maroon" />
-                <span>info.rongrani@gmail.com</span>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-3 text-slate-600 dark:text-slate-400">
+                <Mail className="h-4 w-4 text-maroon" />
+                <span className="text-sm">info.rongrani@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-3 text-charcoal-light">
-                <Phone className="h-5 w-5 text-maroon" />
-                <span>+8801851075537</span>
+              <div className="flex items-center space-x-3 text-slate-600 dark:text-slate-400">
+                <Phone className="h-4 w-4 text-maroon" />
+                <span className="text-sm">+8801851075537</span>
               </div>
-              <div className="flex items-center space-x-3 text-charcoal-light">
-                <Home className="h-5 w-5 text-maroon" />
-                <span>Cox's Bazar, Bangladesh-4700</span>
+              <div className="flex items-center space-x-3 text-slate-600 dark:text-slate-400">
+                <Home className="h-4 w-4 text-maroon" />
+                <span className="text-sm">Cox&apos;s Bazar, Bangladesh-4700</span>
               </div>
             </div>
           </section>
@@ -217,8 +208,8 @@ const TermsConditions = () => {
 
         {/* Back Button */}
         <div className="text-center mt-8">
-          <Link to="/" className="btn-secondary px-8 py-3">
-            Back to Home
+          <Link to="/" className="inline-flex items-center space-x-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+            <span>Back to Home</span>
           </Link>
         </div>
       </div>
