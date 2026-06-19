@@ -59,34 +59,25 @@ const ResetPassword = () => {
 
   if (!validToken) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden flex flex-col justify-between">
-        {/* Background Elements */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md">
+          <Link to="/" className="flex flex-col items-center gap-2 mb-8">
+            <div className="w-14 h-14 rounded-full border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Rong<span className="text-maroon">Rani</span>
+            </span>
+          </Link>
 
-        {/* Logo at top */}
-        <div className="pt-8 pb-4">
-          <div className="flex justify-center">
-            <Link to="/" className="flex flex-col items-center gap-2 group">
-              <div className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-maroon p-0 overflow-hidden shadow-xl group-hover:scale-110 transition-all duration-300 bg-transparent">
-                <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
-              </div>
-              <span className="text-2xl md:text-3xl font-black text-maroon tracking-tight">
-                Rong<span className="text-slate-850 dark:text-slate-200">Rani</span>
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex-1 flex items-center justify-center px-4 py-8">
-          <div className="w-full max-w-md p-8 rounded-[2rem] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] text-center">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Invalid Token</h2>
-            <p className="text-slate text-sm mb-6">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-8 text-center">
+            <h2 className="text-2xl font-bold text-red-600 mb-2">Invalid Token</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
               The reset link is invalid or has expired.
             </p>
             <button
               onClick={() => navigate('/forgot-password')}
-              className="w-full btn-primary py-3 rounded-lg font-medium hover:scale-105 transition-all duration-300"
+              className="w-full bg-maroon text-white hover:bg-maroon-dark rounded-xl px-6 py-3 font-semibold transition-all"
             >
               Request New Reset Link
             </button>
@@ -97,87 +88,78 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden flex flex-col justify-between">
-      {/* Background Elements */}
-      <div className="absolute top-20 left-10 w-96 h-96 bg-maroon/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <Link to="/" className="flex flex-col items-center gap-2 mb-8">
+          <div className="w-14 h-14 rounded-full border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
+          </div>
+          <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Rong<span className="text-maroon">Rani</span>
+          </span>
+        </Link>
 
-      {/* Logo at top */}
-      <div className="pt-8 pb-4">
-        <div className="flex justify-center">
-          <Link to="/" className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-maroon p-0 overflow-hidden shadow-xl group-hover:scale-110 transition-all duration-300 bg-transparent">
-              <img src="/RongRani-Logo.png" alt="Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-2xl md:text-3xl font-black text-maroon tracking-tight">
-              Rong<span className="text-slate-850 dark:text-slate-200">Rani</span>
-            </span>
-          </Link>
-        </div>
-      </div>
-
-      <div className="flex-1 flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-md p-8 rounded-[2rem] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-maroon mb-2">Reset Password</h2>
-            <p className="text-slate text-sm">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Reset Password</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Enter your new password below.
             </p>
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 text-sm">
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-xl mb-6 text-sm">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 New Password
               </label>
               <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="newPassword"
                   value={formData.newPassword}
                   onChange={handleChange}
                   required
-                  className="input-field pl-12 pr-12"
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-11 py-3 text-sm focus:outline-none focus:border-maroon focus:ring-2 focus:ring-maroon/10 transition-all bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400"
                   placeholder="Enter new password"
                 />
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate" />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate hover:text-maroon transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 Confirm New Password
               </label>
               <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="input-field pl-12 pr-12"
-                  placeholder="Confirm new password"
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-11 py-3 text-sm focus:outline-none focus:border-maroon focus:ring-2 focus:ring-maroon/10 transition-all bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400"
+                  placeholder="Re-enter new password"
                 />
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate" />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate hover:text-maroon transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                 >
-                  {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
@@ -185,11 +167,11 @@ const ResetPassword = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary py-3 rounded-lg font-medium hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-maroon text-white hover:bg-maroon-dark rounded-xl px-6 py-3 font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                <div className="flex items-center justify-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white"></div>
                   <span>Resetting...</span>
                 </div>
               ) : (
@@ -198,12 +180,12 @@ const ResetPassword = () => {
             </button>
           </form>
 
-          <div className="mt-8 text-center">
+          <div className="mt-6 text-center">
             <Link
               to="/login"
-              className="inline-flex items-center text-sm font-semibold text-maroon hover:text-maroon-light transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-maroon hover:text-maroon-dark transition-colors"
             >
-              <ArrowLeft className="h-4 w-4 mr-2" />
+              <ArrowLeft className="h-4 w-4" />
               Back to Login
             </Link>
           </div>
