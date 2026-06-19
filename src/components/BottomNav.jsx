@@ -31,57 +31,41 @@ const BottomNav = () => {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200/60 dark:border-slate-800/60 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
-      <nav className="max-w-md mx-auto px-4 py-1.5 pb-safe-bottom">
-        <ul className="flex items-center justify-between">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800/60">
+      <nav className="max-w-md mx-auto px-2 py-1 pb-safe-bottom">
+        <ul className="flex items-center justify-around">
           {navItems.map((item, index) => {
             const active = item.isActive ? item.isActive() : isActive(item.to);
-
             return (
               <li key={index} className="flex-1">
                 <Link
                   to={item.to}
-                  className={`
-                    flex flex-col items-center justify-center py-1.5 px-2 rounded-xl
-                    transition-all duration-300 select-none outline-none relative
-                    ${active 
-                      ? 'text-maroon dark:text-pink-400 font-extrabold scale-102' 
-                      : 'text-slate-400 dark:text-slate-500 hover:text-maroon dark:hover:text-pink-300'
-                    }
-                  `}
+                  className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 relative
+                    ${active
+                      ? 'text-maroon dark:text-pink-400'
+                      : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                    }`}
                   aria-label={item.label}
                 >
-                  {/* Icon wrapper */}
-                  <div className="relative p-0.5">
+                  <div className="relative">
                     {item.label === 'Account' && user?.avatar ? (
-                      <div className={`h-6 w-6 rounded-full overflow-hidden border-2 transition-all ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-200 dark:border-slate-700'}`}>
+                      <div className={`w-6 h-6 rounded-full overflow-hidden border-2 transition-all ${active ? 'border-maroon dark:border-pink-400' : 'border-slate-200 dark:border-slate-700'}`}>
                         <img src={getImageUrl(user.avatar)} alt="Account" className="w-full h-full object-cover" />
                       </div>
                     ) : (
-                      <item.icon 
-                        className={`h-5 w-5 transition-transform duration-300 ${active ? 'scale-108 stroke-[2.5px]' : 'stroke-[2px]'}`} 
-                      />
+                      <item.icon className={`w-5 h-5 transition-all ${active ? 'stroke-[2.5px]' : 'stroke-[1.8px]'}`} />
                     )}
-                    
-                    {/* Badge */}
                     {item.badge > 0 && (
-                      <span className={`
-                        absolute -top-1 -right-1.5 font-black flex items-center justify-center 
-                        rounded-full text-[8px] min-w-4.5 h-4.5 px-1 border border-white dark:border-slate-950 bg-maroon text-white
-                      `}>
+                      <span className="absolute -top-1 -right-2 bg-maroon text-white text-[8px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white dark:border-slate-950">
                         {item.badge}
                       </span>
                     )}
                   </div>
-
-                  {/* Label */}
-                  <span className="text-[10px] tracking-tight mt-0.5 leading-none font-black transition-all duration-300">
+                  <span className={`text-[10px] mt-0.5 transition-all ${active ? 'font-bold' : 'font-medium'}`}>
                     {item.label}
                   </span>
-
-                  {/* Subtle active line indicator */}
                   {active && (
-                    <span className="absolute top-0 w-8 h-0.75 bg-maroon dark:bg-pink-400 rounded-full animate-pulse-slow" />
+                    <span className="absolute top-0 w-6 h-0.5 bg-maroon dark:bg-pink-400 rounded-full" />
                   )}
                 </Link>
               </li>
