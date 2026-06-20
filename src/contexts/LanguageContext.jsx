@@ -114,6 +114,7 @@ export const LanguageProvider = ({ children }) => {
       // Product
       out_of_stock: 'Out of Stock',
       in_stock: 'In Stock',
+      order_now: 'Order Now',
       tap_to_browse: 'Tap to browse',
       explore_more: 'Explore →',
       purchased_count: '{count}+ purchased',
@@ -522,6 +523,7 @@ export const LanguageProvider = ({ children }) => {
       // Product
       out_of_stock: 'স্টকে নেই',
       in_stock: 'স্টকে আছে',
+      order_now: 'অর্ডার করুন',
       tap_to_browse: 'দেখতে ক্লিক করুন',
       explore_more: 'দেখুন →',
       purchased_count: '{count}+ টি বিক্রি হয়েছে',
