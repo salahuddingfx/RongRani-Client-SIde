@@ -326,7 +326,6 @@ const Navbar = () => {
           ${isScrolled || isOpen
             ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-soft border-b border-slate-100 dark:border-slate-800/50'
             : 'bg-white dark:bg-slate-950 border-b border-slate-100/50 dark:border-slate-800/30'}
-          ${!isSimplifiedPage ? 'md:mx-4 md:mt-2 md:rounded-2xl md:border md:border-slate-200/60 md:dark:border-slate-800/60' : ''}
         `}>
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between gap-4 h-16">
