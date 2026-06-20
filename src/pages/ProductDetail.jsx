@@ -288,10 +288,10 @@ const ProductDetail = () => {
               <div>
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">{t('select_quantity')}</label>
                 <div className="flex items-center gap-2">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={product.stock === 0}
+                  <button onClick={() => { const next = Math.max(1, quantity - 1); setQuantity(next); if (isInCart) updateQuantity(product._id || product.id, next); }} disabled={product.stock === 0}
                     className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30 transition-colors"><Minus className="w-4 h-4" /></button>
                   <div className="w-14 h-10 flex items-center justify-center bg-slate-50 dark:bg-slate-800 rounded-lg text-lg font-bold text-slate-800 dark:text-white">{quantity}</div>
-                  <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))} disabled={product.stock === 0 || quantity >= product.stock}
+                  <button onClick={() => { const next = Math.min(product.stock, quantity + 1); setQuantity(next); if (isInCart) updateQuantity(product._id || product.id, next); }} disabled={product.stock === 0 || quantity >= product.stock}
                     className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30 transition-colors"><Plus className="w-4 h-4" /></button>
                 </div>
               </div>
