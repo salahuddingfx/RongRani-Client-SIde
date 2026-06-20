@@ -292,7 +292,7 @@ const Checkout = () => {
   }
 
   const shipping = delivery?.charge || 0;
-  const total = Math.max(0, totalPrice + shipping + (giftWrapping ? giftWrappingFee : 0) - discount);
+  const total = Math.max(0, totalPrice + shipping + (giftWrapping ? giftWrappingFee : 0) - discount - giftCardDiscount);
 
   /* ─── payment method label helper ─── */
   const pmLabel = {
@@ -648,6 +648,39 @@ const Checkout = () => {
                 <div className="mt-2.5 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2 rounded-xl border border-emerald-200 dark:border-emerald-800">
                   <CheckCircle className="h-4 w-4 shrink-0" />
                   <p className="text-xs font-bold">"{couponInfo.code}" — Saved ৳{discount.toFixed(0)}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Gift Card */}
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Gift className="h-4 w-4 text-amber-500" />
+                <p className="text-xs font-black text-slate-700 dark:text-slate-200 uppercase tracking-wider">Gift Card</p>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={giftCardCode}
+                  onChange={e => setGiftCardCode(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleApplyGiftCard()}
+                  placeholder="Enter gift card code"
+                  disabled={!!giftCardInfo}
+                  className={inputCls + ' flex-1 uppercase text-xs'}
+                />
+                <button
+                  type="button"
+                  onClick={handleApplyGiftCard}
+                  disabled={giftCardLoading || (!giftCardCode.trim() && !giftCardInfo)}
+                  className={`px-4 py-2.5 rounded-xl font-black text-xs transition-all shadow active:scale-95 disabled:opacity-50 ${giftCardInfo ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-amber-500 hover:bg-amber-600 text-white'}`}
+                >
+                  {giftCardLoading ? <Loader className="h-4 w-4 animate-spin" /> : giftCardInfo ? t('remove') : 'Apply'}
+                </button>
+              </div>
+              {giftCardInfo && (
+                <div className="mt-2.5 flex items-center gap-2 text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-3 py-2 rounded-xl border border-amber-200 dark:border-amber-800">
+                  <CheckCircle className="h-4 w-4 shrink-0" />
+                  <p className="text-xs font-bold">Gift Card applied — ৳{giftCardDiscount.toLocaleString()} used (Balance: ৳{giftCardInfo.balance.toLocaleString()})</p>
                 </div>
               )}
             </div>
