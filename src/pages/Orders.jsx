@@ -249,13 +249,13 @@ const Orders = () => {
                       {order.items?.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3">
                           <img
-                            src={item.product?.images?.[0] || 'https://via.placeholder.com/100'}
-                            alt={item.product?.name}
+                            src={item.image || item.product?.images?.[0]?.url || 'https://via.placeholder.com/100'}
+                            alt={item.name || item.product?.name}
                             className="w-10 h-10 object-cover rounded-lg border border-slate-100 dark:border-slate-700 flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-slate-800 dark:text-slate-100 text-sm truncate">
-                              {item.product?.name}
+                              {item.name || item.product?.name}
                             </p>
                             <p className="text-xs text-slate-500">
                               {t('qty_label')}: {item.quantity} × ৳{item.price}
