@@ -5,6 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useDeliveryCalculation } from '../hooks/useDeliveryCalculation';
 import RecentlyViewed from '../components/RecentlyViewed';
+import Breadcrumb from '../components/Breadcrumb';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Cart = () => {
@@ -43,6 +44,7 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-900/30">
+      <Breadcrumb items={[{ label: 'Cart', to: '/cart' }]} />
       {isAuthenticated && (
         <div className="bg-maroon text-white py-2">
           <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-6 text-xs">
