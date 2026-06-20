@@ -7,6 +7,7 @@ import AIChatFloatingWidget from './AIChatFloatingWidget';
 import Seo from './Seo';
 import ScrollRevealManager from './ScrollRevealManager';
 import RecentlyViewed from './RecentlyViewed';
+import CompareBar from './CompareBar';
 import CartDrawer from './CartDrawer';
 import { ArrowUp } from 'lucide-react';
 
@@ -67,6 +68,7 @@ const AppLayout = () => {
       </main>
 
       <RecentlyViewed />
+      <CompareBar />
       <CartDrawer />
       <Footer />
       <BackToTop />
