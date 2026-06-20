@@ -90,6 +90,10 @@ const ProductItem = ({ product }) => {
             </h3>
           </Link>
 
+          {product.description && (
+            <p className="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 line-clamp-1 mb-1.5">{product.description}</p>
+          )}
+
           {/* Price */}
           <div className="flex items-center gap-2 mb-2">
             <span className="text-sm font-bold text-maroon">৳{productPrice.toLocaleString()}</span>
@@ -126,13 +130,13 @@ const ProductItem = ({ product }) => {
             <button
               onClick={handleAddToCart}
               disabled={productStock === 0}
-              className={`p-1.5 rounded-lg transition-all duration-200 active:scale-95
+              className={`text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-lg transition-all duration-200 active:scale-95
                 ${productStock > 0
-                  ? 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-maroon hover:text-white'
-                  : 'bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
+                  ? 'bg-maroon text-white hover:bg-maroon-dark'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
               aria-label={t('add_to_cart')}
             >
-              <ShoppingBag className="w-3.5 h-3.5" />
+              {productStock > 0 ? t('order_now') || 'Order Now' : t('out_of_stock')}
             </button>
           </div>
         </div>
