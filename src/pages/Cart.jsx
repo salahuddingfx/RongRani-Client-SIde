@@ -19,8 +19,6 @@ const Cart = () => {
     if (totalPrice > 0) fetchDelivery(totalPrice, "Cox's Bazar", "Cox's Bazar");
   }, [totalPrice, fetchDelivery]);
 
-  const [giftWrapping, setGiftWrapping] = useState(false);
-  const [giftMessage, setGiftMessage] = useState('');
   const giftWrappingFee = 50;
   const paymentBadges = ['COD', 'bKash', 'Nagad', 'Rocket', 'Upay', 'SSLCommerz'];
   const shipping = delivery?.charge || 0;
@@ -150,7 +148,7 @@ const Cart = () => {
 
                 <div className="flex items-center justify-between py-1.5">
                   <label htmlFor="giftWrapping" className="flex items-center gap-1.5 cursor-pointer text-slate-600">
-                    <input type="checkbox" id="giftWrapping" checked={giftWrapping} onChange={(e) => setGiftWrapping(e.target.checked)}
+                    <input type="checkbox" id="giftWrapping" checked={giftWrapping} onChange={(e) => { if (giftWrapping !== e.target.checked) toggleGiftWrap(); }}
                       className="w-3.5 h-3.5 rounded border-slate-300 text-maroon focus:ring-maroon" />
                     <Gift className="w-3.5 h-3.5 text-amber-500" /> {t('gift_wrapping')}
                   </label>
@@ -161,7 +159,7 @@ const Cart = () => {
                   <div className="mt-2">
                     <textarea
                       value={giftMessage}
-                      onChange={(e) => setGiftMessage(e.target.value)}
+                      onChange={(e) => updateGiftMessage(e.target.value)}
                       placeholder={t('gift_message_placeholder') || 'Write a gift message... (optional)'}
                       rows={2}
                       maxLength={200}
