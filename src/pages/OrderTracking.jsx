@@ -188,7 +188,7 @@ const OrderTracking = () => {
             </form>
             <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
               <Link to="/" className="text-maroon font-semibold hover:underline inline-flex items-center gap-2">
-                <ArrowLeft className="h-4 w-4" /> Back to Home
+                <ArrowLeft className="h-4 w-4" /> {t('back_to_home') || 'Back to Home'}
               </Link>
             </div>
           </div>
@@ -373,11 +373,10 @@ const OrderTracking = () => {
               </h2>
               <div className="space-y-0">
                 {[
-                  { label: 'Order Placed', time: order.createdAt, show: true },
-                  { label: 'Order Confirmed', time: order.createdAt ? new Date(new Date(order.createdAt).getTime() + 5 * 60 * 1000).toISOString() : null, show: currentRank >= 1 },
-                  { label: 'Processing Started', time: order.updatedAt, show: currentRank >= 2 },
-                  { label: 'Shipped to Courier', time: order.courierInfo?.sentAt, show: currentRank >= 3 && order.courierInfo?.sentAt },
-                  { label: 'Delivered', time: order.deliveredAt, show: currentRank >= 5 && order.deliveredAt },
+                  { label: t('timeline_order_placed') || 'Order Placed', time: order.createdAt, show: true },
+                  { label: t('timeline_processing') || 'Processing Started', time: order.updatedAt, show: currentRank >= 2 },
+                  { label: t('timeline_shipped') || 'Shipped to Courier', time: order.courierInfo?.sentAt, show: currentRank >= 3 && order.courierInfo?.sentAt },
+                  { label: t('timeline_delivered') || 'Delivered', time: order.deliveredAt, show: currentRank >= 5 && order.deliveredAt },
                 ].filter(e => e.show).map((event, idx, arr) => (
                   <div key={idx} className="flex gap-3">
                     <div className="flex flex-col items-center">
