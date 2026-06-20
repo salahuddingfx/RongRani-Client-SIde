@@ -235,6 +235,11 @@ export const LanguageProvider = ({ children }) => {
       quick_links: 'Quick Links',
       customer_care: 'Customer Care',
       customer_reviews: 'Customer Reviews',
+      terms_conditions: 'Terms & Conditions',
+      refund_policy: 'Refund Policy',
+      shipping_policy: 'Shipping Policy',
+      cookie_policy: 'Cookie Policy',
+      policies: 'Policies',
 
       // Navbar extra
       trending_now: 'Trending Now',
@@ -638,6 +643,11 @@ export const LanguageProvider = ({ children }) => {
       quick_links: 'দ্রুত লিংক',
       customer_care: 'কাস্টমার কেয়ার',
       customer_reviews: 'কাস্টমার রিভিউ',
+      terms_conditions: 'শর্তাবলী',
+      refund_policy: 'ফেরত দেওয়ার নীতি',
+      shipping_policy: 'শিপিং নীতি',
+      cookie_policy: 'কুকি নীতি',
+      policies: 'নীতিমালা',
 
       // Navbar extra
       trending_now: 'ট্রেন্ডিং এখন',
