@@ -700,6 +700,7 @@ const Checkout = () => {
                 },
                 ...(giftWrapping ? [{ label: `${t('gift_wrapping') || 'Gift Wrapping'}`, value: `৳${giftWrappingFee}`, accent: false }] : []),
                 ...(discount > 0 ? [{ label: t('discount_label') || 'Discount', value: `-৳${discount.toFixed(0)}`, negative: true }] : []),
+                ...(giftCardDiscount > 0 ? [{ label: 'Gift Card', value: `-৳${giftCardDiscount.toLocaleString()}`, negative: true }] : []),
               ].map(({ label, value, negative }, i) => (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <span className="text-slate-500 dark:text-slate-400">{label}</span>
