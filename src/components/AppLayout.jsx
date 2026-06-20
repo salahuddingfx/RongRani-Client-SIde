@@ -39,7 +39,7 @@ const AppLayout = () => {
         <Navbar />
       </div>
 
-      <main className="pt-20 sm:pt-24 md:pt-28 pb-20 lg:pb-0 page-content-fade-in">
+      <main className="pt-[140px] md:pt-28 pb-20 lg:pb-0 page-content-fade-in">
         <Outlet />
       </main>
 
