@@ -205,44 +205,65 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Images */}
-          <div className="space-y-4">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800"
-              onMouseEnter={() => setIsImagePaused(true)} onMouseLeave={() => setIsImagePaused(false)}
-              onTouchStart={() => setIsImagePaused(true)} onTouchEnd={() => setIsImagePaused(false)}>
-              {product.images && product.images.length > 0 ? (
-                <img src={getImageUrl(product.images[activeImage])} alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-slate-300"><Package className="w-16 h-16" /></div>
-              )}
-
-              {product.originalPrice > product.price && (
-                <div className="absolute top-4 left-4 bg-maroon text-white text-xs font-bold px-3 py-1 rounded-lg">
-                  {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
-                </div>
-              )}
-
-              {imageCount > 1 && (
-                <>
-                  <button onClick={() => setActiveImage((prev) => (prev - 1 + imageCount) % imageCount)}
-                    className="md:hidden absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-sm text-slate-600"><ChevronLeft className="w-4 h-4" /></button>
-                  <button onClick={() => setActiveImage((prev) => (prev + 1) % imageCount)}
-                    className="md:hidden absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-sm text-slate-600"><ChevronRight className="w-4 h-4" /></button>
-                </>
-              )}
-            </div>
-
+          <div className="flex gap-4">
+            {/* Thumbnail strip - vertical on desktop, horizontal on mobile */}
             {product.images && product.images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              <div className="hidden lg:flex flex-col gap-2 overflow-y-auto max-h-[500px] scrollbar-hide">
                 {product.images.map((img, index) => (
                   <button key={index} onClick={() => setActiveImage(index)}
-                    className={`relative w-18 h-18 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 ${activeImage === index ? 'ring-2 ring-maroon' : 'ring-1 ring-slate-100 dark:ring-slate-800 opacity-50 hover:opacity-100'}`}
-                    style={{ width: 72, height: 72 }}>
+                    className={`relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 ${activeImage === index ? 'ring-2 ring-maroon shadow-md' : 'ring-1 ring-slate-200 dark:ring-slate-700 opacity-60 hover:opacity-100'}`}>
                     <img src={getImageUrl(img)} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
             )}
+
+            <div className="flex-1 space-y-4">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800"
+                onMouseEnter={() => setIsImagePaused(true)} onMouseLeave={() => setIsImagePaused(false)}
+                onTouchStart={() => setIsImagePaused(true)} onTouchEnd={() => setIsImagePaused(false)}>
+                {product.images && product.images.length > 0 ? (
+                  <img src={getImageUrl(product.images[activeImage])} alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-500" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-300"><Package className="w-16 h-16" /></div>
+                )}
+
+                {product.originalPrice > product.price && (
+                  <div className="absolute top-4 left-4 bg-maroon text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-maroon/30">
+                    {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                  </div>
+                )}
+
+                {imageCount > 1 && (
+                  <>
+                    <button onClick={() => setActiveImage((prev) => (prev - 1 + imageCount) % imageCount)}
+                      className="md:hidden absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md text-slate-600 dark:text-slate-300 hover:scale-105 transition-transform"><ChevronLeft className="w-5 h-5" /></button>
+                    <button onClick={() => setActiveImage((prev) => (prev + 1) % imageCount)}
+                      className="md:hidden absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md text-slate-600 dark:text-slate-300 hover:scale-105 transition-transform"><ChevronRight className="w-5 h-5" /></button>
+                  </>
+                )}
+
+                {/* Image counter */}
+                {imageCount > 1 && (
+                  <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                    {activeImage + 1} / {imageCount}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile thumbnails */}
+              {product.images && product.images.length > 1 && (
+                <div className="flex lg:hidden gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                  {product.images.map((img, index) => (
+                    <button key={index} onClick={() => setActiveImage(index)}
+                      className={`relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-200 ${activeImage === index ? 'ring-2 ring-maroon shadow-md' : 'ring-1 ring-slate-200 dark:ring-slate-700 opacity-60 hover:opacity-100'}`}>
+                      <img src={getImageUrl(img)} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Details */}
