@@ -83,7 +83,7 @@ const OrderTracking = () => {
       setOrder(res.data);
     } catch (err) {
       setOrder(null);
-      setError(err.response?.data?.message || 'Unable to track this order');
+      setError(err.response?.data?.message || (t('unable_to_track') || 'Unable to track this order'));
     } finally {
       setLoading(false);
     }
@@ -118,10 +118,10 @@ const OrderTracking = () => {
       link.click();
       link.remove();
       window.URL.revokeObjectURL(url);
-      toast.success('Invoice downloaded successfully', { id: 'download-success' });
+      toast.success(t('invoice_downloaded') || 'Invoice downloaded successfully', { id: 'download-success' });
     } catch (err) {
       console.error('Download failed:', err);
-      toast.error('Failed to download invoice. Please try again.');
+      toast.error(t('invoice_download_failed') || 'Failed to download invoice. Please try again.');
     } finally {
       setDownloading(false);
     }
@@ -220,7 +220,7 @@ const OrderTracking = () => {
             <button onClick={handleDownloadInvoice} disabled={downloading}
               className="flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 px-5 py-2.5 rounded-xl font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors disabled:opacity-50">
               {downloading ? <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" /> : <Download className="h-4 w-4" />}
-              {downloading ? 'Downloading...' : (t('download_invoice') || 'Download Invoice')}
+              {downloading ? (t('downloading') || 'Downloading...') : (t('download_invoice') || 'Download Invoice')}
             </button>
             <a href="tel:+8801851075537" className="flex items-center justify-center gap-2 bg-maroon text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-maroon/90 transition-colors">
               <Phone className="h-4 w-4" /> {t('need_help') || 'Need Help?'}
@@ -553,7 +553,7 @@ const OrderTracking = () => {
                 <div className="flex justify-between items-center py-2">
                   <span className="text-sm text-slate-500 dark:text-slate-400">{t('method') || 'Method'}</span>
                   <span className="font-semibold text-slate-700 dark:text-slate-300 text-sm uppercase flex items-center gap-1.5">
-                    {order.paymentMethod === 'cod' ? 'Cash On Delivery' : order.paymentMethod}
+                    {order.paymentMethod === 'cod' ? (t('cash_on_delivery') || 'Cash On Delivery') : order.paymentMethod}
                     {order.paymentMethod === 'cod' && <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>}
                   </span>
                 </div>
@@ -597,7 +597,7 @@ const OrderTracking = () => {
           onCancel={() => setReviewingProductId(null)}
           onSuccess={() => setReviewingProductId(null)}
           onReviewSubmitted={() => {
-            toast.success('Thank you for your review!', {
+            toast.success(t('thank_you_review') || 'Thank you for your review!', {
               icon: <Heart className="w-4 h-4" />,
               style: { borderRadius: '10px', background: '#FFF0F5', color: '#BE123C' }
             });
