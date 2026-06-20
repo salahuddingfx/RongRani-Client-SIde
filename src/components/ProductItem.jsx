@@ -85,6 +85,14 @@ const ProductItem = ({ product }) => {
             >
               <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-current' : ''}`} />
             </button>
+            <button
+              onClick={(e) => { e.preventDefault(); toggleCompare(product); }}
+              className={`p-1.5 backdrop-blur-sm rounded-lg shadow-sm sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 sm:translate-x-1 sm:group-hover:translate-x-0 flex items-center justify-center
+                ${isComparing(product._id) ? 'bg-maroon text-white' : 'bg-white/90 dark:bg-slate-800/90 text-slate-500 hover:text-maroon'}`}
+              aria-label="Compare"
+            >
+              <GitCompareArrows className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 
