@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RotateCcw, Home, Mail, Phone, Shield, Clock, FileCheck, RefreshCw, AlertCircle } from 'lucide-react';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const RefundPolicy = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Refund Policy' }]} />
       <Seo
         title="Refund Policy | RongRani"
         description="Learn about RongRani's refund policy, eligibility, process, and timeline for returns."

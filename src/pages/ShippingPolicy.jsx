@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Truck, Home, Mail, Phone, MapPin, Clock, Package, Search, AlertTriangle } from 'lucide-react';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const ShippingPolicy = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Shipping Policy' }]} />
       <Seo
         title="Shipping Policy | RongRani"
         description="Learn about RongRani's shipping areas, rates, delivery times, and order tracking."

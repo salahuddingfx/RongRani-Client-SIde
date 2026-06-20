@@ -4,6 +4,7 @@ import { Package, Search, Phone, Mail, ArrowLeft, Truck, CheckCircle, Clock } fr
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../contexts/LanguageContext';
+import Breadcrumb from '../components/Breadcrumb';
 
 const QuickOrderLookup = () => {
   const { t } = useLanguage();
@@ -115,6 +116,7 @@ const QuickOrderLookup = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 px-4">
+      <Breadcrumb items={[{ label: 'Track Order' }]} />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <Search className="h-10 w-10 text-slate-300 mx-auto mb-3" />

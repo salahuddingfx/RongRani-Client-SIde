@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Star, ThumbsUp, MessageCircle, Filter, Search, TrendingUp, Award, Users, X, PenLine } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 import ReviewForm from '../components/ReviewForm';
 
 const ReviewCardSkeleton = () => (
@@ -125,6 +126,7 @@ const Reviews = () => {
 
             <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 md:py-12">
                 <div className="max-w-6xl mx-auto px-4">
+                    <Breadcrumb items={[{ label: 'Reviews' }]} />
                     {/* Header */}
                     <div className="text-center mb-8 md:mb-10">
                         <div className="inline-flex items-center gap-2 bg-maroon/10 px-3 py-1.5 rounded-full mb-3">

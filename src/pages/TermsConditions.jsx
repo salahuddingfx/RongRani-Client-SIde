@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Home, Mail, Phone } from 'lucide-react';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const TermsConditions = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Terms & Conditions' }]} />
       <Seo
         title="Terms & Conditions | RongRani"
         description="Read the terms and conditions for shopping, delivery, and returns at RongRani."

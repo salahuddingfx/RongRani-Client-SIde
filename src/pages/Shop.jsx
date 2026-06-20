@@ -6,6 +6,7 @@ import { Search, Filter, X, Star, ChevronDown } from 'lucide-react';
 import Seo from '../components/Seo';
 import { useSocket } from '../contexts/socketContextBase';
 import { useLanguage } from '../contexts/LanguageContext';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Shop = () => {
   const { t } = useLanguage();
@@ -108,6 +109,7 @@ const Shop = () => {
 
   return (
     <div className="min-h-screen">
+      <Breadcrumb items={[{ label: 'Shop', to: '/shop' }]} />
       <Seo title="Shop Handmade Gifts & Surprise Boxes | RongRani" description="Browse handmade gifts, surprise boxes, jewelry, chocolates, and decor." path="/shop" />
 
       {/* Hero */}

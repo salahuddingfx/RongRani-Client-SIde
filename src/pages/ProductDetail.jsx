@@ -11,6 +11,7 @@ import ProductItem from '../components/ProductItem';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import SocialShare from '../components/SocialShare';
+import Breadcrumb from '../components/Breadcrumb';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -153,20 +154,8 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
+      <Breadcrumb items={[{ label: 'Shop', to: '/shop' }, { label: product?.name || 'Product' }]} />
       <Seo title={pageTitle} description={pageDescription} keywords={pageKeywords} path={pagePath} image={pageImage} type="product" extraMeta={socialMeta} schema={productSchema} />
-
-      {/* Breadcrumb */}
-      <div className="border-b border-slate-100 dark:border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="text-xs flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
-            <Link to="/" className="text-slate-400 hover:text-maroon transition-colors whitespace-nowrap">Home</Link>
-            <span className="text-slate-300">/</span>
-            <Link to="/shop" className="text-slate-400 hover:text-maroon transition-colors whitespace-nowrap">Shop</Link>
-            {categoryLabel && (<><span className="text-slate-300">/</span><Link to={`/shop?category=${encodeURIComponent(categoryRaw)}`} className="text-slate-400 hover:text-maroon transition-colors capitalize whitespace-nowrap">{categoryLabel}</Link></>)}
-            {product?.name && (<><span className="text-slate-300">/</span><span className="text-slate-600 dark:text-slate-300 font-medium whitespace-nowrap truncate max-w-[120px] sm:max-w-none">{product.name}</span></>)}
-          </nav>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">

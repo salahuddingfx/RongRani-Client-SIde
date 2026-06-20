@@ -6,6 +6,7 @@ import { useWishlist } from '../contexts/WishlistContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Wishlist = () => {
   const { addToCart } = useCart();
@@ -61,6 +62,7 @@ const Wishlist = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 px-4">
+      <Breadcrumb items={[{ label: 'Wishlist' }]} />
       <Seo title="My Wishlist | RongRani" description="Your favorite items saved for later." path="/wishlist" />
       <div className="max-w-6xl mx-auto">
         {/* Header */}
