@@ -53,6 +53,7 @@ const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'));
 const Developer = lazy(() => import('./pages/Developer'));
+const Compare = lazy(() => import('./pages/Compare'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
               <AppInitializer>
                 <CartProvider>
                   <WishlistProvider>
+                    <CompareProvider>
                     <HelmetProvider>
                       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                         <Toaster
