@@ -7,7 +7,7 @@ import {
   User, Package, Heart, Settings, LogOut, MapPin, Phone, 
   Mail, Eye, Download, Lock, Shield, ShoppingBag, 
   CheckCircle, Clock, Truck, XCircle, ArrowRight, ClipboardCheck,
-  Star
+  Star, RefreshCw
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -16,6 +16,7 @@ import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import ReviewForm from '../components/ReviewForm';
 import { getImageUrl } from '../utils/productUtils';
+import { playCartSound } from '../utils/sounds';
 
 
 const Dashboard = () => {
@@ -264,6 +265,22 @@ const Dashboard = () => {
       console.error('Invoice download error:', error);
       toast.error('Failed to download invoice');
     }
+  };
+
+  const handleReorder = (order) => {
+    if (!order.items || order.items.length === 0) return;
+    order.items.forEach((item) => {
+      const product = {
+        _id: item.product?._id || item.product,
+        name: item.product?.name || item.name,
+        price: item.price,
+        images: item.product?.images || item.image ? [{ url: item.image || item.product?.images?.[0]?.url }] : [],
+        stock: item.product?.stock || 10,
+      };
+      addToCart(product, item.quantity);
+    });
+    playCartSound();
+    toast.success('Items added to cart!');
   };
 
   const getStatusBadgeClass = (status) => {
@@ -926,6 +943,16 @@ const Dashboard = () => {
                                 <Eye className="h-3.5 w-3.5" />
                                 <span>Track Order</span>
                               </Link>
+                              
+                              {(order.status || order.orderStatus) === 'delivered' && (
+                                <button 
+                                  onClick={() => handleReorder(order)}
+                                  className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                                >
+                                  <RefreshCw className="h-3.5 w-3.5" />
+                                  <span>Re-order</span>
+                                </button>
+                              )}
                               
                               <button 
                                 onClick={() => handleDownloadInvoice(order._id)}
