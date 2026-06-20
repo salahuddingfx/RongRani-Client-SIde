@@ -255,7 +255,7 @@ const ProductDetail = () => {
               <div className="space-y-2">
                 <button onClick={handleBuyNow} disabled={product.stock === 0}
                   className="w-full bg-maroon text-white py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-maroon-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.98]">
-                  <Zap className="w-4.5 h-4.5" /> {t('buy_now_zap')}
+                  <Truck className="w-4.5 h-4.5" /> {t('buy_now_zap')}
                 </button>
                 <button onClick={handleAddToCart} disabled={product.stock === 0}
                   className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors disabled:opacity-40 active:scale-[0.98]">
