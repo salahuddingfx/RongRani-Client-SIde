@@ -142,8 +142,10 @@ const OrderTracking = () => {
   const getStatusStyle = (status) => {
     switch (status) {
       case 'pending': return { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', light: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-200 dark:border-amber-800' };
-      case 'processing': return { bg: 'bg-blue-500', text: 'text-blue-600 dark:text-blue-400', light: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800' };
+      case 'confirmed': return { bg: 'bg-blue-500', text: 'text-blue-600 dark:text-blue-400', light: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800' };
+      case 'processing': return { bg: 'bg-indigo-500', text: 'text-indigo-600 dark:text-indigo-400', light: 'bg-indigo-50 dark:bg-indigo-900/20', border: 'border-indigo-200 dark:border-indigo-800' };
       case 'shipped': return { bg: 'bg-purple-500', text: 'text-purple-600 dark:text-purple-400', light: 'bg-purple-50 dark:bg-purple-900/20', border: 'border-purple-200 dark:border-purple-800' };
+      case 'out_for_delivery': return { bg: 'bg-cyan-500', text: 'text-cyan-600 dark:text-cyan-400', light: 'bg-cyan-50 dark:bg-cyan-900/20', border: 'border-cyan-200 dark:border-cyan-800' };
       case 'delivered': return { bg: 'bg-green-500', text: 'text-green-600 dark:text-green-400', light: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800' };
       case 'cancelled': return { bg: 'bg-red-500', text: 'text-red-600 dark:text-red-400', light: 'bg-red-50 dark:bg-red-900/20', border: 'border-red-200 dark:border-red-800' };
       case 'returned': return { bg: 'bg-orange-500', text: 'text-orange-600 dark:text-orange-400', light: 'bg-orange-50 dark:bg-orange-900/20', border: 'border-orange-200 dark:border-orange-800' };
@@ -258,21 +260,26 @@ const OrderTracking = () => {
                     <div key={step.key} className="flex-1 flex flex-col items-center relative">
                       {/* Connector line */}
                       {idx > 0 && (
-                        <div className={`absolute top-5 right-1/2 w-full h-0.5 -z-0 ${idx <= currentRank ? 'bg-maroon' : 'bg-slate-200 dark:bg-slate-700'}`} />
+                        <div className={`absolute top-5 right-1/2 w-full h-0.5 -z-0 transition-colors duration-300 ${idx <= currentRank ? 'bg-maroon' : 'bg-slate-200 dark:bg-slate-700'}`} />
                       )}
                       {/* Circle */}
-                      <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
-                        ${isCompleted ? 'bg-maroon text-white shadow-md shadow-maroon/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-500'}
-                        ${isCurrent ? 'ring-4 ring-maroon/15 scale-110' : ''}`}>
+                      <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
+                        ${isCompleted ? 'bg-maroon text-white shadow-lg shadow-maroon/25' : 'bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-500'}
+                        ${isCurrent ? 'ring-4 ring-maroon/20 scale-110 animate-pulse' : ''}`}>
                         <StepIcon className="h-5 w-5" />
+                        {isCurrent && <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white dark:border-slate-800"></span>}
                       </div>
                       {/* Label */}
-                      <p className={`mt-2.5 text-xs font-semibold text-center ${isCompleted ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}>
+                      <p className={`mt-2.5 text-xs font-semibold text-center leading-tight ${isCompleted ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}>
                         {step.label}
                       </p>
+                      <p className={`text-[10px] text-center mt-0.5 leading-tight hidden lg:block ${isCompleted ? 'text-slate-500 dark:text-slate-400' : 'text-slate-300 dark:text-slate-600'}`}>
+                        {step.desc}
+                      </p>
                       {ts && (
-                        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 text-center">
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 text-center">
                           {new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          {isCurrent && <span className="block text-maroon font-medium">In Progress</span>}
                         </p>
                       )}
                     </div>
