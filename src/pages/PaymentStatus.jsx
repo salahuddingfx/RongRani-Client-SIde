@@ -4,6 +4,7 @@ import { CheckCircle, XCircle, AlertTriangle, PartyPopper, Truck } from 'lucide-
 import { useCart } from '../contexts/CartContext';
 import confetti from 'canvas-confetti';
 import ThankYouCard from '../components/ThankYouCard';
+import Breadcrumb from '../components/Breadcrumb';
 
 const PaymentStatus = () => {
     const { status, orderId } = useParams();
@@ -38,6 +39,7 @@ const PaymentStatus = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 flex items-center justify-center py-8 px-4">
+            <Breadcrumb items={[{ label: 'Payment Status' }]} />
             <div className="max-w-lg w-full bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
                 <div className={`h-1.5 ${isSuccess ? 'bg-green-500' : isFailed ? 'bg-red-500' : 'bg-amber-500'}`} />
 
