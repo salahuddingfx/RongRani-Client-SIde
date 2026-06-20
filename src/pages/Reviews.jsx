@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Star, ThumbsUp, MessageCircle, Filter, Search, TrendingUp, Award, Users } from 'lucide-react';
+import { Star, ThumbsUp, MessageCircle, Filter, Search, TrendingUp, Award, Users, X, PenLine } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Seo from '../components/Seo';
+import ReviewForm from '../components/ReviewForm';
+
+const ReviewCardSkeleton = () => (
+  <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 animate-pulse">
+    <div className="flex gap-4">
+      <div className="w-20 h-20 bg-slate-200 dark:bg-slate-700 rounded-xl shrink-0" />
+      <div className="flex-1 space-y-3">
+        <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4" />
+        <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2" />
+        <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-full" />
+        <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-2/3" />
+      </div>
+    </div>
+  </div>
+);
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [filter, setFilter] = useState('all'); // all, 5star, 4star, 3star, recent
+    const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
+    const [showReviewForm, setShowReviewForm] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [productsLoading, setProductsLoading] = useState(false);
     const [stats, setStats] = useState({
         totalReviews: 0,
         averageRating: 0,
@@ -40,6 +59,38 @@ const Reviews = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const fetchProducts = async () => {
+        try {
+            setProductsLoading(true);
+            const response = await axios.get('/api/products', { params: { limit: 20 } });
+            setProducts(response.data.products || response.data || []);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            setProducts([]);
+        } finally {
+            setProductsLoading(false);
+        }
+    };
+
+    const handleWriteReview = () => {
+        setShowReviewForm(true);
+        fetchProducts();
+    };
+
+    const handleSelectProduct = (productId) => {
+        setSelectedProductId(productId);
+    };
+
+    const handleReviewFormClose = () => {
+        setShowReviewForm(false);
+        setSelectedProductId(null);
+    };
+
+    const handleReviewSubmitted = () => {
+        handleReviewFormClose();
+        fetchReviews();
     };
 
     const formatDate = (dateString) => {
@@ -85,16 +136,22 @@ const Reviews = () => {
                         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
                             {language === 'bn' ? 'আমাদের কাস্টমাররা কী বলছেন' : 'What Our Customers Say'}
                         </h1>
-                        <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm">
+                        <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm mb-4">
                             {language === 'bn'
                                 ? 'সত্যিকারের কাস্টমারদের সত্যিকারের মতামত। আমরা গর্বিত যে আমাদের পণ্য এবং সেবা নিয়ে।'
                                 : 'Real reviews from real customers. We take pride in our products and service.'}
                         </p>
+                        <button
+                            onClick={handleWriteReview}
+                            className="inline-flex items-center gap-2 bg-maroon text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-maroon/90 transition-colors"
+                        >
+                            <PenLine className="w-4 h-4" />
+                            {language === 'bn' ? 'রিভিউ লিখুন' : 'Write a Review'}
+                        </button>
                     </div>
 
                     {/* Stats Section */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 md:mb-10">
-                        {/* Average Rating */}
                         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
                             <div className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2">
                                 {stats.averageRating.toFixed(1)}
@@ -126,7 +183,6 @@ const Reviews = () => {
                             </p>
                         </div>
 
-                        {/* Total Reviews */}
                         <div className="bg-maroon rounded-2xl p-6 text-center text-white shadow-sm">
                             <Users className="w-8 h-8 mx-auto mb-3 opacity-90" />
                             <div className="text-3xl md:text-4xl font-bold mb-1">
@@ -137,7 +193,6 @@ const Reviews = () => {
                             </p>
                         </div>
 
-                        {/* Rating Distribution */}
                         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
                             <h3 className="font-bold text-slate-800 dark:text-white mb-4 text-sm">
                                 {language === 'bn' ? 'রেটিং বিতরণ' : 'Rating Distribution'}
@@ -164,7 +219,6 @@ const Reviews = () => {
                     {/* Filters */}
                     <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm mb-6">
                         <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-                            {/* Search */}
                             <div className="relative flex-1 max-w-md">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                                 <input
@@ -176,7 +230,6 @@ const Reviews = () => {
                                 />
                             </div>
 
-                            {/* Filter Buttons */}
                             <div className="flex flex-wrap gap-2">
                                 {[
                                     { value: 'all', label: language === 'bn' ? 'সব' : 'All', icon: Filter },
@@ -202,9 +255,10 @@ const Reviews = () => {
 
                     {/* Reviews List */}
                     {loading ? (
-                        <div className="text-center py-12">
-                            <div className="inline-block w-10 h-10 border-4 border-maroon/30 border-t-maroon rounded-full animate-spin" />
-                            <p className="mt-4 text-slate-500 text-sm">{t('loading')}</p>
+                        <div className="grid grid-cols-1 gap-4">
+                            {[...Array(4)].map((_, i) => (
+                                <ReviewCardSkeleton key={i} />
+                            ))}
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 gap-4">
@@ -214,7 +268,6 @@ const Reviews = () => {
                                     className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm"
                                 >
                                     <div className="flex flex-col md:flex-row gap-4">
-                                        {/* Product Image */}
                                         <Link
                                             to={`/product/${review.product.slug || review.product._id}`}
                                             className="flex-shrink-0"
@@ -222,11 +275,10 @@ const Reviews = () => {
                                             <img
                                                 src={review.product.image}
                                                 alt={review.product.name}
-                                                className="w-full md:w-20 h-40 md:h-20 object-cover rounded-xl hover:scale-105 transition-transform"
+                                                className="w-full md:w-20 h-40 md:h-20 object-cover rounded-xl"
                                             />
                                         </Link>
 
-                                        {/* Review Content */}
                                         <div className="flex-1">
                                             <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-3">
                                                 <div>
@@ -305,6 +357,81 @@ const Reviews = () => {
                     )}
                 </div>
             </div>
+
+            {/* Review Form Modal */}
+            {showReviewForm && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/50" onClick={handleReviewFormClose} />
+                    <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-elevated w-full max-w-lg max-h-[85vh] overflow-y-auto border border-slate-100 dark:border-slate-700">
+                        <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-700">
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+                                {selectedProductId
+                                    ? (language === 'bn' ? 'রিভিউ লিখুন' : 'Write a Review')
+                                    : (language === 'bn' ? 'পণ্য নির্বাচন করুন' : 'Select a Product')
+                                }
+                            </h2>
+                            <button
+                                onClick={handleReviewFormClose}
+                                className="p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                            >
+                                <X className="w-5 h-5 text-slate-500" />
+                            </button>
+                        </div>
+
+                        <div className="p-5">
+                            {!selectedProductId ? (
+                                productsLoading ? (
+                                    <div className="space-y-3">
+                                        {[...Array(5)].map((_, i) => (
+                                            <div key={i} className="flex items-center gap-3 p-3 rounded-xl animate-pulse">
+                                                <div className="w-14 h-14 bg-slate-200 dark:bg-slate-700 rounded-xl shrink-0" />
+                                                <div className="flex-1 space-y-2">
+                                                    <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4" />
+                                                    <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2" />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : products.length === 0 ? (
+                                    <p className="text-center text-slate-500 text-sm py-8">
+                                        {language === 'bn' ? 'কোনো পণ্য পাওয়া যায়নি' : 'No products found'}
+                                    </p>
+                                ) : (
+                                    <div className="space-y-2 max-h-[60vh] overflow-y-auto">
+                                        {products.map((product) => (
+                                            <button
+                                                key={product._id}
+                                                onClick={() => handleSelectProduct(product._id)}
+                                                className="flex items-center gap-3 w-full p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left"
+                                            >
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    className="w-14 h-14 object-cover rounded-xl shrink-0"
+                                                />
+                                                <div className="flex-1 min-w-0">
+                                                    <p className="font-semibold text-slate-800 dark:text-white text-sm truncate">
+                                                        {product.name}
+                                                    </p>
+                                                    <p className="text-slate-500 text-xs">
+                                                        {product.price ? `৳${product.price}` : ''}
+                                                    </p>
+                                                </div>
+                                            </button>
+                                        ))}
+                                    </div>
+                                )
+                            ) : (
+                                <ReviewForm
+                                    productId={selectedProductId}
+                                    onSubmitted={handleReviewSubmitted}
+                                    onClose={handleReviewFormClose}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
