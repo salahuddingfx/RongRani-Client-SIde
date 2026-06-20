@@ -275,8 +275,7 @@ const Navbar = () => {
     { to: '/', label: 'home' },
     { to: '/shop', label: 'shop' },
     { to: '/quick-track', label: 'track_order' },
-    { to: '/wishlist', label: 'wishlist' },
-    { to: '/about', label: 'about' },
+    { to: '/reviews', label: 'reviews' },
     { to: '/contact', label: 'contact' },
   ];
 
