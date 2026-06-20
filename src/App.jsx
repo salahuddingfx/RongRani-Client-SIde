@@ -7,6 +7,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
+import { CompareProvider } from './contexts/CompareContext';
 import SocketProvider from './contexts/SocketContext.jsx';
 import AppInitializer from './components/AppInitializer';
 import AppLayout from './components/AppLayout';
