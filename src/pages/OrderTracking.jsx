@@ -300,23 +300,28 @@ const OrderTracking = () => {
                     <div key={step.key} className="flex gap-3">
                       {/* Left: icon + line */}
                       <div className="flex flex-col items-center">
-                        <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all
-                          ${isCompleted ? 'bg-maroon text-white shadow-md shadow-maroon/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}
-                          ${isCurrent ? 'ring-4 ring-maroon/15' : ''}`}>
+                        <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 relative
+                          ${isCompleted ? 'bg-maroon text-white shadow-lg shadow-maroon/25' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}
+                          ${isCurrent ? 'ring-4 ring-maroon/20' : ''}`}>
                           <StepIcon className="h-4 w-4" />
+                          {isCurrent && <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-white dark:border-slate-800"></span>}
                         </div>
                         {!isLast && (
-                          <div className={`w-0.5 flex-1 min-h-[24px] ${isCompleted && idx < currentRank ? 'bg-maroon' : 'bg-slate-200 dark:bg-slate-700'}`} />
+                          <div className={`w-0.5 flex-1 min-h-[28px] transition-colors duration-300 ${idx < currentRank ? 'bg-maroon' : 'bg-slate-200 dark:bg-slate-700'}`} />
                         )}
                       </div>
                       {/* Right: text */}
-                      <div className={`pb-6 ${isLast ? 'pb-0' : ''}`}>
+                      <div className={`pb-5 ${isLast ? 'pb-0' : ''}`}>
                         <p className={`text-sm font-semibold ${isCompleted ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}>
                           {step.label}
                         </p>
+                        <p className={`text-xs mt-0.5 ${isCompleted ? 'text-slate-500 dark:text-slate-400' : 'text-slate-300 dark:text-slate-600'}`}>
+                          {step.desc}
+                        </p>
                         {ts && (
-                          <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                          <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                             {new Date(ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                            {isCurrent && <span className="ml-2 text-maroon font-medium">In Progress</span>}
                           </p>
                         )}
                       </div>
@@ -341,6 +346,59 @@ const OrderTracking = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
+            {/* What's Next */}
+            {!isCancelled && currentRank < 5 && (
+              <div className="bg-gradient-to-r from-maroon/5 to-maroon/10 dark:from-maroon/10 dark:to-maroon/5 rounded-2xl border border-maroon/15 dark:border-maroon/20 p-5">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-maroon/10 dark:bg-maroon/20 flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-5 w-5 text-maroon" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">What's Next?</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {currentRank === 0 && "Your order is being reviewed. You'll receive a confirmation shortly."}
+                      {currentRank === 1 && "Your order is confirmed and will be prepared for shipping soon."}
+                      {currentRank === 2 && "Your order is being prepared. It will be handed over to the courier soon."}
+                      {currentRank === 3 && "Your order is on its way! Track it on the courier website for real-time updates."}
+                      {currentRank === 4 && "Your order is out for delivery today. Please keep your phone handy."}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Order Timeline */}
+            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <Clock className="h-5 w-5 text-slate-400" />
+                <span>{t('order_timeline') || 'Order Timeline'}</span>
+              </h2>
+              <div className="space-y-0">
+                {[
+                  { label: 'Order Placed', time: order.createdAt, show: true },
+                  { label: 'Order Confirmed', time: order.createdAt ? new Date(new Date(order.createdAt).getTime() + 5 * 60 * 1000).toISOString() : null, show: currentRank >= 1 },
+                  { label: 'Processing Started', time: order.updatedAt, show: currentRank >= 2 },
+                  { label: 'Shipped to Courier', time: order.courierInfo?.sentAt, show: currentRank >= 3 && order.courierInfo?.sentAt },
+                  { label: 'Delivered', time: order.deliveredAt, show: currentRank >= 5 && order.deliveredAt },
+                ].filter(e => e.show).map((event, idx, arr) => (
+                  <div key={idx} className="flex gap-3">
+                    <div className="flex flex-col items-center">
+                      <div className="w-2.5 h-2.5 rounded-full bg-maroon mt-1.5 flex-shrink-0"></div>
+                      {idx < arr.length - 1 && <div className="w-px flex-1 bg-slate-200 dark:bg-slate-700 my-1"></div>}
+                    </div>
+                    <div className={`pb-4 ${idx === arr.length - 1 ? 'pb-0' : ''}`}>
+                      <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{event.label}</p>
+                      {event.time && (
+                        <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                          {new Date(event.time).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Package Contents */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6">
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
