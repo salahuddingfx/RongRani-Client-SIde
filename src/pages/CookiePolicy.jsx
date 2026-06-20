@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Cookie, Home, Mail, Phone, Shield, Settings, BarChart3, Megaphone, Heart, RefreshCw } from 'lucide-react';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const CookiePolicy = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Cookie Policy' }]} />
       <Seo
         title="Cookie Policy | RongRani"
         description="Learn how RongRani uses cookies to improve your shopping experience while respecting your privacy."
