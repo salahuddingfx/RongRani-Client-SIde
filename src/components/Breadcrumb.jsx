@@ -10,7 +10,7 @@ const Breadcrumb = ({ items = [] }) => {
   const allItems = [...defaultItems, ...items];
 
   return (
-    <nav aria-label="Breadcrumb" className="py-3 mb-2">
+    <nav aria-label="Breadcrumb" className="py-3 mb-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <ol className="flex items-center flex-wrap gap-1 text-sm">
         {allItems.map((item, index) => {
           const isLast = index === allItems.length - 1;
