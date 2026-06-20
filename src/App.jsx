@@ -48,6 +48,9 @@ const AboutUs = lazy(() => import('./pages/AboutUs'));
 const Reviews = lazy(() => import('./pages/Reviews'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
+const ShippingPolicy = lazy(() => import('./pages/ShippingPolicy'));
 const Developer = lazy(() => import('./pages/Developer'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -147,6 +150,9 @@ function App() {
                               <Route path="about" element={<AboutUs />} />
                               <Route path="terms" element={<TermsConditions />} />
                               <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                              <Route path="cookie-policy" element={<CookiePolicy />} />
+                              <Route path="refund-policy" element={<RefundPolicy />} />
+                              <Route path="shipping-policy" element={<ShippingPolicy />} />
                               <Route path="developer" element={<Developer />} />
                               <Route path="quick-track" element={<QuickOrderLookup />} />
                               <Route path="track/:orderId" element={<OrderTracking />} />
