@@ -104,7 +104,7 @@ const ProductItem = ({ product }) => {
           </div>
 
           {/* Footer */}
-          <div className="mt-auto flex items-center justify-between pt-2 border-t border-slate-50 dark:border-slate-800">
+          <div className="mt-auto pt-2 border-t border-slate-50 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-1.5">
               <div className="flex items-center">
                 {[...Array(5)].map((_, i) => {
@@ -128,17 +128,32 @@ const ProductItem = ({ product }) => {
               </span>
             </div>
 
-            <button
-              onClick={handleAddToCart}
-              disabled={productStock === 0}
-              className={`text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-lg transition-all duration-200 active:scale-95
-                ${productStock > 0
-                  ? 'bg-maroon text-white hover:bg-maroon-dark'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
-              aria-label={t('add_to_cart')}
-            >
-              {productStock > 0 ? t('order_now') || 'Order Now' : t('out_of_stock')}
-            </button>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={handleAddToCart}
+                disabled={productStock === 0}
+                className={`flex-1 flex items-center justify-center gap-1 text-[10px] sm:text-xs font-semibold py-1.5 rounded-lg transition-all duration-200 active:scale-95
+                  ${productStock > 0
+                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    : 'bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
+                aria-label={t('add_to_cart')}
+              >
+                <ShoppingCart className="w-3 h-3" />
+                {t('add_to_cart')}
+              </button>
+              <button
+                onClick={() => { addToCart(product); navigate('/checkout'); }}
+                disabled={productStock === 0}
+                className={`flex-1 flex items-center justify-center gap-1 text-[10px] sm:text-xs font-semibold py-1.5 rounded-lg transition-all duration-200 active:scale-95
+                  ${productStock > 0
+                    ? 'bg-maroon text-white hover:bg-maroon-dark'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
+                aria-label={t('order_now')}
+              >
+                <Zap className="w-3 h-3" />
+                {t('order_now')}
+              </button>
+            </div>
           </div>
         </div>
       </div>
