@@ -236,6 +236,7 @@ const Checkout = () => {
         giftMessage: giftWrapping ? giftMessage : '',
         giftMessage: formData.giftMessage,
         ...(couponInfo?.code && { couponCode: couponInfo.code }),
+        ...(giftCardInfo?.code && { giftCardCode: giftCardInfo.code, giftCardAmount: giftCardDiscount }),
         ...(!isAuthenticated && { guestInfo: { name: formData.name, email: formData.email, phone: formData.phone } }),
       };
 
