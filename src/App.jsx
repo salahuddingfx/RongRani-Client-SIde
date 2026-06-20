@@ -67,24 +67,30 @@ function App() {
                     <HelmetProvider>
                       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                         <Toaster
-                          position="top-right"
+                          position="top-center"
+                          containerStyle={{ zIndex: 99999 }}
                           toastOptions={{
-                            duration: 3000,
+                            duration: 2500,
                             style: {
-                              background: '#363636',
+                              background: '#1e293b',
                               color: '#fff',
+                              fontSize: '13px',
+                              fontWeight: '500',
+                              borderRadius: '12px',
+                              padding: '10px 16px',
+                              boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
                             },
                             success: {
-                              duration: 3000,
+                              duration: 2500,
                               iconTheme: {
-                                primary: '#C9A86A',
+                                primary: '#16a34a',
                                 secondary: '#fff',
                               },
                             },
                             error: {
-                              duration: 4000,
+                              duration: 3500,
                               iconTheme: {
-                                primary: '#FF0000',
+                                primary: '#ef4444',
                                 secondary: '#fff',
                               },
                             },
