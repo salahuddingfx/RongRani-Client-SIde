@@ -105,26 +105,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Policies */}
-          <div>
-            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{t('policies') || 'Policies'}</h4>
-            <ul className="space-y-2.5">
-              {[
-                { to: '/privacy-policy', label: t('privacy_policy') },
-                { to: '/terms', label: t('terms_conditions') || 'Terms & Conditions' },
-                { to: '/refund-policy', label: t('refund_policy') || 'Refund Policy' },
-                { to: '/shipping-policy', label: t('shipping_policy') || 'Shipping Policy' },
-                { to: '/cookie-policy', label: t('cookie_policy') || 'Cookie Policy' }
-              ].map((link, idx) => (
-                <li key={idx}>
-                  <Link to={link.to} className="text-sm text-slate-500 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{t('contact_info_label')}</h4>
@@ -157,12 +137,32 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-          <span className="text-xs text-slate-500">© {currentYear} RongRani. {t('all_rights_reserved')}</span>
-          <span className="text-xs text-slate-500">
-            {t('developed_with')} <Heart className="w-3 h-3 text-red-500 fill-red-500 inline mx-0.5" /> by{' '}
-            <Link to="/developer" className="text-maroon font-semibold hover:underline">Salah Uddin Kader</Link>
-          </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="flex flex-col items-center gap-3">
+            {/* Policy links */}
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[11px]">
+              {[
+                { to: '/privacy-policy', label: t('privacy_policy') },
+                { to: '/terms', label: t('terms_conditions') || 'Terms' },
+                { to: '/refund-policy', label: t('refund_policy') || 'Refund' },
+                { to: '/shipping-policy', label: t('shipping_policy') || 'Shipping' },
+                { to: '/cookie-policy', label: t('cookie_policy') || 'Cookies' }
+              ].map((link, idx) => (
+                <Link key={idx} to={link.to} className="text-slate-500 hover:text-white transition-colors">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            {/* Copyright + developer */}
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-slate-500">
+              <span>© {currentYear} RongRani. {t('all_rights_reserved')}</span>
+              <span className="hidden sm:block text-slate-700">|</span>
+              <span>
+                {t('developed_with')} <Heart className="w-3 h-3 text-red-500 fill-red-500 inline mx-0.5" /> by{' '}
+                <Link to="/developer" className="text-maroon font-semibold hover:underline">Salah Uddin Kader</Link>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
