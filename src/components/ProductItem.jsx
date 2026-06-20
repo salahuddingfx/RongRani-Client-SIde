@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Star, Eye } from 'lucide-react';
+import { Heart, Star, Eye } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
