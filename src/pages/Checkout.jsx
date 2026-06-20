@@ -12,6 +12,7 @@ import {
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { playOrderSound } from '@/utils/sounds';
 import Seo from '@/components/Seo';
 
 /* ─────────────────────────────────────────────────────────────
@@ -204,6 +205,7 @@ const Checkout = () => {
         } catch { toast.error('Payment init failed. Check your orders.'); navigate('/orders'); return; }
       }
 
+      playOrderSound();
       toast.success(formData.paymentMethod === 'cod' ? 'Order placed! We will contact you soon.' : `Order placed! We'll confirm your payment shortly.`);
 
       setTimeout(() => {
