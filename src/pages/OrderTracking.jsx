@@ -129,11 +129,10 @@ const OrderTracking = () => {
 
   const getStepTimestamp = (stepKey, orderData) => {
     if (stepKey === 'pending') return orderData.createdAt;
-    if (stepKey === 'confirmed') return orderData.createdAt ? new Date(new Date(orderData.createdAt).getTime() + 5 * 60 * 1000).toISOString() : null;
     if (stepKey === 'shipped') return orderData.courierInfo?.sentAt || null;
-    if (stepKey === 'out_for_delivery') return orderData.courierInfo?.sentAt ? new Date(new Date(orderData.courierInfo.sentAt).getTime() + 2 * 24 * 60 * 60 * 1000).toISOString() : null;
     if (stepKey === 'delivered') return orderData.deliveredAt || null;
     return null;
+  };
   };
 
   const isCancelled = order?.orderStatus === 'cancelled' || order?.orderStatus === 'returned';
