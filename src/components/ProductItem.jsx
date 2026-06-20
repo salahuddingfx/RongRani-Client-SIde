@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import QuickViewModal from './QuickViewModal';
 import { getImageUrl } from '../utils/productUtils';
+import toast from 'react-hot-toast';
 
 const ProductItem = ({ product }) => {
   const { addToCart } = useCart();
@@ -17,7 +18,8 @@ const ProductItem = ({ product }) => {
 
   if (!product || !product._id) return null;
 
-  const handleAddToCart = (e) => { e.preventDefault(); addToCart(product); };
+  const handleAddToCart = (e) => { e.preventDefault(); addToCart(product); toast.success(`${product.name} added to cart!`); };
+  const handleOrderNow = (e) => { e.preventDefault(); addToCart(product); toast.success('Redirecting to checkout...'); navigate('/checkout'); };
   const handleWishlist = (e) => { e.preventDefault(); toggleWishlist(product); };
 
   const productName = product.name || t('unnamed_product');
@@ -141,7 +143,7 @@ const ProductItem = ({ product }) => {
                 <ShoppingCart className="w-3.5 h-3.5" />
               </button>
               <button
-                onClick={() => { addToCart(product); navigate('/checkout'); }}
+                onClick={handleOrderNow}
                 disabled={productStock === 0}
                 className={`p-1.5 rounded-lg transition-all duration-200 active:scale-95
                   ${productStock > 0
