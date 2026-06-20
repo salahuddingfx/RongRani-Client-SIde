@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
 import { useLanguage } from '../contexts/LanguageContext';
+import Breadcrumb from '../components/Breadcrumb';
 
 const ContactUs = () => {
   const { t } = useLanguage();
@@ -44,6 +45,7 @@ const ContactUs = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Contact' }]} />
       <Seo
         title="Contact RongRani | Gift Shop Support in Bangladesh"
         description="Contact RongRani for gift orders, custom surprises, and support. Call, email, or visit our gift shop team in Bangladesh."
