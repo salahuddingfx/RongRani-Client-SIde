@@ -49,8 +49,8 @@ export const AuthProvider = ({ children }) => {
     initializeAuth();
   }, [checkAuthStatus]);
 
-  const login = async (email, password) => {
-    const userData = await authService.login(email, password);
+  const login = async (identifier, password) => {
+    const userData = await authService.login(identifier, password);
     if (userData.requiresVerification) {
       return userData;
     }
