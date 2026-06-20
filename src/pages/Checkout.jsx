@@ -78,6 +78,11 @@ const Checkout = () => {
   const [couponInfo, setCouponInfo] = useState(null);
   const [discount, setDiscount] = useState(0);
   const [couponLoading, setCouponLoading] = useState(false);
+  const [autoCouponChecked, setAutoCouponChecked] = useState(false);
+  const [giftCardCode, setGiftCardCode] = useState('');
+  const [giftCardInfo, setGiftCardInfo] = useState(null);
+  const [giftCardLoading, setGiftCardLoading] = useState(false);
+  const [giftCardDiscount, setGiftCardDiscount] = useState(0);
   const [step, setStep] = useState(1); // 1=details, 2=payment, 3=review
   const [formData, setFormData] = useState({
     name: user?.name || '',
@@ -99,7 +104,52 @@ const Checkout = () => {
   // Reset coupon if cart total changes
   useEffect(() => {
     if (couponInfo) { setCouponInfo(null); setDiscount(0); }
+    setAutoCouponChecked(false);
   }, [totalPrice]);
+
+  // Auto-apply best coupon on mount
+  useEffect(() => {
+    if (autoCouponChecked || totalPrice <= 0) return;
+    setAutoCouponChecked(true);
+    const findBest = async () => {
+      try {
+        const res = await axios.post('/api/coupons/best', { subtotal: totalPrice });
+        if (res.data && res.data.code) {
+          setCouponCode(res.data.code);
+          setCouponInfo(res.data);
+          setDiscount(res.data.discount || 0);
+          toast.success(`Best coupon auto-applied! "${res.data.code}" — Save ৳${(res.data.discount || 0).toFixed(0)}`, { duration: 4000 });
+        }
+      } catch (_) {}
+    };
+    findBest();
+  }, [totalPrice, autoCouponChecked]);
+
+  const handleApplyGiftCard = async () => {
+    if (giftCardLoading || giftCardInfo) return;
+    const code = giftCardCode.trim().toUpperCase();
+    if (!code) return;
+    setGiftCardLoading(true);
+    try {
+      const res = await axios.post('/api/gift-cards/validate', { code });
+      setGiftCardInfo(res.data);
+      const usable = Math.min(res.data.balance, Math.max(0, finalTotal - discount));
+      setGiftCardDiscount(usable);
+      toast.success(`Gift card applied! Balance: ৳${res.data.balance.toLocaleString()}`);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Invalid gift card');
+      setGiftCardInfo(null);
+      setGiftCardDiscount(0);
+    } finally {
+      setGiftCardLoading(false);
+    }
+  };
+
+  const handleRemoveGiftCard = () => {
+    setGiftCardInfo(null);
+    setGiftCardDiscount(0);
+    setGiftCardCode('');
+  };
 
   // Fetch delivery charge
   useEffect(() => {
