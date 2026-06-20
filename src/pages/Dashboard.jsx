@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 import ReviewForm from '../components/ReviewForm';
 import { getImageUrl } from '../utils/productUtils';
 
@@ -297,6 +298,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-8 px-4">
+      <Breadcrumb items={[{ label: 'Dashboard' }]} />
       <Seo title="User Dashboard | RongRani" description="Manage your orders, profile details, and account security settings." path="/dashboard" />
       
       <div className="max-w-6xl mx-auto">
