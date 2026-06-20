@@ -163,6 +163,7 @@ function App() {
                               <Route path="refund-policy" element={<RefundPolicy />} />
                               <Route path="shipping-policy" element={<ShippingPolicy />} />
                               <Route path="developer" element={<Developer />} />
+                              <Route path="compare" element={<Compare />} />
                               <Route path="quick-track" element={<QuickOrderLookup />} />
                               <Route path="track/:orderId" element={<OrderTracking />} />
                               <Route path="track" element={<OrderTracking />} />
@@ -176,6 +177,7 @@ function App() {
                         </Suspense>
                       </Router>
                     </HelmetProvider>
+                    </CompareProvider>
                   </WishlistProvider>
                 </CartProvider>
               </AppInitializer>
