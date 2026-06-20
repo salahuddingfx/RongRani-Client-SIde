@@ -8,6 +8,23 @@ import QuickViewModal from './QuickViewModal';
 import { getImageUrl } from '../utils/productUtils';
 import toast from 'react-hot-toast';
 
+const playCartSound = () => {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o1 = ctx.createOscillator();
+    const o2 = ctx.createOscillator();
+    const g = ctx.createGain();
+    o1.type = 'sine'; o1.frequency.value = 880;
+    o2.type = 'sine'; o2.frequency.value = 1320;
+    g.gain.setValueAtTime(0.15, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    o1.connect(g); o2.connect(g); g.connect(ctx.destination);
+    o1.start(); o2.start();
+    o1.stop(ctx.currentTime + 0.15);
+    o2.stop(ctx.currentTime + 0.15);
+  } catch (_) {}
+};
+
 const ProductItem = ({ product }) => {
   const { addToCart } = useCart();
   const { t } = useLanguage();
@@ -18,8 +35,8 @@ const ProductItem = ({ product }) => {
 
   if (!product || !product._id) return null;
 
-  const handleAddToCart = (e) => { e.preventDefault(); addToCart(product); toast.success(`${product.name} added to cart!`); };
-  const handleOrderNow = (e) => { e.preventDefault(); addToCart(product); toast.success('Redirecting to checkout...'); navigate('/checkout'); };
+  const handleAddToCart = (e) => { e.preventDefault(); addToCart(product); playCartSound(); toast.success(`${product.name} added to cart!`); };
+  const handleOrderNow = (e) => { e.preventDefault(); addToCart(product); playCartSound(); toast.success('Redirecting to checkout...'); navigate('/checkout'); };
   const handleWishlist = (e) => { e.preventDefault(); toggleWishlist(product); };
 
   const productName = product.name || t('unnamed_product');

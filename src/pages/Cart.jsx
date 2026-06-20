@@ -91,10 +91,10 @@ const Cart = () => {
                   {/* Mobile controls */}
                   <div className="w-full sm:hidden flex items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                     <div className="flex items-center gap-1.5">
-                      <button onClick={() => { const newQ = Math.max(1, item.quantity - 1); updateQuantity(item.id, newQ); if (newQ < item.quantity) toast.success(`Quantity updated to ${newQ}`); }} disabled={item.quantity <= 1}
+                      <button onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))} disabled={item.quantity <= 1}
                         className="p-1 border border-slate-200 dark:border-slate-700 rounded-md disabled:opacity-30"><Minus className="w-3.5 h-3.5" /></button>
                       <span className="w-8 text-center text-sm font-bold text-slate-800 dark:text-white">{item.quantity}</span>
-                      <button onClick={() => { const newQ = Math.min(item.stock || 999, item.quantity + 1); updateQuantity(item.id, newQ); if (newQ > item.quantity) toast.success(`Quantity updated to ${newQ}`); }}
+                      <button onClick={() => updateQuantity(item.id, Math.min(item.stock || 999, item.quantity + 1))}
                         className="p-1 border border-slate-200 dark:border-slate-700 rounded-md"><Plus className="w-3.5 h-3.5" /></button>
                     </div>
                     <p className="text-sm font-bold text-maroon">৳{(item.price * item.quantity).toLocaleString()}</p>
@@ -104,10 +104,10 @@ const Cart = () => {
                   {/* Desktop controls */}
                   <div className="hidden sm:flex items-center gap-3">
                     <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg">
-                      <button onClick={() => { const newQ = Math.max(1, item.quantity - 1); updateQuantity(item.id, newQ); if (newQ < item.quantity) toast.success(`Quantity updated to ${newQ}`); }} disabled={item.quantity <= 1}
+                      <button onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))} disabled={item.quantity <= 1}
                         className="px-2 py-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30 rounded-l-lg transition-colors border-r border-slate-100 dark:border-slate-800"><Minus className="w-3.5 h-3.5" /></button>
                       <span className="w-8 text-center text-sm font-bold">{item.quantity}</span>
-                      <button onClick={() => { const newQ = Math.min(item.stock || 999, item.quantity + 1); updateQuantity(item.id, newQ); if (newQ > item.quantity) toast.success(`Quantity updated to ${newQ}`); }}
+                      <button onClick={() => updateQuantity(item.id, Math.min(item.stock || 999, item.quantity + 1))}
                         className="px-2 py-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-r-lg transition-colors border-l border-slate-100 dark:border-slate-800"><Plus className="w-3.5 h-3.5" /></button>
                     </div>
                     <p className="text-lg font-bold text-maroon min-w-[80px] text-right">৳{(item.price * item.quantity).toLocaleString()}</p>

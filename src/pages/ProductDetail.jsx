@@ -13,6 +13,23 @@ import { useWishlist } from '../contexts/WishlistContext';
 import SocialShare from '../components/SocialShare';
 import Breadcrumb from '../components/Breadcrumb';
 
+const playCartSound = () => {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o1 = ctx.createOscillator();
+    const o2 = ctx.createOscillator();
+    const g = ctx.createGain();
+    o1.type = 'sine'; o1.frequency.value = 880;
+    o2.type = 'sine'; o2.frequency.value = 1320;
+    g.gain.setValueAtTime(0.15, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    o1.connect(g); o2.connect(g); g.connect(ctx.destination);
+    o1.start(); o2.start();
+    o1.stop(ctx.currentTime + 0.15);
+    o2.stop(ctx.currentTime + 0.15);
+  } catch (_) {}
+};
+
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -92,8 +109,8 @@ const ProductDetail = () => {
   useEffect(() => { fetchProduct(); fetchReviews(); checkCanReview(); }, [fetchProduct, fetchReviews, checkCanReview]);
   useEffect(() => { if (product) addToRecentlyViewed(product); }, [product]);
 
-  const handleAddToCart = useCallback(() => { addToCart(product, quantity); toast.success(`${product.name} added to cart!`); }, [addToCart, product, quantity]);
-  const handleBuyNow = useCallback(() => { addToCart(product, quantity); toast.success('Redirecting to checkout...'); navigate('/checkout'); }, [addToCart, product, quantity, navigate]);
+  const handleAddToCart = useCallback(() => { addToCart(product, quantity); playCartSound(); toast.success(`${product.name} added to cart!`); }, [addToCart, product, quantity]);
+  const handleBuyNow = useCallback(() => { addToCart(product, quantity); playCartSound(); toast.success('Redirecting to checkout...'); navigate('/checkout'); }, [addToCart, product, quantity, navigate]);
   const handleAddToWishlist = useCallback(() => { toggleWishlist(product); }, [toggleWishlist, product]);
 
   const getImageUrl = (image) => {
@@ -243,10 +260,10 @@ const ProductDetail = () => {
               <div>
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">{t('select_quantity')}</label>
                 <div className="flex items-center gap-2">
-                  <button onClick={() => { const newQ = Math.max(1, quantity - 1); setQuantity(newQ); if (newQ < quantity) toast.success(`Quantity: ${newQ}`); }} disabled={product.stock === 0}
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={product.stock === 0}
                     className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30 transition-colors"><Minus className="w-4 h-4" /></button>
                   <div className="w-14 h-10 flex items-center justify-center bg-slate-50 dark:bg-slate-800 rounded-lg text-lg font-bold text-slate-800 dark:text-white">{quantity}</div>
-                  <button onClick={() => { const newQ = Math.min(product.stock, quantity + 1); setQuantity(newQ); if (newQ > quantity) toast.success(`Quantity: ${newQ}`); }} disabled={product.stock === 0 || quantity >= product.stock}
+                  <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))} disabled={product.stock === 0 || quantity >= product.stock}
                     className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30 transition-colors"><Plus className="w-4 h-4" /></button>
                 </div>
               </div>
