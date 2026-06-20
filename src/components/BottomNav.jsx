@@ -56,8 +56,8 @@ const BottomNav = () => {
                       <item.icon className={`w-5 h-5 transition-all ${active ? 'stroke-[2.5px]' : 'stroke-[1.8px]'}`} />
                     )}
                     {item.badge > 0 && (
-                      <span className="absolute -top-1 -right-2 bg-maroon text-white text-[8px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white dark:border-slate-950">
-                        {item.badge}
+                      <span className="absolute -top-1.5 -right-2 bg-maroon text-white text-[8px] font-black min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center shadow-sm">
+                        {item.badge > 99 ? '99+' : item.badge}
                       </span>
                     )}
                   </div>

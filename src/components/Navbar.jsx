@@ -399,14 +399,14 @@ const Navbar = () => {
                         className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group" aria-label="Cart">
                         <ShoppingCart className="w-4.5 h-4.5 text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white" />
                         {totalItems > 0 && (
-                          <span className="absolute -top-0.5 -right-0.5 bg-maroon text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white dark:border-slate-950">{totalItems}</span>
+                          <span className="absolute -top-1 -right-1 bg-maroon text-white text-[10px] font-black min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-sm">{totalItems > 99 ? '99+' : totalItems}</span>
                         )}
                       </Link>
 
                       <Link to="/wishlist" className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors group" aria-label="Wishlist">
                         <Heart className="w-4.5 h-4.5 text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white" />
                         {wishlist.length > 0 && (
-                          <span className="absolute -top-0.5 -right-0.5 bg-maroon text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white dark:border-slate-950">{wishlist.length}</span>
+                          <span className="absolute -top-1 -right-1 bg-maroon text-white text-[10px] font-black min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-sm">{wishlist.length > 99 ? '99+' : wishlist.length}</span>
                         )}
                       </Link>
 
