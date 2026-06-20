@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingCart, Truck, Star, Eye } from 'lucide-react';
+import { Heart, ShoppingCart, Truck, Star, Eye, GitCompareArrows } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
+import { useCompare } from '../contexts/CompareContext';
 import QuickViewModal from './QuickViewModal';
 import { getImageUrl } from '../utils/productUtils';
 import { playCartSound } from '../utils/sounds';
@@ -13,6 +14,7 @@ const ProductItem = ({ product }) => {
   const { addToCart } = useCart();
   const { t } = useLanguage();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { toggleCompare, isComparing } = useCompare();
   const navigate = useNavigate();
   const [showQuickView, setShowQuickView] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
