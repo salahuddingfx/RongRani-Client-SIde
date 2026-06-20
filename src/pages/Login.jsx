@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Eye, EyeOff, Mail, Lock, ShoppingCart } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ShoppingCart, User } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,12 +18,7 @@ const Login = () => {
   const from = location.state?.from || '/';
   const message = location.state?.message;
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const isEmail = identifier.includes('@');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +26,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await login(formData.email, formData.password);
+      const response = await login(identifier, password);
       if (response && response.requiresVerification) {
         navigate('/register', { state: { requiresOtp: true, email: response.email, from } });
         return;
@@ -45,7 +38,7 @@ const Login = () => {
         navigate('/register', {
           state: {
             requiresOtp: true,
-            email: error.response.data.email || formData.email,
+            email: error.response.data.email || identifier,
             from
           }
         });
@@ -72,7 +65,7 @@ const Login = () => {
         <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-8">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Welcome Back</h2>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Sign in to your account</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Sign in with your email or username</p>
           </div>
 
           {message && (
@@ -91,18 +84,22 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                Email Address
+                Email or Username
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                {isEmail ? (
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                ) : (
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                )}
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  type="text"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
                   required
                   className="w-full border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-maroon focus:ring-2 focus:ring-maroon/10 transition-all bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400"
-                  placeholder="you@example.com"
+                  placeholder="you@example.com or username"
+                  autoComplete="username"
                 />
               </div>
             </div>
@@ -115,12 +112,12 @@ const Login = () => {
                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-full border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-11 py-3 text-sm focus:outline-none focus:border-maroon focus:ring-2 focus:ring-maroon/10 transition-all bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400"
                   placeholder="Enter your password"
+                  autoComplete="current-password"
                 />
                 <button
                   type="button"
