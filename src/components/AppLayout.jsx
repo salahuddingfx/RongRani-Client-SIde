@@ -40,7 +40,9 @@ const AppLayout = () => {
       </div>
 
       <main className="pt-[140px] md:pt-28 pb-20 lg:pb-0 page-content-fade-in">
-        <Outlet />
+        <div className="max-w-7xl mx-auto">
+          <Outlet />
+        </div>
       </main>
 
       <RecentlyViewed />
