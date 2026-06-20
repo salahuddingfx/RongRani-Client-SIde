@@ -34,6 +34,7 @@ const OrderTracking = () => {
   const { socket } = useSocket();
   const [reviewingProductId, setReviewingProductId] = useState(null);
   const [downloading, setDownloading] = useState(false);
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 });
 
   const getImageUrl = (value) => {
     if (!value) return '';
@@ -54,6 +55,26 @@ const OrderTracking = () => {
     socket.on('order:sent-to-courier', handleCourier);
     return () => { socket.off('order:updated', handleUpdate); socket.off('order:sent-to-courier', handleCourier); };
   }, [socket, order?._id, contactEmail, contactPhone]);
+
+  useEffect(() => {
+    if (!order) return;
+    const orderStatus = order.orderStatus || order.status;
+    if (orderStatus === 'delivered' || orderStatus === 'cancelled' || orderStatus === 'returned') return;
+
+    const calcCountdown = () => {
+      const estimatedDate = new Date(order.deliveredAt || new Date(new Date(order.createdAt).getTime() + 4 * 24 * 60 * 60 * 1000));
+      const now = new Date();
+      const diff = estimatedDate - now;
+      const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+      const hours = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      const minutes = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+      setCountdown({ days, hours, minutes });
+    };
+
+    calcCountdown();
+    const interval = setInterval(calcCountdown, 60000);
+    return () => clearInterval(interval);
+  }, [order?.createdAt, order?.deliveredAt, order?.orderStatus, order?.status]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -227,6 +248,26 @@ const OrderTracking = () => {
               <Phone className="h-4 w-4" /> {t('need_help') || 'Need Help?'}
             </a>
           </div>
+        </div>
+
+        {/* Social Share Buttons */}
+        <div className="flex gap-2 mb-6">
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`Check out my order #${order.orderId || order._id} on RongRani! 🛍️`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors"
+          >
+            <FaFacebook className="h-4 w-4" />
+          </a>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out my order #${order.orderId || order._id} on RongRani! 🛍️ ${window.location.href}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+          >
+            <MessageCircle className="h-4 w-4" />
+          </a>
         </div>
 
         {/* Progress Stepper */}
@@ -513,6 +554,30 @@ const OrderTracking = () => {
                 </span>
               </div>
             </div>
+
+            {/* Delivery Countdown Timer */}
+            {!isCancelled && (order?.orderStatus || order?.status) !== 'delivered' && (
+              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Clock className="h-4 w-4 text-maroon" />
+                  <span className="text-xs font-medium text-slate-400">Time Remaining</span>
+                </div>
+                <div className="flex gap-3 justify-center">
+                  {[
+                    { value: countdown.days, label: 'Days' },
+                    { value: countdown.hours, label: 'Hours' },
+                    { value: countdown.minutes, label: 'Min' },
+                  ].map((unit) => (
+                    <div key={unit.label} className="flex flex-col items-center">
+                      <div className="w-16 h-16 rounded-xl bg-maroon/10 dark:bg-maroon/20 border border-maroon/15 flex items-center justify-center">
+                        <span className="text-2xl font-bold text-maroon">{unit.value}</span>
+                      </div>
+                      <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1.5">{unit.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Courier Tracking */}
             {order.courierInfo?.trackingCode && (
