@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HelpCircle, ShoppingBag, Truck, CreditCard, Gift, Package, RefreshCw, Shield, ChevronDown, ChevronUp, Search } from 'lucide-react';
 import Seo from '../components/Seo';
+import Breadcrumb from '../components/Breadcrumb';
 
 const HelpCenter = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -152,6 +153,7 @@ const HelpCenter = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'Help Center' }]} />
       <Seo
         title="Help Center | RongRani Gift Delivery FAQs"
         description="Find answers about gift orders, delivery, payments, and returns. Browse RongRani help topics and FAQs."
