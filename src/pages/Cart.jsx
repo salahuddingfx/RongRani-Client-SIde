@@ -10,7 +10,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import toast from 'react-hot-toast';
 
 const Cart = () => {
-  const { cartItems, totalItems, totalPrice, updateQuantity, removeFromCart } = useCart();
+  const { cartItems, totalItems, totalPrice, updateQuantity, removeFromCart, giftWrap, giftWrapTotal, giftMessage, GIFT_WRAP_FEE, toggleGiftWrap, updateGiftMessage } = useCart();
   const { isAuthenticated } = useAuth();
   const { delivery, fetchDelivery } = useDeliveryCalculation();
   const { t } = useLanguage();
@@ -20,6 +20,7 @@ const Cart = () => {
   }, [totalPrice, fetchDelivery]);
 
   const [giftWrapping, setGiftWrapping] = useState(false);
+  const [giftMessage, setGiftMessage] = useState('');
   const giftWrappingFee = 50;
   const paymentBadges = ['COD', 'bKash', 'Nagad', 'Rocket', 'Upay', 'SSLCommerz'];
   const shipping = delivery?.charge || 0;
@@ -156,6 +157,20 @@ const Cart = () => {
                   <span className="font-semibold text-maroon text-sm">৳{giftWrappingFee}</span>
                 </div>
 
+                {giftWrapping && (
+                  <div className="mt-2">
+                    <textarea
+                      value={giftMessage}
+                      onChange={(e) => setGiftMessage(e.target.value)}
+                      placeholder={t('gift_message_placeholder') || 'Write a gift message... (optional)'}
+                      rows={2}
+                      maxLength={200}
+                      className="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-maroon/30 resize-none"
+                    />
+                    <p className="text-[10px] text-slate-400 mt-1 text-right">{giftMessage.length}/200</p>
+                  </div>
+                )}
+
                 <hr className="border-slate-100 dark:border-slate-800" />
                 <div className="flex justify-between text-base font-bold">
                   <span className="text-slate-800 dark:text-white">{t('total')}</span>
@@ -163,7 +178,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              <Link to="/checkout" state={{ giftWrapping }}
+              <Link to="/checkout" state={{ giftWrapping, giftMessage }}
                 className="btn-primary w-full py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 mb-2">
                 {t('checkout')} <ArrowRight className="w-4 h-4" />
               </Link>

@@ -37,6 +37,27 @@ export const CartProvider = ({ children }) => {
     }
   });
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [giftWrap, setGiftWrap] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('giftWrap') || 'false'); } catch { return false; }
+  });
+  const [giftMessage, setGiftMessage] = useState(() => {
+    try { return localStorage.getItem('giftMessage') || ''; } catch { return ''; }
+  });
+
+  const GIFT_WRAP_FEE = 50;
+
+  const toggleGiftWrap = () => {
+    setGiftWrap(prev => {
+      const next = !prev;
+      localStorage.setItem('giftWrap', JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const updateGiftMessage = (msg) => {
+    setGiftMessage(msg);
+    localStorage.setItem('giftMessage', msg);
+  };
 
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
@@ -132,18 +153,26 @@ export const CartProvider = ({ children }) => {
   };
 
   /* Optimization: Memoize the context value to prevent unnecessary re-renders */
+  const giftWrapTotal = giftWrap ? GIFT_WRAP_FEE : 0;
+
   const value = useMemo(() => ({
     cartItems,
     totalItems,
     totalPrice,
+    giftWrap,
+    giftWrapTotal,
+    giftMessage,
+    GIFT_WRAP_FEE,
     addToCart,
     removeFromCart,
     updateQuantity,
+    toggleGiftWrap,
+    updateGiftMessage,
     clearCart,
     isCartOpen,
     openCart,
     closeCart
-  }), [cartItems, totalItems, totalPrice, isCartOpen]);
+  }), [cartItems, totalItems, totalPrice, isCartOpen, giftWrap, giftMessage]);
 
   return (
     <CartContext.Provider value={value}>

@@ -70,6 +70,7 @@ const Checkout = () => {
   const { t } = useLanguage();
   const { state } = useLocation();
   const giftWrapping = state?.giftWrapping || false;
+  const giftMessage = state?.giftMessage || '';
   const giftWrappingFee = 50;
 
   const [loading, setLoading] = useState(false);
@@ -182,6 +183,7 @@ const Checkout = () => {
           : undefined,
         isGiftWrapped: giftWrapping,
         giftWrappingFee: giftWrapping ? giftWrappingFee : 0,
+        giftMessage: giftWrapping ? giftMessage : '',
         giftMessage: formData.giftMessage,
         ...(couponInfo?.code && { couponCode: couponInfo.code }),
         ...(!isAuthenticated && { guestInfo: { name: formData.name, email: formData.email, phone: formData.phone } }),
