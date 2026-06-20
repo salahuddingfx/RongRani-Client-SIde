@@ -34,7 +34,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const { addToCart } = useCart();
+  const { addToCart, updateQuantity, cartItems } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   const [product, setProduct] = useState(null);
@@ -52,6 +52,14 @@ const ProductDetail = () => {
   const imageCount = product?.images?.length || 0;
 
   useEffect(() => { setActiveImage(0); }, [product?._id]);
+
+  // Sync quantity with cart if product already in cart
+  useEffect(() => {
+    if (product) {
+      const cartItem = cartItems.find(item => item.id === product._id || item.id === product.id);
+      if (cartItem) setQuantity(cartItem.quantity);
+    }
+  }, [product, cartItems]);
 
   useEffect(() => {
     if (imageCount < 2 || isImagePaused) return undefined;
@@ -109,8 +117,28 @@ const ProductDetail = () => {
   useEffect(() => { fetchProduct(); fetchReviews(); checkCanReview(); }, [fetchProduct, fetchReviews, checkCanReview]);
   useEffect(() => { if (product) addToRecentlyViewed(product); }, [product]);
 
-  const handleAddToCart = useCallback(() => { addToCart(product, quantity); playCartSound(); toast.success(`${product.name} added to cart!`); }, [addToCart, product, quantity]);
-  const handleBuyNow = useCallback(() => { addToCart(product, quantity); playCartSound(); toast.success('Redirecting to checkout...'); navigate('/checkout'); }, [addToCart, product, quantity, navigate]);
+  const isInCart = cartItems.some(item => item.id === product?._id || item.id === product?.id);
+
+  const handleAddToCart = useCallback(() => {
+    if (isInCart) {
+      updateQuantity(product._id || product.id, quantity);
+    } else {
+      addToCart(product, quantity);
+    }
+    playCartSound();
+    toast.success(`${product.name} added to cart!`);
+  }, [addToCart, updateQuantity, product, quantity, isInCart]);
+
+  const handleBuyNow = useCallback(() => {
+    if (isInCart) {
+      updateQuantity(product._id || product.id, quantity);
+    } else {
+      addToCart(product, quantity);
+    }
+    playCartSound();
+    toast.success('Redirecting to checkout...');
+    navigate('/checkout');
+  }, [addToCart, updateQuantity, product, quantity, navigate, isInCart]);
   const handleAddToWishlist = useCallback(() => { toggleWishlist(product); }, [toggleWishlist, product]);
 
   const getImageUrl = (image) => {
