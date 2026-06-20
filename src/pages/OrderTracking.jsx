@@ -133,7 +133,6 @@ const OrderTracking = () => {
     if (stepKey === 'delivered') return orderData.deliveredAt || null;
     return null;
   };
-  };
 
   const isCancelled = order?.orderStatus === 'cancelled' || order?.orderStatus === 'returned';
   const currentRank = isCancelled ? -1 : (STATUS_RANK[order?.orderStatus] ?? -1);
