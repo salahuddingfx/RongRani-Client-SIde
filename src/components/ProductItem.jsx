@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Heart, Star, Eye } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Heart, ShoppingCart, Zap, Star, Eye } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
@@ -11,6 +11,7 @@ const ProductItem = ({ product }) => {
   const { addToCart } = useCart();
   const { t } = useLanguage();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const navigate = useNavigate();
   const [showQuickView, setShowQuickView] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
