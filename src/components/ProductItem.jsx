@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingCart, Zap, Star, Eye } from 'lucide-react';
+import { Heart, ShoppingCart, Truck, Star, Eye } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useWishlist } from '../contexts/WishlistContext';
@@ -132,26 +132,24 @@ const ProductItem = ({ product }) => {
               <button
                 onClick={handleAddToCart}
                 disabled={productStock === 0}
-                className={`flex-1 flex items-center justify-center gap-1 text-[10px] sm:text-xs font-semibold py-1.5 rounded-lg transition-all duration-200 active:scale-95
+                className={`p-1.5 rounded-lg transition-all duration-200 active:scale-95
                   ${productStock > 0
-                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-maroon hover:text-white'
                     : 'bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
                 aria-label={t('add_to_cart')}
               >
-                <ShoppingCart className="w-3 h-3" />
-                {t('add_to_cart')}
+                <ShoppingCart className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => { addToCart(product); navigate('/checkout'); }}
                 disabled={productStock === 0}
-                className={`flex-1 flex items-center justify-center gap-1 text-[10px] sm:text-xs font-semibold py-1.5 rounded-lg transition-all duration-200 active:scale-95
+                className={`p-1.5 rounded-lg transition-all duration-200 active:scale-95
                   ${productStock > 0
                     ? 'bg-maroon text-white hover:bg-maroon-dark'
                     : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed'}`}
                 aria-label={t('order_now')}
               >
-                <Zap className="w-3 h-3" />
-                {t('order_now')}
+                <Truck className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
