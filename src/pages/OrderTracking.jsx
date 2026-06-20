@@ -277,7 +277,7 @@ const OrderTracking = () => {
                       {ts && (
                         <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 text-center">
                           {new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                          {isCurrent && <span className="block text-maroon font-medium">In Progress</span>}
+                           {isCurrent && <span className="block text-maroon font-medium">{t('in_progress') || 'In Progress'}</span>}
                         </p>
                       )}
                     </div>
@@ -319,7 +319,7 @@ const OrderTracking = () => {
                         {ts && (
                           <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                             {new Date(ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                            {isCurrent && <span className="ml-2 text-maroon font-medium">In Progress</span>}
+                            {isCurrent && <span className="ml-2 text-maroon font-medium">{t('in_progress') || 'In Progress'}</span>}
                           </p>
                         )}
                       </div>
@@ -352,13 +352,13 @@ const OrderTracking = () => {
                     <Clock className="h-5 w-5 text-maroon" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">What's Next?</h3>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{t('whats_next') || "What's Next?"}</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      {currentRank === 0 && "Your order is being reviewed. You'll receive a confirmation shortly."}
-                      {currentRank === 1 && "Your order is confirmed and will be prepared for shipping soon."}
-                      {currentRank === 2 && "Your order is being prepared. It will be handed over to the courier soon."}
-                      {currentRank === 3 && "Your order is on its way! Track it on the courier website for real-time updates."}
-                      {currentRank === 4 && "Your order is out for delivery today. Please keep your phone handy."}
+                      {currentRank === 0 && (t('whats_next_0') || "Your order is being reviewed. You'll receive a confirmation shortly.")}
+                      {currentRank === 1 && (t('whats_next_1') || "Your order is confirmed and will be prepared for shipping soon.")}
+                      {currentRank === 2 && (t('whats_next_2') || "Your order is being prepared. It will be handed over to the courier soon.")}
+                      {currentRank === 3 && (t('whats_next_3') || "Your order is on its way! Track it on the courier website for real-time updates.")}
+                      {currentRank === 4 && (t('whats_next_4') || "Your order is out for delivery today. Please keep your phone handy.")}
                     </p>
                   </div>
                 </div>
