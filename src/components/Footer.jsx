@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, Package, Shield, Heart, Truck } from 'lucide-react';
+import { Mail, Phone, MapPin, Package, Shield, Heart, Truck } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [bdTime, setBdTime] = useState('');
   const { t } = useLanguage();
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setBdTime(now.toLocaleString('en-US', {
-        timeZone: 'Asia/Dhaka',
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-      }));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <footer className="bg-slate-950 text-slate-400 mt-16">
@@ -56,10 +36,10 @@ const Footer = () => {
 
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
-          <div className="col-span-2 lg:col-span-1 space-y-4">
-            <Link to="/" className="flex items-center gap-2">
+          <div className="col-span-2 md:col-span-4 lg:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 rounded-lg overflow-hidden bg-white p-0.5">
                 <img src="/RongRani-Logo.png" alt="RongRani Logo" className="w-full h-full object-contain" />
               </div>
@@ -67,7 +47,7 @@ const Footer = () => {
                 Rong<span className="text-maroon">Rani</span>
               </span>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-xs">
+            <p className="text-sm text-slate-500 leading-relaxed max-w-xs mb-4">
               {t('footer_desc')}
             </p>
             <div className="flex items-center gap-2">
@@ -114,7 +94,27 @@ const Footer = () => {
                 { to: '/dashboard', label: t('my_orders') },
                 { to: '/quick-track', label: t('track_order') },
                 { to: '/help', label: t('help_center') },
-                { to: '/privacy-policy', label: t('privacy_policy') }
+                { to: '/contact', label: t('contact') }
+              ].map((link, idx) => (
+                <li key={idx}>
+                  <Link to={link.to} className="text-sm text-slate-500 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Policies */}
+          <div>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{t('policies') || 'Policies'}</h4>
+            <ul className="space-y-2.5">
+              {[
+                { to: '/privacy-policy', label: t('privacy_policy') },
+                { to: '/terms', label: t('terms_conditions') || 'Terms & Conditions' },
+                { to: '/refund-policy', label: t('refund_policy') || 'Refund Policy' },
+                { to: '/shipping-policy', label: t('shipping_policy') || 'Shipping Policy' },
+                { to: '/cookie-policy', label: t('cookie_policy') || 'Cookie Policy' }
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link to={link.to} className="text-sm text-slate-500 hover:text-white transition-colors">
@@ -126,7 +126,7 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="col-span-2 lg:col-span-1">
+          <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{t('contact_info_label')}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-sm">
@@ -157,19 +157,12 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 text-xs text-slate-600">
-            <Clock className="w-3.5 h-3.5" />
-            <span className="font-medium">{bdTime}</span>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left text-xs text-slate-500">
-            <span>© {currentYear} RongRani. {t('all_rights_reserved')}</span>
-            <span className="hidden sm:block text-slate-700">|</span>
-            <span>
-              {t('developed_with')} <Heart className="w-3 h-3 text-red-500 fill-red-500 inline mx-0.5" /> by{' '}
-              <Link to="/developer" className="text-maroon font-semibold hover:underline">Salah Uddin Kader</Link>
-            </span>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+          <span className="text-xs text-slate-500">© {currentYear} RongRani. {t('all_rights_reserved')}</span>
+          <span className="text-xs text-slate-500">
+            {t('developed_with')} <Heart className="w-3 h-3 text-red-500 fill-red-500 inline mx-0.5" /> by{' '}
+            <Link to="/developer" className="text-maroon font-semibold hover:underline">Salah Uddin Kader</Link>
+          </span>
         </div>
       </div>
     </footer>
