@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Heart, Users, Award, ShoppingBag, Package, CheckCircle, Star, Globe } from 'lucide-react';
 import Seo from '../components/Seo';
 import { useLanguage } from '../contexts/LanguageContext';
+import Breadcrumb from '../components/Breadcrumb';
 
 const AboutUs = () => {
   const { t } = useLanguage();
@@ -59,6 +60,7 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900/40 py-12 px-4">
+      <Breadcrumb items={[{ label: 'About Us' }]} />
       <Seo
         title="About RongRani | Handmade Gifts in Bangladesh"
         description="Learn about RongRani, our artisans, and our mission to deliver handcrafted gifts and surprise boxes across Bangladesh."
