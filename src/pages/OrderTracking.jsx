@@ -387,7 +387,7 @@ const OrderTracking = () => {
                   <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                     <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                       <img
-                        src={getImageUrl(item.product?.images?.[0]) || getImageUrl(item.image) || 'https://via.placeholder.com/100'}
+                        src={getImageUrl(item.image) || getImageUrl(item.product?.images?.[0]) || 'https://via.placeholder.com/100'}
                         alt={item.name || item.product?.name || 'Product'}
                         className="w-full h-full object-cover"
                         onError={(e) => {

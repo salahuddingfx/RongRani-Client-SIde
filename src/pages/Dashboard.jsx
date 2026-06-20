@@ -878,7 +878,7 @@ const Dashboard = () => {
                               return (
                                 <div key={idx} className="flex gap-3 items-center">
                                   <img 
-                                    src={item.product?.images?.[0] || item.product?.image || item.image || 'https://via.placeholder.com/100'} 
+                                    src={item.image || item.product?.images?.[0]?.url || item.product?.image || 'https://via.placeholder.com/100'} 
                                     alt={item.product?.name || item.name} 
                                     className="w-10 h-10 object-cover rounded-lg border border-slate-100 dark:border-slate-700 flex-shrink-0"
                                     onError={(e) => {

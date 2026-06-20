@@ -261,7 +261,7 @@ const QuickOrderLookup = () => {
                           {order.items.slice(0, 3).map((item, idx) => (
                             <img
                               key={idx}
-                              src={item.image || item.product?.images?.[0] || 'https://via.placeholder.com/40x40?text=No+Image'}
+                               src={item.image || item.product?.images?.[0]?.url || 'https://via.placeholder.com/40x40?text=No+Image'}
                               alt={item.name || item.product?.name || 'Product'}
                               className="w-8 h-8 rounded-lg object-cover border border-slate-200 dark:border-slate-600"
                               onError={(e) => {
