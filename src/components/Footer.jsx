@@ -40,7 +40,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 text-center lg:text-left">
             <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-0.5 shrink-0">
+              <div className="w-10 h-10 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                 <img src="/RongRani-Logo.png" alt="RongRani Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-xl font-bold text-white tracking-tight">
