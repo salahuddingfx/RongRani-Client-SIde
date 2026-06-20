@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Package, Truck, CheckCircle, MapPin, Calendar, DollarSign, ArrowLeft, Phone, Mail, Download, Search, Heart, CircleX, Clock } from 'lucide-react';
+import { Package, Truck, CheckCircle, MapPin, Calendar, DollarSign, ArrowLeft, Phone, Mail, Download, Search, Heart, CircleX, Clock, ClipboardCheck, Truck as DeliveryTruck } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -9,13 +9,15 @@ import ReviewForm from '../components/ReviewForm';
 import Breadcrumb from '../components/Breadcrumb';
 
 const STEPS = [
-  { key: 'pending', label: 'Order Placed', icon: Package },
-  { key: 'processing', label: 'Processing', icon: Package },
-  { key: 'shipped', label: 'Shipped', icon: Truck },
-  { key: 'delivered', label: 'Delivered', icon: CheckCircle },
+  { key: 'pending', label: 'Order Placed', icon: Package, desc: 'Your order has been received' },
+  { key: 'confirmed', label: 'Confirmed', icon: ClipboardCheck, desc: 'Order confirmed by seller' },
+  { key: 'processing', label: 'Processing', icon: Package, desc: 'Preparing your order' },
+  { key: 'shipped', label: 'Shipped', icon: Truck, desc: 'Handed over to courier' },
+  { key: 'out_for_delivery', label: 'Out for Delivery', icon: DeliveryTruck, desc: 'On the way to you' },
+  { key: 'delivered', label: 'Delivered', icon: CheckCircle, desc: 'Delivered successfully' },
 ];
 
-const STATUS_RANK = { pending: 0, processing: 1, shipped: 2, delivered: 3 };
+const STATUS_RANK = { pending: 0, confirmed: 1, processing: 2, shipped: 3, out_for_delivery: 4, delivered: 5 };
 
 const OrderTracking = () => {
   const { t } = useLanguage();
@@ -127,7 +129,9 @@ const OrderTracking = () => {
 
   const getStepTimestamp = (stepKey, orderData) => {
     if (stepKey === 'pending') return orderData.createdAt;
+    if (stepKey === 'confirmed') return orderData.createdAt ? new Date(new Date(orderData.createdAt).getTime() + 5 * 60 * 1000).toISOString() : null;
     if (stepKey === 'shipped') return orderData.courierInfo?.sentAt || null;
+    if (stepKey === 'out_for_delivery') return orderData.courierInfo?.sentAt ? new Date(new Date(orderData.courierInfo.sentAt).getTime() + 2 * 24 * 60 * 60 * 1000).toISOString() : null;
     if (stepKey === 'delivered') return orderData.deliveredAt || null;
     return null;
   };
