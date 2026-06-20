@@ -8,19 +8,19 @@ import { useSocket } from '../contexts/socketContextBase';
 import ReviewForm from '../components/ReviewForm';
 import Breadcrumb from '../components/Breadcrumb';
 
-const STEPS = [
-  { key: 'pending', label: 'Order Placed', icon: Package, desc: 'Your order has been received' },
-  { key: 'confirmed', label: 'Confirmed', icon: ClipboardCheck, desc: 'Order confirmed by seller' },
-  { key: 'processing', label: 'Processing', icon: Package, desc: 'Preparing your order' },
-  { key: 'shipped', label: 'Shipped', icon: Truck, desc: 'Handed over to courier' },
-  { key: 'out_for_delivery', label: 'Out for Delivery', icon: DeliveryTruck, desc: 'On the way to you' },
-  { key: 'delivered', label: 'Delivered', icon: CheckCircle, desc: 'Delivered successfully' },
-];
-
 const STATUS_RANK = { pending: 0, confirmed: 1, processing: 2, shipped: 3, out_for_delivery: 4, delivered: 5 };
 
 const OrderTracking = () => {
   const { t } = useLanguage();
+
+  const STEPS = [
+    { key: 'pending', label: t('step_order_placed') || 'Order Placed', icon: Package, desc: t('step_order_placed_desc') || 'Your order has been received' },
+    { key: 'confirmed', label: t('step_confirmed') || 'Confirmed', icon: ClipboardCheck, desc: t('step_confirmed_desc') || 'Order confirmed by seller' },
+    { key: 'processing', label: t('step_processing') || 'Processing', icon: Package, desc: t('step_processing_desc') || 'Preparing your order' },
+    { key: 'shipped', label: t('step_shipped') || 'Shipped', icon: Truck, desc: t('step_shipped_desc') || 'Handed over to courier' },
+    { key: 'out_for_delivery', label: t('step_out_for_delivery') || 'Out for Delivery', icon: DeliveryTruck, desc: t('step_out_for_delivery_desc') || 'On the way to you' },
+    { key: 'delivered', label: t('step_delivered') || 'Delivered', icon: CheckCircle, desc: t('step_delivered_desc') || 'Delivered successfully' },
+  ];
   const { orderId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
